@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "title": "Hai Huong Seafood",
+    "description": "Hai Huong Seafood Joint Stock Company - Our Quality, Your Safety"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "markets": "Markets",
+    "news": "News",
+    "contact": "Contact",
+    "search": "Search"
+  },
+  "company": {
+    "name": "HAI HUONG SEAFOOD JOINT STOCK COMPANY",
+    "tagline": "OUR QUALITY - YOUR SAFETY",
+    "logoAlt": "HH Fish - Hai Huong Seafood"
+  },
+  "hero": {
+    "slides": [
+      {
+        "title": "HHFISH has successfully applied the international quality management system",
+        "badges": "HACCP | BRCGS | ISO 22000 | HALAL | WALMART AUDIT....",
+        "imageAlt": "Hai Huong seafood processing factory"
+      },
+      {
+        "title": "Exporting premium seafood products to over 50 countries worldwide",
+        "badges": "EU | USA | MIDDLE EAST | ASIA | EUROPE",
+        "imageAlt": "Export cargo ships"
+      },
+      {
+        "title": "Natural fish farming areas meeting food safety standards",
+        "badges": "ASC | BAP | VIETGAP | GLOBALG.A.P",
+        "imageAlt": "Aquaculture farming area"
+      },
+      {
+        "title": "Pangasius fillet products meeting international standards",
+        "badges": "PANGASIUS | VALUE ADDED | FISH MEAL & OIL",
+        "imageAlt": "Fresh pangasius fillets"
+      }
+    ]
+  },
+  "features": {
+    "export": {
+      "title": "Export anywhere",
+      "description": "We export high-quality seafood products to over 50 countries worldwide with a modern logistics system."
+    },
+    "farming": {
+      "title": "Fish farming area",
+      "description": "Natural fish farming areas meeting standards, ensuring fresh and clean raw materials for production."
+    },
+    "fillets": {
+      "title": "Fish Fillets",
+      "description": "Pangasius Fillets, Pangasius Value added, Pangasius Fish Meal & Fish Oil, Pangasius Others.....",
+      "cta": "See more"
+    }
+  },
+  "sections": {
+    "about": {
+      "label": "About us",
+      "title": "Over 20 years of experience in seafood industry",
+      "description": "Hai Huong Seafood Joint Stock Company is a leading Vietnamese seafood processing and export enterprise, specializing in pangasius products with strict quality control.",
+      "cta": "Learn more"
+    },
+    "products": {
+      "label": "Products",
+      "title": "Main product categories",
+      "items": [
+        {
+          "name": "Pangasius Fillet",
+          "desc": "Fresh frozen fillet, skinless, boneless"
+        },
+        { "name": "Value Added", "desc": "Processed value-added products" },
+        { "name": "Fish Meal & Oil", "desc": "Animal feed raw materials" },
+        {
+          "name": "Other Products",
+          "desc": "Customized to customer requirements"
+        }
+      ],
+      "cta": "View all products"
+    },
+    "stats": {
+      "title": "Key figures",
+      "items": [
+        { "value": "20+", "label": "Years of experience" },
+        { "value": "50+", "label": "Export countries" },
+        { "value": "5000+", "label": "Employees" },
+        { "value": "100%", "label": "Quality control" }
+      ]
+    },
+    "news": {
+      "label": "News",
+      "title": "News & Events",
+      "items": [
+        {
+          "title": "Hai Huong achieves new BRCGS certification",
+          "date": "15/05/2026",
+          "excerpt": "The company completed assessment and received BRCGS Food Safety certification."
+        },
+        {
+          "title": "International seafood expo in Brussels",
+          "date": "02/04/2026",
+          "excerpt": "Hai Huong showcased premium pangasius fillet products at Seafood Expo."
+        },
+        {
+          "title": "ASC-certified farming area expansion",
+          "date": "20/03/2026",
+          "excerpt": "Strengthening sustainable raw material supply for export."
+        }
+      ],
+      "cta": "View all news"
+    },
+    "contact": {
+      "label": "Contact",
+      "title": "Partner with Hai Huong Seafood",
+      "description": "Contact us for product consultation and export cooperation.",
+      "cta": "Contact us"
+    }
+  },
+  "homeNews": {
+    "title": "News",
+    "all": "ALL",
+    "slider": [
+      {
+        "title": "Vietnam's Seafood Exports to the EU Market"
+      },
+      {
+        "title": "Hai Huong at International Seafood Expo"
+      },
+      {
+        "title": "Processing plant expansion meets global standards"
+      },
+      {
+        "title": "New BRCGS certification achieved"
+      }
+    ],
+    "featured": {
+      "title": "Seafood market segments: Survey results across 5 European countries",
+      "meta": "21/09/2018 | 14:03 GMT +07",
+      "body": "According to a survey across five European countries, consumers are increasingly focused on the origin and sustainability certifications of seafood products. This presents an opportunity for Vietnamese exporters to strengthen brand value and reputation.",
+      "badgeMsc": "MSC WINNER",
+      "badgeAsc": "ASC WINNER"
+    },
+    "quoteLines": [
+      "We are honored to be a leading and",
+      "reliable partner in aquaculture, processing and exporting",
+      "seafood"
+    ],
+    "certifications": ["HACCP", "BRC", "HALAL", "ISO 22000", "GLOBALG.A.P"]
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "subtitle": "About Hai Huong Seafood Joint Stock Company",
+      "content": "We are a leading enterprise in seafood processing and export in Vietnam, with modern factory systems and experienced professionals."
+    },
+    "products": {
+      "title": "Products",
+      "subtitle": "Diverse product portfolio",
+      "content": "Providing a full range of products from pangasius fillet, processed products to fish meal and fish oil."
+    },
+    "markets": {
+      "title": "Markets",
+      "subtitle": "Global export reach",
+      "content": "Our products are present in over 50 countries across continents."
+    },
+    "news": {
+      "title": "News",
+      "subtitle": "Latest updates",
+      "content": "Follow the activities, events and achievements of Hai Huong Seafood."
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "We are always ready to assist",
+      "content": "Please contact us via the form or information below.",
+      "address": "Industrial Zone, An Giang Province, Vietnam",
+      "phone": "+84 296 3xxx xxx",
+      "email": "info@haihuongseafood.com"
+    }
+  },
+  "footer": {
+    "rights": "© 2026 Hai Huong Seafood Joint Stock Company. All rights reserved.",
+    "quickLinks": "Quick links",
+    "contact": "Contact info"
+  }
+}

@@ -1,0 +1,28 @@
+import logo from "@/images/logo.png";
+import bg from "@/images/bg.png";
+import heroSlide from "@/images/bg-slide.jpg";
+import iconSearch from "@/images/icon-search.png";
+import iconVietnam from "@/images/icon-vietnam.png";
+import iconUnitedKingdom from "@/images/icon-united-kingdom.png";
+import iconFish from "@/images/icon-fish.svg";
+import certLeft from "@/images/certs/cert-left.jpg";
+import certMiddle from "@/images/certs/cert-middle.jpg";
+import certRight from "@/images/certs/cert-right.jpg";
+
+/** bg: nền sóng vùng trên (header + hero), không dùng full-page */
+export const images = {
+  logo,
+  bg,
+  heroSlide,
+  iconSearch,
+  iconVietnam,
+  iconUnitedKingdom,
+  iconFish,
+} as const;
+
+/** Placeholder logo chứng nhận — thay file trong src/images/certs/ khi có bản chính */
+export const certificationLogos = [
+  { src: certLeft, alt: "Left" },
+  { src: certMiddle, alt: "Middle" },
+  { src: certRight, alt: "Right" },
+] as const;
