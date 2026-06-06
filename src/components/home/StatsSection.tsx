@@ -10,10 +10,10 @@ export async function StatsSection() {
         <h2 className="mb-8 text-center text-xl font-bold text-white sm:text-2xl">
           {t("title")}
         </h2>
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
           {items.map((item, i) => (
             <div key={i} className="text-center">
-              <p className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              <p className="text-3xl font-bold text-white sm:text-4xl md:text-[2.5rem] lg:text-5xl">
                 {item.value}
               </p>
               <p className="mt-2 text-sm text-white/80 sm:text-base">

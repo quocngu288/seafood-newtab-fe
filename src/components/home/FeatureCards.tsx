@@ -11,6 +11,34 @@ const PLACEHOLDER = {
     "https://images.unsplash.com/photo-1611171711916-3ab5f5f5a6a2?w=900&q=80",
 } as const;
 
+function FeatureCardTitle({
+  children,
+  variant = "standard",
+}: {
+  children: string;
+  variant?: "standard" | "wide";
+}) {
+  return (
+    <div>
+      <h3
+        className={
+          variant === "wide"
+            ? "text-[24px] font-bold leading-none text-gray-900 sm:text-[28px] md:text-[36px]"
+            : "text-[24px] font-bold text-gray-900"
+        }
+      >
+        {children}
+      </h3>
+      <div
+        className={`mt-2 bg-gray-900 ${
+          variant === "wide" ? "h-1 w-28" : "h-0.5 w-16"
+        }`}
+        aria-hidden
+      />
+    </div>
+  );
+}
+
 type StandardCardProps = {
   imageSrc: string | StaticImageData;
   imageAlt: string;
@@ -25,7 +53,7 @@ function StandardFeatureCard({
   description,
 }: StandardCardProps) {
   return (
-    <article className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-md">
+    <article className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-md min-h-[450px]">
       <div className="relative aspect-[5/4] shrink-0 bg-slate-100">
         <Image
           src={imageSrc}
@@ -40,8 +68,8 @@ function StandardFeatureCard({
         />
       </div>
       <div className="relative px-4 pb-12 pt-2">
-        <h3 className="text-base font-bold text-gray-900">{title}</h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-600">
+        <FeatureCardTitle>{title}</FeatureCardTitle>
+        <p className="mt-3 line-clamp-3 text-[14px] leading-relaxed text-gray-600">
           {description}
         </p>
       </div>
@@ -70,25 +98,23 @@ function FilletsFeatureCard({
   imageAlt,
 }: FilletsCardProps) {
   return (
-    <article className="relative min-h-[320px] overflow-visible rounded-2xl bg-white shadow-md sm:min-h-[360px]">
-      <div className="relative z-20 max-w-[66%] p-5 sm:max-w-[56%] sm:p-6">
-        <h3 className="text-[28px] font-bold leading-none text-gray-900 sm:text-[34px]">
-          {title}
-        </h3>
-        <p className="mt-3 text-sm leading-relaxed text-gray-600 sm:text-[15px]">
+    <article className="relative min-h-[450px] overflow-hidden rounded-2xl bg-white shadow-md md:overflow-visible">
+      <div className="relative z-20 max-w-[66%] p-5 sm:max-w-[60%] sm:p-6 md:max-w-[56%]">
+        <FeatureCardTitle variant="wide">{title}</FeatureCardTitle>
+        <p className="mt-4 text-[14px] leading-relaxed text-gray-600">
           {description}
         </p>
         <button
           type="button"
-          className="mt-5 rounded-full bg-hh-red px-6 py-2.5 text-sm font-semibold text-white shadow-sm"
+          className="mt-5 rounded-full bg-hh-red px-6 py-2.5 text-[18px] font-semibold text-white shadow-sm"
         >
           {cta}
         </button>
       </div>
 
-      <div className="pointer-events-none absolute -bottom-10 -right-3 z-10 h-[62%] w-[56%] min-h-[170px] sm:-bottom-12 sm:-right-8 sm:h-[78%] sm:w-[56%] sm:min-h-[230px]">
+      <div className="pointer-events-none absolute -bottom-10 -right-3 z-10 h-[64%] w-[58%] min-h-[170px] sm:-bottom-12 sm:-right-5 sm:h-[76%] sm:w-[60%] md:-bottom-16 md:-right-10 md:h-[88%] md:w-[64%] md:min-h-[260px]">
         <Image
-          src={PLACEHOLDER.fillets}
+          src={images.featureSlide}
           alt={imageAlt}
           fill
           className="object-contain object-bottom-right drop-shadow-2xl"
@@ -103,14 +129,18 @@ export async function FeatureCards() {
   const t = await getTranslations("features");
 
   return (
-    <section className="site-container relative z-20 pb-16 sm:pb-24 lg:pb-32">
-      <div className="relative lg:h-[420px]">
+    <section className="site-container relative z-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
+      {/*
+        Lớp 1 (z-0): nền xanh — chỉ là “kệ” phía dưới
+        Lớp 2 (z-10): 3 card trắng đè lên, phần lớn card nhô ra phía trên mép nền
+      */}
+      <div className="relative min-h-[340px] sm:min-h-[380px] md:min-h-[400px] lg:min-h-[450px]">
         <div
-          className="hidden rounded-[28px] bg-[#79B4E6] shadow-[0_10px_28px_rgba(0,0,0,0.14)] lg:absolute lg:inset-x-0 lg:bottom-0 lg:block lg:h-[56%]"
+          className="pointer-events-none absolute inset-x-0 bottom-[-80px] z-0 h-[315px] rounded-[28px] bg-[#79B4E6] shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
           aria-hidden
         />
-        <div className="overflow-hidden rounded-[28px] bg-[#79B4E6] px-3 pb-8 pt-4 shadow-[0_10px_28px_rgba(0,0,0,0.14)] sm:px-5 sm:pb-10 sm:pt-6 lg:absolute lg:inset-x-0 lg:top-0 lg:overflow-visible lg:rounded-none lg:bg-transparent lg:px-3 lg:pb-0 lg:pt-0 lg:shadow-none">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+
+        <div className="relative z-10 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 sm:gap-4 md:gap-5 lg:grid-cols-4 px-[60px]">
           <div className="sm:col-span-1 lg:col-span-1">
             <StandardFeatureCard
               imageSrc={PLACEHOLDER.export}
@@ -134,7 +164,6 @@ export async function FeatureCards() {
               cta={t("fillets.cta")}
               imageAlt={t("fillets.title")}
             />
-          </div>
           </div>
         </div>
       </div>

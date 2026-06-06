@@ -8,7 +8,7 @@ export async function AboutSection() {
 
   return (
     <section className="bg-white py-12 sm:py-16">
-      <div className="site-container grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div className="site-container grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
           <Image
             src={images.heroSlide}

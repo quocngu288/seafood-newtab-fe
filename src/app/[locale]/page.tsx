@@ -14,9 +14,9 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <HomeTop />
+      <FeatureCards />
 
       <div className="relative z-10 pt-2 sm:pt-4">
-        <FeatureCards />
         <HomeNewsBlock />
       </div>
     </>

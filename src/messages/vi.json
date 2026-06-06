@@ -180,8 +180,34 @@
     }
   },
   "footer": {
-    "rights": "© 2026 Công ty CP Hải Hương Seafood. Bảo lưu mọi quyền.",
-    "quickLinks": "Liên kết nhanh",
-    "contact": "Thông tin liên hệ"
+    "saleOnline": "Sale online",
+    "contact": "Contact",
+    "address": "Lô A8-A9, KCN An Hiệp, Phú Túc, Vĩnh Long, Việt Nam",
+    "email": "Haihuongsale@hhfish.com.vn",
+    "website": "https://hhfish.com/",
+    "hotline": "Hotline 24/24 (Mrs.Mùi): +84.909.496.999",
+    "sales": [
+      {
+        "name": "BUI THI THUY HUONG",
+        "title": "Phó Giám đốc Kinh doanh",
+        "phone": "+84.939.256.363"
+      },
+      {
+        "name": "NGUYEN BICH VAN",
+        "title": "Chuyên viên Kinh doanh",
+        "phone": "+84.962.693.038"
+      },
+      {
+        "name": "TRINH MINH NGHIA",
+        "title": "Phó Giám đốc Xuất nhập khẩu",
+        "phone": "+84.918.628.627"
+      }
+    ],
+    "social": {
+      "email": "Email",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    }
   }
 }

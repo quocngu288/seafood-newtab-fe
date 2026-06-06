@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
@@ -7,7 +6,6 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { SiteShell } from "@/components/layout/SiteShell";
-import { images } from "@/lib/images";
 import "../globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -51,14 +49,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${sourceSans.variable} h-full antialiased`}>
-      <body
-        className="min-h-full font-sans"
-        style={
-          {
-            "--hh-wave-bg": `url(${images.bg.src})`,
-          } as CSSProperties
-        }
-      >
+      <body className="min-h-full font-sans">
         <NextIntlClientProvider messages={messages}>
           <SiteShell>{children}</SiteShell>
         </NextIntlClientProvider>

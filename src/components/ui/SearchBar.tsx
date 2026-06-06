@@ -18,7 +18,7 @@ export function SearchBar({
         type="search"
         placeholder={placeholder}
         aria-label={ariaLabel ?? placeholder}
-        className="h-9 w-full min-w-[140px] rounded-full border border-white/25 bg-white/10 py-0 pl-4 pr-10 text-sm text-white shadow-inner placeholder:text-transparent backdrop-blur-sm focus:border-white/45 focus:outline-none sm:min-w-[170px] lg:min-w-[190px]"
+        className="h-9 w-full min-w-[140px] rounded-full border border-white/25 bg-white/10 py-0 pl-4 pr-10 text-sm text-white shadow-inner placeholder:text-transparent backdrop-blur-sm focus:border-white/45 focus:outline-none sm:min-w-[160px] md:min-w-[180px] lg:min-w-[190px]"
       />
       <Image
         src={images.iconSearch}

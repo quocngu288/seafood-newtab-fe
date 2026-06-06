@@ -4,8 +4,8 @@ import { certificationLogos, images } from "@/lib/images";
 
 function QuoteLine({ children }: { children: string }) {
   return (
-    <div className="bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
-      <span className="block text-[24px] font-medium leading-snug text-gray-900 sm:text-[30px]">
+    <div className="w-fit max-w-full bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
+      <span className="block text-[22px] font-medium leading-snug text-gray-900 sm:text-[26px] md:text-[30px]">
         {children}
       </span>
     </div>
@@ -19,62 +19,62 @@ export async function PartnerQuote() {
   return (
     <section
       id="partner-quote"
-      className="overflow-visible bg-white pb-20 pt-4 sm:pb-28 sm:pt-6"
+      className="overflow-visible bg-white pb-16 pt-4 sm:pb-20 sm:pt-6"
     >
       <div className="site-container overflow-visible">
-        <div className="relative min-h-[300px] overflow-visible rounded-[40px] sm:min-h-[340px] lg:min-h-[380px]">
-          <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-            <Image
-              src={images.heroSlide}
-              alt=""
-              fill
-              className="object-cover object-center sm:object-[60%_center]"
-              sizes="(max-width: 640px) 100vw, 1152px"
-            />
-            <div className="absolute inset-0 bg-[#BDE3FF]/82" aria-hidden />
-          </div>
+        <div className="relative">
+          {/* Banner cố định 330px — chỉ ảnh + quote */}
+          <div className="relative h-[330px] overflow-hidden rounded-[40px]">
+            <div className="absolute inset-0">
+              <Image
+                src={images.vungNuoi}
+                alt=""
+                fill
+                className="object-cover object-center sm:object-[60%_center]"
+                sizes="(max-width: 640px) 100vw, 1152px"
+              />
+              <div className="absolute inset-0 bg-[#79bbed]/82" aria-hidden />
+            </div>
 
-          <div className="relative z-10 px-6 pt-7 sm:px-10 sm:pt-9 lg:px-12">
-            {/* Một khối: quote + cert cùng mép trái/phải */}
-            <div className="inline-block max-w-full align-top">
-              <span
-                className="block font-serif text-[56px] leading-none text-hh-red sm:text-[64px]"
+            <div className="relative z-10 h-full px-6 pt-5 sm:px-10 sm:pt-6 lg:px-12">
+              <Image
+                src={images.quote}
+                alt=""
+                width={76}
+                height={44}
+                className="h-[40px] w-[60px] sm:h-[40px]"
                 aria-hidden
-              >
-                &ldquo;
-              </span>
+              />
 
-              <div className="mt-2 inline-grid w-full max-w-full grid-cols-1 gap-1 sm:mt-3 sm:gap-1.5">
+              <div className="mt-1.5 flex max-w-full flex-col gap-1 sm:mt-2 sm:gap-1.5 ml-10">
                 {quoteLines.map((line) => (
                   <QuoteLine key={line}>{line}</QuoteLine>
                 ))}
               </div>
-
-              <div className="mt-8 w-full translate-y-1/2 sm:mt-10">
-                <div className="rounded-[30px] bg-white px-5 py-6 shadow-[0_6px_24px_rgba(0,0,0,0.14)] sm:px-10 sm:py-8">
-                  <div className="grid grid-cols-3 items-center gap-4 sm:gap-8 md:gap-12">
-                    {certificationLogos.map((cert) => (
-                      <div
-                        key={cert.alt}
-                        className="flex min-h-[2.75rem] items-center justify-center sm:min-h-[3.25rem]"
-                      >
-                        <Image
-                          src={cert.src}
-                          alt={cert.alt}
-                          width={240}
-                          height={96}
-                          className="h-9 w-full max-w-[220px] object-contain sm:h-11 md:h-12"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
-          {/* Chừa chỗ phần cert chồng ra dưới mép banner */}
-          <div className="h-20 sm:h-24" aria-hidden />
+          {/* Cert full width, căn giữa, đè nửa dưới mép banner */}
+          <div className="absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-6 sm:px-10 lg:px-12 w-full lg:w-[500px]">
+            <div className="rounded-[30px] bg-white px-4 py-4 shadow-[0_6px_24px_rgba(0,0,0,0.14)] sm:px-8 sm:py-5 md:px-10 md:py-6 ml-[30px]">
+              <div className="grid grid-cols-3 items-center gap-3 sm:gap-6 md:gap-10 lg:gap-12">
+                {certificationLogos.map((cert) => (
+                  <div
+                    key={cert.alt}
+                    className="flex min-h-[2.5rem] items-center justify-center sm:min-h-[3rem]"
+                  >
+                    <Image
+                      src={cert.src}
+                      alt={cert.alt}
+                      width={240}
+                      height={96}
+                      className="h-8 w-full max-w-[220px] object-contain sm:h-10 md:h-11 lg:h-12"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

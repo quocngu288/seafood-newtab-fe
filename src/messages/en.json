@@ -180,8 +180,34 @@
     }
   },
   "footer": {
-    "rights": "© 2026 Hai Huong Seafood Joint Stock Company. All rights reserved.",
-    "quickLinks": "Quick links",
-    "contact": "Contact info"
+    "saleOnline": "Sale online",
+    "contact": "Contact",
+    "address": "Lot No.A8-A9, An Hiep Industrial Zone, Phu Tuc, Vinh Long, Viet Nam",
+    "email": "Haihuongsale@hhfish.com.vn",
+    "website": "https://hhfish.com/",
+    "hotline": "Hotline 24/24 (Mrs.Mùi): +84.909.496.999",
+    "sales": [
+      {
+        "name": "BUI THI THUY HUONG",
+        "title": "Vice Sales Director",
+        "phone": "+84.939.256.363"
+      },
+      {
+        "name": "NGUYEN BICH VAN",
+        "title": "Sales Executive",
+        "phone": "+84.962.693.038"
+      },
+      {
+        "name": "TRINH MINH NGHIA",
+        "title": "Vice Director of Import and Export",
+        "phone": "+84.918.628.627"
+      }
+    ],
+    "social": {
+      "email": "Email",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    }
   }
 }

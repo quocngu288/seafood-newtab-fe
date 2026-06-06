@@ -33,17 +33,22 @@ export function Header() {
   return (
     <header className="relative z-50">
       <div className="site-container pt-4 pb-2 sm:pb-4">
-        {/* Hàng 1: Logo + tên công ty giữa */}
-        <div className="relative flex min-h-[64px] items-center justify-center sm:min-h-[72px]">
-          <Link href="/" className="absolute left-0 top-1/2 z-10 -translate-y-1/2">
-            <Logo className="!w-[100px] sm:!w-[170px] lg:!w-[190px]" />
+        {/* Hàng 1: Logo trái | tên công ty canh giữa vùng còn lại */}
+        <div className="flex min-h-[64px] items-center gap-2 sm:min-h-[72px] sm:gap-3">
+          <Link href="/" className="shrink-0">
+            <Logo className="w-[180px]! sm:w-[220px]! md:w-[280px]! lg:w-[340px]!" />
           </Link>
-          <h1 className="max-w-[calc(100%-10.5rem)] px-1 text-center text-[13px] font-semibold uppercase leading-tight tracking-wide text-white sm:max-w-[70%] sm:text-[24px] sm:leading-snug lg:text-[30px]">
-            {tCompany("name")}
-          </h1>
+
+          <div className="flex min-w-0 flex-1 items-center justify-center">
+            <h1 className="px-1 text-center text-[16px] font-semibold uppercase leading-tight tracking-wide text-white sm:text-[20px] md:text-[24px] md:leading-snug lg:text-[28px]">
+              {tCompany("name")}
+            </h1>
+          </div>
+
+          {/* Mobile + tablet: menu drawer; desktop lg+: hàng nav ngang */}
           <button
             type="button"
-            className="absolute right-0 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg border border-white/30 text-white sm:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/30 text-white lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Menu"
@@ -82,13 +87,13 @@ export function Header() {
 
         {/* Hàng 2: Menu trái | Search + cờ phải */}
         <div
-          className={`mt-2 pb-4 sm:mt-3 ${
-            menuOpen ? "block" : "hidden sm:block"
+          className={`mt-4 pb-4 sm:mt-3 ${
+            menuOpen ? "block" : "hidden lg:block"
           }`}
         >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+          <div className="flex flex-col gap-4 md:gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
             <nav className="min-w-0 flex-1">
-              <ul className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-end sm:justify-start">
+              <ul className="flex flex-col gap-1 md:grid md:grid-cols-3 md:gap-x-2 md:gap-y-2 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
                 {navItems.map(({ key, href }) => {
                   const active = isActive(href);
                   return (
@@ -96,7 +101,7 @@ export function Header() {
                       <Link
                         href={href}
                         onClick={() => setMenuOpen(false)}
-                        className={`inline-flex flex-col items-center whitespace-nowrap px-3 pt-1.5 text-[15px] font-normal leading-none transition sm:px-3.5 lg:px-4 ${
+                        className={`inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 text-base font-normal leading-none transition sm:px-3 md:text-lg lg:px-4 lg:text-[21px] ${
                           active
                             ? "text-white"
                             : "text-white/90 hover:text-white"
@@ -121,10 +126,10 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="flex shrink-0 items-center gap-3 sm:ml-auto sm:gap-4">
+            <div className="flex shrink-0 items-center gap-3 md:justify-end lg:ml-auto lg:gap-4">
               <SearchBar
                 placeholder={t("search")}
-                className="w-full sm:w-auto"
+                className="w-full md:max-w-[220px] lg:w-auto"
                 ariaLabel={t("search")}
               />
               <LanguageSwitcher />

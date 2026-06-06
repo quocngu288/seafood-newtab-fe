@@ -5,10 +5,30 @@
   --hh-blue: #1a5a9e;
   --hh-blue-light: #3d7ab8;
   --hh-blue-pale: #c8dff0;
-  --hh-red: #e31e24;
+  --hh-red: #da251c;
   --hh-red-hover: #c4191f;
-  --background: #1a5a9e;
-  --foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #111827;
+  /** Chiều cao vùng sóng (header + hero) — chỉnh tại đây */
+  --hh-wave-band-height: 880px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --hh-wave-band-height: 1020px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --hh-wave-band-height: 1150px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --hh-wave-band-height: 1300px;
+  }
 }
 
 @theme inline {
@@ -25,15 +45,12 @@ body {
   font-family:
     var(--font-source-sans), "Source Sans Pro", system-ui, sans-serif;
   color: var(--foreground);
-  background-image: var(--hh-wave-bg);
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
+  background-color: var(--background);
 }
 
 @layer components {
   .site-container {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-7 lg:px-8;
   }
 
   .site-container--narrow {
