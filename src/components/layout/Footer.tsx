@@ -72,7 +72,7 @@ function ContactRow({
   children: ReactNode;
 }) {
   return (
-    <li className="flex gap-3 text-[16px] leading-relaxed text-white/90">
+    <li className="flex gap-3 text-sm leading-relaxed text-white/90 sm:text-base">
       <span className="mt-0.5 shrink-0 text-white/80">{icon}</span>
       <span>{children}</span>
     </li>
@@ -127,19 +127,19 @@ export async function Footer() {
       <div className="site-container space-y-8 md:space-y-10">
         {/* Hàng 1: Sale online */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <p className="shrink-0 text-[22px] font-bold md:text-[24px] lg:w-[130px]">
+          <p className="shrink-0 text-lg font-bold sm:text-xl md:text-2xl lg:w-[130px]">
             {t("saleOnline")}
           </p>
           <div className="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {sales.map((person) => (
               <div key={person.name}>
-                <p className="text-[22px] font-bold uppercase tracking-wide md:text-[24px]">
+                <p className="text-base font-bold uppercase tracking-wide sm:text-lg md:text-xl lg:text-2xl">
                   {person.name}
                 </p>
-                <p className="mt-1 text-[18px] text-white/85">{person.title}</p>
+                <p className="mt-1 text-sm text-white/85 sm:text-base md:text-lg">{person.title}</p>
                 <a
                   href={`tel:${person.phone.replace(/\./g, "")}`}
-                  className="mt-2 inline-flex items-center gap-2 text-[18px] text-white/90 hover:text-white"
+                  className="mt-2 inline-flex items-center gap-2 text-sm text-white/90 hover:text-white sm:text-base md:text-lg"
                 >
                   <IconPhone />
                   {person.phone}
@@ -153,7 +153,7 @@ export async function Footer() {
 
         {/* Hàng 2: Contact + logo/social */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <p className="shrink-0 text-[22px] font-bold md:text-[24px] lg:w-[130px]">
+          <p className="shrink-0 text-lg font-bold sm:text-xl md:text-2xl lg:w-[130px]">
             {t("contact")}
           </p>
 
@@ -181,7 +181,7 @@ export async function Footer() {
             </address>
 
             <div className="flex flex-col items-start gap-4 md:items-end">
-              <Logo className="w-[200px]! sm:w-[240px]!" />
+              <Logo className="w-[160px]! sm:w-[200px]! md:w-[240px]!" />
               <div className="inline-flex items-center gap-4 rounded-full bg-white/15 px-5 py-2.5 backdrop-blur-sm">
                 {socialLinks.map(({ key, href, label, icon }) => (
                   <a

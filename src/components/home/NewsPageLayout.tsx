@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { CarouselDots } from "@/components/ui/CarouselDots";
 import { NewsCard } from "./NewsCard";
 import { NewsArticlePreview } from "./NewsArticlePreview";
 import type { NewsArticleDetailData } from "./NewsArticleDetail";
@@ -12,8 +13,7 @@ const GRID_COUNT = 8;
 const LIST_COUNT = 10;
 const GRID_SLIDE_COUNT = 4;
 const LIST_COLUMNS = 2;
-const CARD_CLASS =
-  "rounded-[28px] bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.18)] sm:p-6 md:p-8";
+const CARD_CLASS = "hh-card";
 
 type NewsPageLayoutProps = {
   articles: NewsArticleDetailData[];
@@ -53,14 +53,16 @@ function FeaturedListItem({
           active ? "opacity-100" : "opacity-80 hover:opacity-100"
         }`}
       >
-        <span className="shrink-0 text-lg font-bold text-gray-900 sm:text-xl">
+        <span className="shrink-0 text-base font-bold text-gray-900 sm:text-lg md:text-xl">
           {index + 1}.
         </span>
         <span>
-          <span className="block text-base font-bold leading-snug text-gray-900 sm:text-lg">
+          <span className="block text-sm font-bold leading-snug text-gray-900 sm:text-base md:text-lg">
             {item.title}
           </span>
-          <time className="mt-1 block text-sm text-gray-500">{item.date}</time>
+          <time className="mt-0.5 block text-xs text-gray-500 sm:mt-1 sm:text-sm">
+            {item.date}
+          </time>
         </span>
       </button>
     </li>
@@ -76,7 +78,7 @@ function NewsPagination({
 }) {
   return (
     <nav
-      className={`flex flex-wrap items-center justify-center gap-3 text-sm font-semibold uppercase tracking-wide text-gray-700 sm:gap-4 ${className}`}
+      className={`flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-700 sm:gap-3 sm:text-sm md:gap-4 ${className}`}
       aria-label="Pagination"
     >
       <button type="button" className="hover:text-hh-blue">
@@ -154,7 +156,7 @@ export function NewsPageLayout({
 
   if (!expanded) {
     return (
-      <article className={CARD_CLASS}>
+      <article className={CARD_CLASS + " pb-[80px]"}>
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 xl:gap-12">
           <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-6 md:gap-x-5 md:gap-y-8">
             {compactArticles.map((item, index) => (
@@ -162,7 +164,7 @@ export function NewsPageLayout({
                 key={`${item.title}-${index}`}
                 className={
                   index % 2 === 1
-                    ? "translate-y-4 sm:translate-y-6 md:translate-y-8"
+                    ? "translate-y-6 sm:translate-y-8 md:translate-y-10"
                     : ""
                 }
               >
@@ -176,7 +178,7 @@ export function NewsPageLayout({
           </div>
 
           <aside className="flex flex-col">
-            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-900 sm:text-base">
+            <h3 className="text-xs font-bold uppercase tracking-wide text-gray-900 sm:text-sm md:text-base">
               {sidebarLabel}
             </h3>
             <ol className="mt-4 space-y-5 sm:mt-5 sm:space-y-6">
@@ -193,7 +195,7 @@ export function NewsPageLayout({
             <button
               type="button"
               onClick={handleExpand}
-              className="mt-6 w-fit rounded-full bg-hh-red px-8 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8"
+              className="mt-5 w-fit rounded-full bg-hh-red px-6 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-8 sm:py-2.5 sm:text-sm"
             >
               {sidebarCta}
             </button>
@@ -206,7 +208,7 @@ export function NewsPageLayout({
   return (
     <>
       <article className={CARD_CLASS}>
-        <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:grid-cols-4 sm:gap-x-4 sm:gap-y-6 md:gap-x-5 md:gap-y-8">
+        <div className="grid grid-cols-2 gap-x-2 gap-y-4 pb-4 sm:grid-cols-4 sm:gap-x-4 sm:gap-y-6 sm:pb-6 md:gap-x-5 md:gap-y-8 md:pb-8">
           {gridArticles.map((item, index) => (
             <div
               key={`${gridSlide}-${item.title}-${index}`}
@@ -225,23 +227,16 @@ export function NewsPageLayout({
           ))}
         </div>
 
-        <div className="mt-6 flex justify-center gap-2 sm:mt-8">
-          {Array.from({ length: GRID_SLIDE_COUNT }, (_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setGridSlide(i)}
-              className={`h-3 w-3 rounded-sm transition ${
-                i === gridSlide ? "bg-hh-red" : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`News grid slide ${i + 1}`}
-              aria-current={i === gridSlide}
-            />
-          ))}
-        </div>
+        <CarouselDots
+          count={GRID_SLIDE_COUNT}
+          active={gridSlide}
+          onChange={setGridSlide}
+          labelPrefix="News grid slide"
+          className="mt-2 sm:mt-4"
+        />
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="text-sm font-bold uppercase tracking-wide text-gray-900 sm:text-base">
+          <h3 className="text-xs font-bold uppercase tracking-wide text-gray-900 sm:text-sm md:text-base">
             {sidebarLabel}
           </h3>
           <div className="mt-4 grid gap-x-8 gap-y-5 sm:mt-5 sm:grid-cols-2 sm:gap-y-6">

@@ -15,10 +15,7 @@ export default async function NewsPage({ params }: Props) {
       <HomeTop />
       <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
         <div className="px-1">
-          <h1 className="text-[26px] font-bold leading-tight text-hh-blue-dark sm:text-[30px] md:text-[34px]">
-            {t("title")}
-          </h1>
-          <p className="mt-2 text-base text-gray-600 md:text-lg">{t("subtitle")}</p>
+          <h1 className="hh-page-title--light">{t("title")}</h1>
         </div>
 
         <div className="relative mt-3 translate-y-4 sm:mt-4 sm:translate-y-5 md:translate-y-6">

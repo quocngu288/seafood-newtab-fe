@@ -12,9 +12,7 @@ export async function ProductsSection() {
           <span className="text-sm font-semibold uppercase tracking-wider text-hh-blue">
             {t("label")}
           </span>
-          <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">
-            {t("title")}
-          </h2>
+          <h2 className="hh-section-title mt-2">{t("title")}</h2>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (

@@ -18,14 +18,14 @@ export function SearchBar({
         type="search"
         placeholder={placeholder}
         aria-label={ariaLabel ?? placeholder}
-        className="h-9 w-full min-w-[140px] rounded-full border border-white/25 bg-white/10 py-0 pl-4 pr-10 text-sm text-white shadow-inner placeholder:text-transparent backdrop-blur-sm focus:border-white/45 focus:outline-none sm:min-w-[160px] md:min-w-[180px] lg:min-w-[190px]"
+        className="h-8 w-full min-w-[120px] rounded-full border border-white/25 bg-white/10 py-0 pl-3 pr-9 text-xs text-white shadow-inner placeholder:text-transparent backdrop-blur-sm focus:border-white/45 focus:outline-none sm:h-9 sm:min-w-[160px] sm:pl-4 sm:pr-10 sm:text-sm md:min-w-[180px] lg:min-w-[190px]"
       />
       <Image
         src={images.iconSearch}
         alt=""
         width={16}
         height={16}
-        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2"
+        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 shrink-0 -translate-y-1/2 object-contain"
       />
     </div>
   );

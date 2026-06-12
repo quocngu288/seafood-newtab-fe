@@ -51,11 +51,11 @@ function UnderlineField({
   className?: string;
 }) {
   const fieldClass =
-    "w-full border-0 border-b border-gray-300 bg-transparent py-2.5 text-base text-gray-900 placeholder:text-gray-400 focus:border-hh-blue focus:outline-none focus:ring-0";
+    "w-full border-0 border-b border-gray-300 bg-transparent py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-hh-blue focus:outline-none focus:ring-0 sm:py-2.5 sm:text-base";
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-600">
+      <label htmlFor={id} className="block text-xs font-medium text-gray-600 sm:text-sm">
         {label}
       </label>
       {multiline ? (
@@ -115,19 +115,19 @@ export async function ContactSection() {
     <>
       <div className="overflow-hidden rounded-[28px] bg-white/75 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-md">
         <div className="flex flex-col lg:flex-row">
-          <aside className="bg-[#0052A8] p-6 sm:p-8 lg:w-[300px] lg:shrink-0 xl:w-[340px]">
-            <p className="text-[22px] font-bold text-white md:text-[24px]">
+          <aside className="bg-[#0052A8] p-5 sm:p-8 lg:w-[300px] lg:shrink-0 xl:w-[340px]">
+            <p className="text-lg font-bold text-white sm:text-xl md:text-2xl">
               {footer("saleOnline")}
             </p>
             <ul className="mt-6 space-y-6 sm:mt-8">
               {sales.map((person) => (
                 <li key={person.name}>
-                  <p className="text-[18px] font-bold uppercase tracking-wide text-white sm:text-[20px]">
+                  <p className="text-sm font-bold uppercase tracking-wide text-white sm:text-base md:text-lg lg:text-xl">
                     {person.name}
                   </p>
                   <a
                     href={`tel:${person.phone.replace(/\./g, "")}`}
-                    className="mt-2 inline-flex items-center gap-2 text-[16px] text-white/90 hover:text-white sm:text-[18px]"
+                    className="mt-1.5 inline-flex items-center gap-2 text-xs text-white/90 hover:text-white sm:mt-2 sm:text-sm md:text-base lg:text-lg"
                   >
                     <IconPhone />
                     {person.phone}
@@ -151,7 +151,7 @@ export async function ContactSection() {
             </div>
           </aside>
 
-          <form className="flex flex-1 flex-col p-6 sm:p-8 lg:p-10">
+          <form className="flex flex-1 flex-col p-5 sm:p-8 lg:p-10">
             <UnderlineField id="fullName" label={t("form.fullName")} />
             <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:gap-8">
               <UnderlineField id="phone" label={t("form.phone")} type="tel" />

@@ -14,40 +14,41 @@ export function LanguageSwitcher() {
     router.replace(pathname, { locale: next });
   };
 
+  const flagButtonClass = (active: boolean) =>
+    `relative h-8 w-8 shrink-0 overflow-hidden rounded-full p-0 shadow-md transition sm:h-[34px] sm:w-[34px] ${
+      active ? "ring-2 ring-white/80" : "opacity-90 hover:opacity-100"
+    }`;
+
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex shrink-0 items-center gap-2">
       <button
         type="button"
         onClick={() => switchLocale("en")}
-        className={`overflow-hidden rounded-full shadow-md transition ${
-          locale === "en" ? "ring-2 ring-white/80" : "opacity-90 hover:opacity-100"
-        }`}
+        className={flagButtonClass(locale === "en")}
         aria-label="English"
         title="English"
       >
         <Image
           src={images.iconUnitedKingdom}
           alt=""
-          width={34}
-          height={34}
-          className="h-[34px] w-[34px] object-cover"
+          fill
+          sizes="34px"
+          className="object-cover"
         />
       </button>
       <button
         type="button"
         onClick={() => switchLocale("vi")}
-        className={`overflow-hidden rounded-full shadow-md transition ${
-          locale === "vi" ? "ring-2 ring-white/80" : "opacity-90 hover:opacity-100"
-        }`}
+        className={flagButtonClass(locale === "vi")}
         aria-label="Tiếng Việt"
         title="Tiếng Việt"
       >
         <Image
           src={images.iconVietnam}
           alt=""
-          width={34}
-          height={34}
-          className="h-[34px] w-[34px] object-cover"
+          fill
+          sizes="34px"
+          className="object-cover"
         />
       </button>
     </div>

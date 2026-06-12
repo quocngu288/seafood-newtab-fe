@@ -27,13 +27,13 @@ export function HeroCarousel() {
 
   return (
     <section className="site-container mb-8 sm:mb-12">
-      <div className="relative overflow-hidden rounded-[40px] bg-white shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl sm:rounded-[40px]">
         <Image
           src={images.quote}
           alt=""
           width={76}
           height={44}
-          className="absolute left-4 top-4 z-30 h-[40px] w-auto sm:left-10 sm:top-5 sm:h-[48px] md:h-[52px]"
+          className="absolute left-3 top-3 z-30 h-7 w-auto sm:left-6 sm:top-4 sm:h-9 md:left-10 md:top-5 md:h-11 lg:h-12"
           aria-hidden
         />
 
@@ -53,16 +53,16 @@ export function HeroCarousel() {
           ))}
         </div>
 
-        <div className="absolute inset-x-0 top-0 z-20 flex min-h-[50%] flex-col items-center justify-start px-4 pb-6 pt-8 text-center sm:min-h-[46%] sm:px-8 sm:pb-8 sm:pt-10 md:min-h-[42%] md:px-10 md:pb-10 md:pt-12">
+        <div className="absolute inset-x-0 top-0 z-20 flex min-h-[50%] flex-col items-center justify-start px-3 pb-4 pt-6 text-center sm:min-h-[46%] sm:px-6 sm:pb-6 sm:pt-8 md:min-h-[42%] md:px-10 md:pb-10 md:pt-12">
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-white/90 via-[55%] to-transparent"
             aria-hidden
           />
           <div className="relative z-10">
-            <h2 className="mx-auto line-clamp-4 max-w-2xl text-base leading-snug text-slate-800 sm:line-clamp-3 sm:text-[20px] md:text-[22px] lg:text-[24px]">
+            <h2 className="mx-auto line-clamp-4 max-w-2xl text-sm leading-snug text-slate-800 sm:line-clamp-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">
               {title}
             </h2>
-            <div className="mx-auto mt-3 inline-flex max-w-full rounded-full bg-[#79B4E6] px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-white shadow-sm sm:mt-4 sm:px-5 sm:py-2 sm:text-lg md:text-xl lg:text-[24px]">
+            <div className="mx-auto mt-2 inline-flex max-w-full rounded-full bg-[#79B4E6] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm sm:mt-3 sm:px-4 sm:py-1.5 sm:text-sm md:mt-4 md:px-5 md:py-2 md:text-base lg:text-lg xl:text-xl">
               <span className="line-clamp-2">{badges}</span>
             </div>
           </div>

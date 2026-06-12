@@ -51,7 +51,7 @@ export function NewsCard({
       </div>
       <div className="mt-2 flex min-h-[48px] items-center justify-between gap-1.5 px-1 pb-2 sm:min-h-[56px] sm:gap-2 sm:px-3 sm:pb-3">
         <p
-          className={`line-clamp-2 flex-1 text-sm font-medium leading-snug transition-colors sm:text-[16px] ${
+          className={`line-clamp-2 flex-1 text-xs font-medium leading-snug transition-colors sm:text-sm md:text-base ${
             active
               ? "text-white"
               : "text-gray-900 group-hover:text-white"
@@ -60,7 +60,7 @@ export function NewsCard({
           {title}
         </p>
         <span
-          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-lg font-bold leading-none transition-colors ${
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-base font-bold leading-none transition-colors sm:h-8 sm:w-8 sm:text-lg ${
             active
               ? "bg-white text-hh-blue-dark"
               : "bg-hh-red text-white group-hover:bg-white group-hover:text-hh-blue-dark"

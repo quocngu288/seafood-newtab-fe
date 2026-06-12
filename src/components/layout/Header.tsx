@@ -34,13 +34,13 @@ export function Header() {
     <header className="relative z-50">
       <div className="site-container pt-4 pb-2 sm:pb-4">
         {/* Hàng 1: Logo trái | tên công ty canh giữa vùng còn lại */}
-        <div className="flex min-h-[64px] items-center gap-2 sm:min-h-[72px] sm:gap-3">
-          <Link href="/" className="shrink-0">
-            <Logo className="w-[180px]! sm:w-[220px]! md:w-[280px]! lg:w-[340px]!" />
+        <div className="flex min-h-[52px] items-center gap-1.5 sm:min-h-[64px] sm:gap-2 md:min-h-[72px] md:gap-3">
+          <Link href="/" className="block shrink-0">
+            <Logo className="h-auto w-[140px]! max-w-none object-contain sm:w-[200px]! md:w-[260px]! lg:w-[320px]! xl:w-[340px]!" />
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
-            <h1 className="px-1 text-center text-[16px] font-semibold uppercase leading-tight tracking-wide text-white sm:text-[20px] md:text-[24px] md:leading-snug lg:text-[28px]">
+            <h1 className="px-1 text-center text-xs font-semibold uppercase leading-tight tracking-wide text-white sm:text-base md:text-xl md:leading-snug lg:text-2xl">
               {tCompany("name")}
             </h1>
           </div>
@@ -101,7 +101,7 @@ export function Header() {
                       <Link
                         href={href}
                         onClick={() => setMenuOpen(false)}
-                        className={`inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 text-base font-normal leading-none transition sm:px-3 md:text-lg lg:px-4 lg:text-[21px] ${
+                        className={`inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 text-sm font-normal leading-none transition sm:px-3 sm:text-base md:text-lg lg:px-4 lg:text-xl ${
                           active
                             ? "text-white"
                             : "text-white/90 hover:text-white"
@@ -115,7 +115,7 @@ export function Header() {
                               alt=""
                               width={36}
                               height={12}
-                              className="h-3 w-9 object-contain"
+                              className="h-3 w-9 shrink-0 object-contain"
                             />
                           )}
                         </span>
@@ -126,10 +126,10 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="flex shrink-0 items-center gap-3 md:justify-end lg:ml-auto lg:gap-4">
+            <div className="flex w-full min-w-0 items-center gap-3 md:justify-end lg:ml-auto lg:w-auto lg:gap-4">
               <SearchBar
                 placeholder={t("search")}
-                className="w-full md:max-w-[220px] lg:w-auto"
+                className="min-w-0 flex-1 md:max-w-[220px] lg:flex-none lg:w-auto"
                 ariaLabel={t("search")}
               />
               <LanguageSwitcher />

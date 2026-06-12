@@ -14,10 +14,8 @@ export default async function ContactPage({ params }: Props) {
       <HomeTop />
       <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
         <div className="mx-auto max-w-3xl px-2 pt-2 text-center sm:px-4 sm:pt-4">
-          <h1 className="text-[28px] font-bold leading-tight text-white sm:text-[32px] md:text-[40px]">
-            {t("title")}
-          </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/95 sm:text-base md:text-lg">
+          <h1 className="hh-page-title--light">{t("title")}</h1>
+          <p className="hh-page-subtitle--light mx-auto mt-3 max-w-2xl">
             {t("subtitle")}
           </p>
         </div>

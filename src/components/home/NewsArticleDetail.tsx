@@ -30,10 +30,10 @@ export function NewsArticleDetail({
           aria-hidden
         />
         <div className="min-w-0 flex-1">
-          <h3 className="text-2xl font-bold leading-snug text-gray-900 sm:text-[28px] md:text-[32px]">
+          <h3 className="text-lg font-bold leading-snug text-gray-900 sm:text-xl md:text-2xl lg:text-3xl">
             {article.title}
           </h3>
-          <p className="mt-4 text-base leading-relaxed text-gray-700 sm:text-lg md:text-[22px]">
+          <p className="mt-3 text-sm leading-relaxed text-gray-700 sm:mt-4 sm:text-base md:text-lg lg:text-xl">
             {article.body}
           </p>
         </div>
@@ -60,7 +60,7 @@ export function NewsArticleDetail({
       </div>
 
       {article.bullets.length > 0 && (
-        <ol className="mt-6 list-decimal space-y-2 pl-5 text-base leading-relaxed text-gray-800 sm:text-lg">
+        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-gray-800 sm:mt-6 sm:text-base md:text-lg">
           {article.bullets.map((item) => (
             <li key={item}>{item}</li>
           ))}

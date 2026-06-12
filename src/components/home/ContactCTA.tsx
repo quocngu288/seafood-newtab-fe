@@ -10,10 +10,10 @@ export async function ContactCTA() {
         <span className="text-sm font-semibold uppercase tracking-wider text-white/80">
           {t("label")}
         </span>
-        <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+        <h2 className="hh-section-title mt-2 text-white">
           {t("title")}
         </h2>
-        <p className="mt-4 text-white/85">{t("description")}</p>
+        <p className="mt-3 text-sm text-white/85 sm:mt-4 sm:text-base md:text-lg">{t("description")}</p>
         <Link
           href="/contact"
           className="mt-6 inline-block rounded-full bg-hh-red px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-hh-red-hover"

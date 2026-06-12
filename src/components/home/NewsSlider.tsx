@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { CarouselDots } from "@/components/ui/CarouselDots";
 import { NewsCard } from "./NewsCard";
 
 const SLIDE_COUNT = 4;
@@ -22,29 +23,20 @@ export function NewsSlider() {
     <section className="py-10 sm:py-12 md:py-14">
       <div className="site-container">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
-          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-[36px]">{t("title")}</h2>
-          <div className="order-3 flex w-full justify-center gap-2 md:order-none md:w-auto md:justify-center">
-            {Array.from({ length: SLIDE_COUNT }, (_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setActiveDot(i)}
-                className={`h-3 w-3 rounded-sm transition ${
-                  i === activeDot
-                    ? "bg-hh-red"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`News slide ${i + 1}`}
-                aria-current={i === activeDot}
-              />
-            ))}
-          </div>
+          <h2 className="hh-section-title--xl">{t("title")}</h2>
+          <CarouselDots
+            count={SLIDE_COUNT}
+            active={activeDot}
+            onChange={setActiveDot}
+            labelPrefix="News slide"
+            className="order-3 w-full md:order-none md:w-auto"
+          />
           <Link
             href="/news?view=full"
-            className="order-2 text-[18px] font-semibold uppercase tracking-wide text-gray-900 hover:text-hh-blue md:order-none md:justify-self-end"
+            className="order-2 text-sm font-semibold uppercase tracking-wide text-gray-900 hover:text-hh-blue sm:text-base md:order-none md:text-lg md:justify-self-end"
           >
             {t("all")}{" "}
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[18px]">
+            <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-gray-400 text-sm sm:h-5 sm:w-5 sm:text-base">
               ›
             </span>
           </Link>

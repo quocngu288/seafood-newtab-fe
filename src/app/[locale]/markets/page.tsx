@@ -12,7 +12,7 @@ export default async function MarketsPage({ params }: Props) {
   return (
     <WaveTopPage title={t("title")} subtitle={t("subtitle")}>
       <div className="site-container--narrow">
-        <p className="text-lg leading-relaxed">{t("content")}</p>
+        <p className="hh-body">{t("content")}</p>
       </div>
       <StatsSection />
     </WaveTopPage>

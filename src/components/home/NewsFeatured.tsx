@@ -8,18 +8,18 @@ export async function NewsFeatured() {
   return (
     <section className="bg-white pb-8 sm:pb-12">
       <div className="site-container">
-        <article className="rounded-[28px] bg-[#e8f2f8] px-5 py-6 sm:px-7 sm:py-7 md:px-8 md:py-8">
+        <article className="rounded-3xl bg-[#e8f2f8] px-4 py-5 sm:rounded-[28px] sm:px-7 sm:py-7 md:px-8 md:py-8">
           <div className="flex gap-3 sm:gap-4">
             <span
               className="mt-1 w-1 shrink-0 self-stretch rounded-full bg-hh-red sm:w-1.5"
               aria-hidden
             />
             <div className="min-w-0 flex-1">
-              <h3 className="text-2xl font-bold leading-snug text-gray-900 sm:text-[32px] md:text-[36px]">
+              <h3 className="text-lg font-bold leading-snug text-gray-900 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
                 {t("title")}
               </h3>
 
-              <p className="mt-4 text-base leading-relaxed text-gray-700 sm:text-[22px] md:text-[24px]">
+              <p className="mt-3 text-sm leading-relaxed text-gray-700 sm:mt-4 sm:text-base md:text-lg lg:text-xl xl:text-2xl">
                 {t("body")}
               </p>
             </div>

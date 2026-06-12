@@ -23,8 +23,8 @@ function FeatureCardTitle({
       <h3
         className={
           variant === "wide"
-            ? "text-[24px] font-bold leading-none text-gray-900 sm:text-[28px] md:text-[36px]"
-            : "text-[24px] font-bold text-gray-900"
+            ? "text-lg font-bold leading-none text-gray-900 sm:text-xl md:text-2xl lg:text-4xl"
+            : "text-lg font-bold text-gray-900 sm:text-xl md:text-2xl"
         }
       >
         {children}
@@ -53,7 +53,7 @@ function StandardFeatureCard({
   description,
 }: StandardCardProps) {
   return (
-    <article className="relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-md min-h-[450px]">
+    <article className="relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-white shadow-md sm:min-h-[380px] md:min-h-[420px] lg:min-h-[450px]">
       <div className="relative aspect-[5/4] shrink-0 bg-slate-100">
         <Image
           src={imageSrc}
@@ -69,7 +69,7 @@ function StandardFeatureCard({
       </div>
       <div className="relative px-4 pb-12 pt-2">
         <FeatureCardTitle>{title}</FeatureCardTitle>
-        <p className="mt-3 line-clamp-3 text-[14px] leading-relaxed text-gray-600">
+        <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-gray-600 sm:text-sm">
           {description}
         </p>
       </div>
@@ -98,15 +98,15 @@ function FilletsFeatureCard({
   imageAlt,
 }: FilletsCardProps) {
   return (
-    <article className="relative min-h-[450px] overflow-hidden rounded-2xl bg-white shadow-md md:overflow-visible">
-      <div className="relative z-20 max-w-[66%] p-5 sm:max-w-[60%] sm:p-6 md:max-w-[56%]">
+    <article className="relative min-h-[320px] overflow-hidden rounded-2xl bg-white shadow-md sm:min-h-[380px] md:min-h-[420px] md:overflow-visible lg:min-h-[450px]">
+      <div className="relative z-20 max-w-[72%] p-4 sm:max-w-[66%] sm:p-5 md:max-w-[60%] md:p-6 lg:max-w-[56%]">
         <FeatureCardTitle variant="wide">{title}</FeatureCardTitle>
-        <p className="mt-4 text-[14px] leading-relaxed text-gray-600">
+        <p className="mt-3 text-xs leading-relaxed text-gray-600 sm:mt-4 sm:text-sm">
           {description}
         </p>
         <button
           type="button"
-          className="mt-5 rounded-full bg-hh-red px-6 py-2.5 text-[18px] font-semibold text-white shadow-sm"
+          className="mt-4 rounded-full bg-hh-red px-5 py-2 text-sm font-semibold text-white shadow-sm sm:mt-5 sm:px-6 sm:py-2.5 sm:text-base md:text-lg"
         >
           {cta}
         </button>

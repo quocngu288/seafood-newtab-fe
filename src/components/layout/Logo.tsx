@@ -10,6 +10,8 @@ export function Logo({ className }: LogoProps) {
     <Image
       src={images.logo}
       alt="Hai Huong Seafood - Our quality, your safety"
+      width={340}
+      height={80}
       className={`h-auto w-[140px] max-w-full object-contain sm:w-[170px] lg:w-[190px] ${className ?? ""}`}
       priority
     />

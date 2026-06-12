@@ -5,7 +5,7 @@ import { certificationLogos, images } from "@/lib/images";
 function QuoteLine({ children }: { children: string }) {
   return (
     <div className="w-fit max-w-full bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
-      <span className="block text-[22px] font-medium leading-snug text-gray-900 sm:text-[26px] md:text-[30px]">
+      <span className="block text-sm font-medium leading-snug text-gray-900 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
         {children}
       </span>
     </div>
@@ -19,12 +19,12 @@ export async function PartnerQuote() {
   return (
     <section
       id="partner-quote"
-      className="overflow-visible bg-white pb-16 pt-4 sm:pb-20 sm:pt-6"
+      className="overflow-visible bg-white pb-12 pt-4 sm:pb-20 sm:pt-6"
     >
       <div className="site-container overflow-visible">
         <div className="relative">
           {/* Banner cố định 330px — chỉ ảnh + quote */}
-          <div className="relative h-[330px] overflow-hidden rounded-[40px]">
+          <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[280px] md:h-[330px] md:rounded-[40px]">
             <div className="absolute inset-0">
               <Image
                 src={images.vungNuoi}
@@ -36,17 +36,17 @@ export async function PartnerQuote() {
               <div className="absolute inset-0 bg-[#79bbed]/82" aria-hidden />
             </div>
 
-            <div className="relative z-10 h-full px-6 pt-5 sm:px-10 sm:pt-6 lg:px-12">
+            <div className="relative z-10 h-full px-4 pt-4 sm:px-8 sm:pt-5 md:px-10 md:pt-6 lg:px-12">
               <Image
                 src={images.quote}
                 alt=""
                 width={76}
                 height={44}
-                className="h-[40px] w-[60px] sm:h-[40px]"
+                className="h-7 w-auto sm:h-9 md:h-10"
                 aria-hidden
               />
 
-              <div className="mt-1.5 flex max-w-full flex-col gap-1 sm:mt-2 sm:gap-1.5 ml-10">
+              <div className="ml-6 mt-1 flex max-w-full flex-col gap-0.5 sm:ml-8 sm:mt-1.5 sm:gap-1 md:ml-10 md:gap-1.5">
                 {quoteLines.map((line) => (
                   <QuoteLine key={line}>{line}</QuoteLine>
                 ))}
