@@ -23,8 +23,8 @@ function FeatureCardTitle({
       <h3
         className={
           variant === "wide"
-            ? "text-lg font-bold leading-none text-gray-900 sm:text-xl md:text-2xl lg:text-4xl"
-            : "text-lg font-bold text-gray-900 sm:text-xl md:text-2xl"
+            ? "hh-text-4xl font-bold leading-none text-gray-900"
+            : "hh-text-2xl font-bold text-gray-900"
         }
       >
         {children}
@@ -69,13 +69,13 @@ function StandardFeatureCard({
       </div>
       <div className="relative px-4 pb-12 pt-2">
         <FeatureCardTitle>{title}</FeatureCardTitle>
-        <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-gray-600 sm:text-sm">
+        <p className="hh-text-sm mt-3 line-clamp-3 leading-relaxed text-gray-600">
           {description}
         </p>
       </div>
       <button
         type="button"
-        className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-hh-red text-lg font-bold leading-none text-white shadow-sm"
+        className="hh-text-lg absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-hh-red font-bold leading-none text-white shadow-sm"
         aria-label="More"
       >
         +
@@ -101,12 +101,12 @@ function FilletsFeatureCard({
     <article className="relative min-h-[320px] overflow-hidden rounded-2xl bg-white shadow-md sm:min-h-[380px] md:min-h-[420px] md:overflow-visible lg:min-h-[450px]">
       <div className="relative z-20 max-w-[72%] p-4 sm:max-w-[66%] sm:p-5 md:max-w-[60%] md:p-6 lg:max-w-[56%]">
         <FeatureCardTitle variant="wide">{title}</FeatureCardTitle>
-        <p className="mt-3 text-xs leading-relaxed text-gray-600 sm:mt-4 sm:text-sm">
+        <p className="hh-text-sm mt-3 leading-relaxed text-gray-600 sm:mt-4">
           {description}
         </p>
         <button
           type="button"
-          className="mt-4 rounded-full bg-hh-red px-5 py-2 text-sm font-semibold text-white shadow-sm sm:mt-5 sm:px-6 sm:py-2.5 sm:text-base md:text-lg"
+          className="hh-text-lg mt-4 rounded-full bg-hh-red px-5 py-2 font-semibold text-white shadow-sm sm:mt-5 sm:px-6 sm:py-2.5"
         >
           {cta}
         </button>

@@ -51,11 +51,11 @@ function UnderlineField({
   className?: string;
 }) {
   const fieldClass =
-    "w-full border-0 border-b border-gray-300 bg-transparent py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-hh-blue focus:outline-none focus:ring-0 sm:py-2.5 sm:text-base";
+    "hh-text-base w-full border-0 border-b border-gray-300 bg-transparent py-2 text-gray-900 placeholder:text-gray-400 focus:border-hh-blue focus:outline-none focus:ring-0 sm:py-2.5";
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-xs font-medium text-gray-600 sm:text-sm">
+      <label htmlFor={id} className="hh-text-sm block font-medium text-gray-600">
         {label}
       </label>
       {multiline ? (
@@ -116,18 +116,18 @@ export async function ContactSection() {
       <div className="overflow-hidden rounded-[28px] bg-white/75 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-md">
         <div className="flex flex-col lg:flex-row">
           <aside className="bg-[#0052A8] p-5 sm:p-8 lg:w-[300px] lg:shrink-0 xl:w-[340px]">
-            <p className="text-lg font-bold text-white sm:text-xl md:text-2xl">
+            <p className="hh-text-2xl font-bold text-white">
               {footer("saleOnline")}
             </p>
             <ul className="mt-6 space-y-6 sm:mt-8">
               {sales.map((person) => (
                 <li key={person.name}>
-                  <p className="text-sm font-bold uppercase tracking-wide text-white sm:text-base md:text-lg lg:text-xl">
+                  <p className="hh-text-xl font-bold uppercase tracking-wide text-white">
                     {person.name}
                   </p>
                   <a
                     href={`tel:${person.phone.replace(/\./g, "")}`}
-                    className="mt-1.5 inline-flex items-center gap-2 text-xs text-white/90 hover:text-white sm:mt-2 sm:text-sm md:text-base lg:text-lg"
+                    className="hh-text-base mt-1.5 inline-flex items-center gap-2 text-white/90 hover:text-white sm:mt-2"
                   >
                     <IconPhone />
                     {person.phone}
@@ -166,7 +166,7 @@ export async function ContactSection() {
             />
 
             <div className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
-              <label className="flex cursor-pointer items-center gap-2.5 text-sm text-gray-700 sm:text-base">
+              <label className="hh-text-base flex cursor-pointer items-center gap-2.5 text-gray-700">
                 <input
                   type="checkbox"
                   name="newsletter"
@@ -176,7 +176,7 @@ export async function ContactSection() {
               </label>
               <button
                 type="button"
-                className="w-full rounded-full bg-hh-red px-10 py-3 text-sm font-semibold text-white transition hover:bg-hh-red-hover sm:w-auto"
+                className="hh-text-base w-full rounded-full bg-hh-red px-10 py-3 font-semibold text-white transition hover:bg-hh-red-hover sm:w-auto"
               >
                 {t("form.send")}
               </button>

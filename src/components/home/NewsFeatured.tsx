@@ -15,11 +15,11 @@ export async function NewsFeatured() {
               aria-hidden
             />
             <div className="min-w-0 flex-1">
-              <h3 className="text-lg font-bold leading-snug text-gray-900 sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+              <h3 className="hh-text-4xl font-bold leading-snug text-gray-900">
                 {t("title")}
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-gray-700 sm:mt-4 sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+              <p className="hh-text-2xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
                 {t("body")}
               </p>
             </div>
@@ -36,10 +36,10 @@ export async function NewsFeatured() {
               />
             </div>
             <div className="absolute bottom-4 left-4 flex flex-col gap-2 sm:flex-row">
-              <span className="rounded bg-[#003366] px-3 py-2 text-center text-[10px] font-bold uppercase leading-tight text-white shadow-md sm:text-xs">
+              <span className="hh-text-xs rounded bg-[#003366] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
                 {t("badgeMsc")}
               </span>
-              <span className="rounded bg-[#00838f] px-3 py-2 text-center text-[10px] font-bold uppercase leading-tight text-white shadow-md sm:text-xs">
+              <span className="hh-text-xs rounded bg-[#00838f] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
                 {t("badgeAsc")}
               </span>
             </div>

@@ -30,10 +30,10 @@ export function NewsArticleDetail({
           aria-hidden
         />
         <div className="min-w-0 flex-1">
-          <h3 className="text-lg font-bold leading-snug text-gray-900 sm:text-xl md:text-2xl lg:text-3xl">
+          <h3 className="hh-text-3xl font-bold leading-snug text-gray-900">
             {article.title}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-gray-700 sm:mt-4 sm:text-base md:text-lg lg:text-xl">
+          <p className="hh-text-xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
             {article.body}
           </p>
         </div>
@@ -50,17 +50,17 @@ export function NewsArticleDetail({
           />
         </div>
         <div className="absolute bottom-4 left-4 flex flex-col gap-2 sm:flex-row">
-          <span className="rounded bg-[#003366] px-3 py-2 text-center text-[10px] font-bold uppercase leading-tight text-white shadow-md sm:text-xs">
+          <span className="hh-text-xs rounded bg-[#003366] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
             {article.badgeMsc}
           </span>
-          <span className="rounded bg-[#00838f] px-3 py-2 text-center text-[10px] font-bold uppercase leading-tight text-white shadow-md sm:text-xs">
+          <span className="hh-text-xs rounded bg-[#00838f] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
             {article.badgeAsc}
           </span>
         </div>
       </div>
 
       {article.bullets.length > 0 && (
-        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-gray-800 sm:mt-6 sm:text-base md:text-lg">
+        <ol className="hh-text-lg mt-4 list-decimal space-y-2 pl-5 leading-relaxed text-gray-800 sm:mt-6">
           {article.bullets.map((item) => (
             <li key={item}>{item}</li>
           ))}

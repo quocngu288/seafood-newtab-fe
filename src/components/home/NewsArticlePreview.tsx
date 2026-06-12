@@ -16,10 +16,10 @@ export function NewsArticlePreview({ article, className = "" }: NewsArticlePrevi
           aria-hidden
         />
         <div className="min-w-0 flex-1">
-          <h3 className="text-lg font-bold leading-snug text-gray-900 sm:text-xl md:text-2xl lg:text-3xl">
+          <h3 className="hh-text-3xl font-bold leading-snug text-gray-900">
             {article.title}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-gray-700 sm:mt-4 sm:text-base md:text-lg lg:text-xl">
+          <p className="hh-text-xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
             <time className="font-medium text-gray-600">{article.date}</time>
             {" | "}
             {article.body}

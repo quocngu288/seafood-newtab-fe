@@ -9,9 +9,7 @@ export async function ProductsSection() {
     <section className="mt-10 text-center">
       <div>
         <div className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-hh-blue">
-            {t("label")}
-          </span>
+          <span className="hh-label text-hh-blue">{t("label")}</span>
           <h2 className="hh-section-title mt-2">{t("title")}</h2>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -21,17 +19,17 @@ export async function ProductsSection() {
               className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition hover:shadow-md"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-hh-blue/10 text-hh-blue">
-                <span className="text-lg font-bold">{i + 1}</span>
+                <span className="hh-text-lg font-bold">{i + 1}</span>
               </div>
               <h3 className="font-bold text-gray-900">{item.name}</h3>
-              <p className="mt-2 text-sm text-gray-600">{item.desc}</p>
+              <p className="hh-text-sm mt-2 text-gray-600">{item.desc}</p>
             </article>
           ))}
         </div>
         <div className="mt-8 text-center">
           <Link
             href="/products"
-            className="inline-block rounded-full border-2 border-hh-blue px-6 py-2.5 text-sm font-semibold text-hh-blue transition hover:bg-hh-blue hover:text-white"
+            className="hh-text-sm inline-block rounded-full border-2 border-hh-blue px-6 py-2.5 font-semibold text-hh-blue transition hover:bg-hh-blue hover:text-white"
           >
             {t("cta")}
           </Link>

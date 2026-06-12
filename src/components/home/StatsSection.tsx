@@ -7,16 +7,16 @@ export async function StatsSection() {
   return (
     <section className="mt-10 rounded-[24px] bg-hh-blue p-6 sm:p-8">
       <div>
-        <h2 className="mb-6 text-center text-lg font-bold text-white sm:mb-8 sm:text-xl md:text-2xl">
+        <h2 className="hh-text-2xl mb-6 text-center font-bold text-white sm:mb-8">
           {t("title")}
         </h2>
         <div className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
           {items.map((item, i) => (
             <div key={i} className="text-center">
-              <p className="text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl">
+              <p className="hh-text-stat text-white">
                 {item.value}
               </p>
-              <p className="mt-2 text-sm text-white/80 sm:text-base">
+              <p className="hh-text-base mt-2 text-white/80">
                 {item.label}
               </p>
             </div>

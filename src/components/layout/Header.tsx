@@ -40,7 +40,7 @@ export function Header() {
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
-            <h1 className="px-1 text-center text-xs font-semibold uppercase leading-tight tracking-wide text-white sm:text-base md:text-xl md:leading-snug lg:text-2xl">
+            <h1 className="hh-text-company px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:leading-snug">
               {tCompany("name")}
             </h1>
           </div>
@@ -101,7 +101,7 @@ export function Header() {
                       <Link
                         href={href}
                         onClick={() => setMenuOpen(false)}
-                        className={`inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 text-sm font-normal leading-none transition sm:px-3 sm:text-base md:text-lg lg:px-4 lg:text-xl ${
+                        className={`hh-text-nav inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:px-4 ${
                           active
                             ? "text-white"
                             : "text-white/90 hover:text-white"

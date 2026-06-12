@@ -72,7 +72,7 @@ function ContactRow({
   children: ReactNode;
 }) {
   return (
-    <li className="flex gap-3 text-sm leading-relaxed text-white/90 sm:text-base">
+    <li className="hh-text-base flex gap-3 leading-relaxed text-white/90">
       <span className="mt-0.5 shrink-0 text-white/80">{icon}</span>
       <span>{children}</span>
     </li>
@@ -127,19 +127,19 @@ export async function Footer() {
       <div className="site-container space-y-8 md:space-y-10">
         {/* Hàng 1: Sale online */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <p className="shrink-0 text-lg font-bold sm:text-xl md:text-2xl lg:w-[130px]">
+          <p className="hh-text-2xl shrink-0 font-bold lg:w-[130px]">
             {t("saleOnline")}
           </p>
           <div className="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
             {sales.map((person) => (
               <div key={person.name}>
-                <p className="text-base font-bold uppercase tracking-wide sm:text-lg md:text-xl lg:text-2xl">
+                <p className="hh-text-2xl font-bold uppercase tracking-wide">
                   {person.name}
                 </p>
-                <p className="mt-1 text-sm text-white/85 sm:text-base md:text-lg">{person.title}</p>
+                <p className="hh-text-lg mt-1 text-white/85">{person.title}</p>
                 <a
                   href={`tel:${person.phone.replace(/\./g, "")}`}
-                  className="mt-2 inline-flex items-center gap-2 text-sm text-white/90 hover:text-white sm:text-base md:text-lg"
+                  className="hh-text-lg mt-2 inline-flex items-center gap-2 text-white/90 hover:text-white"
                 >
                   <IconPhone />
                   {person.phone}
@@ -153,7 +153,7 @@ export async function Footer() {
 
         {/* Hàng 2: Contact + logo/social */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <p className="shrink-0 text-lg font-bold sm:text-xl md:text-2xl lg:w-[130px]">
+          <p className="hh-text-2xl shrink-0 font-bold lg:w-[130px]">
             {t("contact")}
           </p>
 

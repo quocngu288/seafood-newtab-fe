@@ -33,10 +33,10 @@ export function NewsSlider() {
           />
           <Link
             href="/news?view=full"
-            className="order-2 text-sm font-semibold uppercase tracking-wide text-gray-900 hover:text-hh-blue sm:text-base md:order-none md:text-lg md:justify-self-end"
+            className="hh-text-lg order-2 font-semibold uppercase tracking-wide text-gray-900 hover:text-hh-blue md:order-none md:justify-self-end"
           >
             {t("all")}{" "}
-            <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-gray-400 text-sm sm:h-5 sm:w-5 sm:text-base">
+            <span className="hh-text-lg inline-flex h-4 w-4 items-center justify-center rounded-full border border-gray-400 sm:h-5 sm:w-5">
               ›
             </span>
           </Link>

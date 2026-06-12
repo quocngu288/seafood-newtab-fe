@@ -53,14 +53,14 @@ function FeaturedListItem({
           active ? "opacity-100" : "opacity-80 hover:opacity-100"
         }`}
       >
-        <span className="shrink-0 text-base font-bold text-gray-900 sm:text-lg md:text-xl">
+        <span className="hh-text-xl shrink-0 font-bold text-gray-900">
           {index + 1}.
         </span>
         <span>
-          <span className="block text-sm font-bold leading-snug text-gray-900 sm:text-base md:text-lg">
+          <span className="hh-text-lg block font-bold leading-snug text-gray-900">
             {item.title}
           </span>
-          <time className="mt-0.5 block text-xs text-gray-500 sm:mt-1 sm:text-sm">
+          <time className="hh-text-sm mt-0.5 block text-gray-500 sm:mt-1">
             {item.date}
           </time>
         </span>
@@ -78,7 +78,7 @@ function NewsPagination({
 }) {
   return (
     <nav
-      className={`flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-gray-700 sm:gap-3 sm:text-sm md:gap-4 ${className}`}
+      className={`hh-text-sm flex flex-wrap items-center justify-center gap-2 font-semibold uppercase tracking-wide text-gray-700 sm:gap-3 md:gap-4 ${className}`}
       aria-label="Pagination"
     >
       <button type="button" className="hover:text-hh-blue">
@@ -178,7 +178,7 @@ export function NewsPageLayout({
           </div>
 
           <aside className="flex flex-col">
-            <h3 className="text-xs font-bold uppercase tracking-wide text-gray-900 sm:text-sm md:text-base">
+            <h3 className="hh-text-base font-bold uppercase tracking-wide text-gray-900">
               {sidebarLabel}
             </h3>
             <ol className="mt-4 space-y-5 sm:mt-5 sm:space-y-6">
@@ -195,7 +195,7 @@ export function NewsPageLayout({
             <button
               type="button"
               onClick={handleExpand}
-              className="mt-5 w-fit rounded-full bg-hh-red px-6 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-8 sm:py-2.5 sm:text-sm"
+              className="hh-text-sm mt-5 w-fit rounded-full bg-hh-red px-6 py-2 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-8 sm:py-2.5"
             >
               {sidebarCta}
             </button>
@@ -236,7 +236,7 @@ export function NewsPageLayout({
         />
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="text-xs font-bold uppercase tracking-wide text-gray-900 sm:text-sm md:text-base">
+          <h3 className="hh-text-base font-bold uppercase tracking-wide text-gray-900">
             {sidebarLabel}
           </h3>
           <div className="mt-4 grid gap-x-8 gap-y-5 sm:mt-5 sm:grid-cols-2 sm:gap-y-6">

@@ -68,33 +68,84 @@ body {
     @apply max-w-3xl;
   }
 
-  /* Typography — mobile-first, scale up at sm/md/lg */
+  /*
+   * Typography scale — mobile (−4px) · tablet/md (−2px) · desktop/lg (base)
+   * Example: hh-text-lg → 14px · 16px · 18px
+   */
+  .hh-text-xs {
+    @apply text-[8px] md:text-[10px] lg:text-xs;
+  }
+
+  .hh-text-sm {
+    @apply text-[10px] md:text-xs lg:text-sm;
+  }
+
+  .hh-text-base {
+    @apply text-xs md:text-sm lg:text-base;
+  }
+
+  .hh-text-lg {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+
+  .hh-text-xl {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  .hh-text-2xl {
+    @apply text-xl md:text-[22px] lg:text-2xl;
+  }
+
+  .hh-text-3xl {
+    @apply text-[26px] md:text-[28px] lg:text-3xl;
+  }
+
+  .hh-text-4xl {
+    @apply text-[32px] md:text-[34px] lg:text-4xl;
+  }
+
+  .hh-text-nav {
+    @apply text-[17px] md:text-[19px] lg:text-[21px];
+  }
+
+  .hh-text-company {
+    @apply text-xl md:text-[22px] lg:text-2xl;
+  }
+
   .hh-page-title {
-    @apply text-xl font-bold leading-tight sm:text-2xl md:text-[30px] lg:text-[34px];
+    @apply text-[30px] font-bold leading-tight md:text-[32px] lg:text-[34px];
   }
 
   .hh-page-title--light {
-    @apply text-xl font-bold leading-tight text-white sm:text-2xl md:text-[32px] lg:text-[40px];
+    @apply text-[36px] font-bold leading-tight text-white md:text-[38px] lg:text-[40px];
   }
 
   .hh-page-subtitle {
-    @apply text-xs leading-relaxed text-gray-600 sm:text-sm md:text-base lg:text-lg;
+    @apply text-sm leading-relaxed text-gray-600 md:text-base lg:text-lg;
   }
 
   .hh-page-subtitle--light {
-    @apply text-xs leading-relaxed text-white/95 sm:text-sm md:text-base lg:text-lg;
+    @apply text-sm leading-relaxed text-white/95 md:text-base lg:text-lg;
   }
 
   .hh-section-title {
-    @apply text-lg font-bold text-gray-900 sm:text-xl md:text-2xl lg:text-3xl;
+    @apply text-[26px] font-bold text-gray-900 md:text-[28px] lg:text-3xl;
   }
 
   .hh-section-title--xl {
-    @apply text-xl font-bold text-gray-900 sm:text-2xl md:text-3xl lg:text-[36px];
+    @apply text-[32px] font-bold text-gray-900 md:text-[34px] lg:text-[36px];
   }
 
   .hh-body {
-    @apply text-sm leading-relaxed sm:text-base md:text-lg;
+    @apply text-sm leading-relaxed md:text-base lg:text-lg;
+  }
+
+  .hh-label {
+    @apply text-[10px] font-semibold uppercase tracking-wider md:text-xs lg:text-sm;
+  }
+
+  .hh-text-stat {
+    @apply text-[44px] font-bold md:text-[46px] lg:text-5xl;
   }
 
   .hh-card {
