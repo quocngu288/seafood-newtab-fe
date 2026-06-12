@@ -168,15 +168,72 @@
     "news": {
       "title": "Tin tức",
       "subtitle": "Cập nhật mới nhất",
-      "content": "Theo dõi các hoạt động, sự kiện và thành tựu của Hải Hương Seafood."
+      "sidebarLabel": "FEATURED ARTICLE",
+      "sidebarCta": "Xem thêm",
+      "articles": [
+        {
+          "title": "Phân khúc thị trường thủy sản: Kết quả khảo sát ở 5 nước châu Âu",
+          "date": "07/05/2026",
+          "body": "Theo kết quả khảo sát tại 5 nước châu Âu, người tiêu dùng ngày càng quan tâm đến nguồn gốc và chứng nhận bền vững của sản phẩm thủy sản. Đây là cơ hội cho các doanh nghiệp xuất khẩu Việt Nam nâng cao giá trị và uy tín thương hiệu.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "Người tiêu dùng châu Âu ưu tiên sản phẩm có chứng nhận bền vững.",
+            "Cá tra fillet Việt Nam duy trì vị thế cạnh tranh về giá và chất lượng."
+          ]
+        },
+        {
+          "title": "Hải Hương đạt chứng nhận BRCGS phiên bản mới",
+          "date": "15/05/2026",
+          "body": "Công ty hoàn thành đánh giá và được cấp chứng nhận BRCGS Food Safety phiên bản mới, khẳng định cam kết kiểm soát chất lượng toàn diện trong chuỗi sản xuất.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "Quy trình HACCP được áp dụng xuyên suốt tại nhà máy.",
+            "Đội ngũ QA được đào tạo theo tiêu chuẩn quốc tế mới nhất."
+          ]
+        },
+        {
+          "title": "Triển lãm thủy sản quốc tế tại Brussels",
+          "date": "02/04/2026",
+          "body": "Hải Hương giới thiệu dòng sản phẩm cá tra fillet cao cấp và sản phẩm chế biến giá trị gia tăng tại Seafood Expo Global, thu hút sự quan tâm của nhiều đối tác châu Âu.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "Gặp gỡ hơn 30 đối tác tiềm năng tại khu vực EU.",
+            "Ra mắt dòng sản phẩm value added mới cho thị trường B2B."
+          ]
+        },
+        {
+          "title": "Mở rộng vùng nuôi trồng đạt chuẩn ASC",
+          "date": "20/03/2026",
+          "body": "Dự án mở rộng vùng nuôi trồng tại Vĩnh Long giúp tăng cường nguồn nguyên liệu bền vững, đáp ứng yêu cầu ngày càng cao từ thị trường xuất khẩu.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "Diện tích nuôi ASC mở rộng thêm 120 ha.",
+            "Ứng dụng công nghệ giám sát chất lượng nước theo thời gian thực."
+          ]
+        }
+      ],
+      "pagination": {
+        "first": "FIRST",
+        "last": "LAST"
+      }
     },
     "contact": {
       "title": "Liên hệ",
-      "subtitle": "Chúng tôi luôn sẵn sàng hỗ trợ",
-      "content": "Vui lòng liên hệ qua form hoặc thông tin bên dưới.",
-      "address": "Khu công nghiệp, Tỉnh An Giang, Việt Nam",
-      "phone": "+84 296 3xxx xxx",
-      "email": "info@haihuongseafood.com"
+      "subtitle": "Vui lòng nhập thông tin của bạn tại đây. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất",
+      "mapTitle": "Bản đồ Hải Hương Seafood",
+      "form": {
+        "fullName": "Họ Tên",
+        "phone": "Điện Thoại",
+        "email": "Email",
+        "address": "Địa Chỉ",
+        "message": "Tin Nhắn",
+        "newsletter": "Gửi cho tôi bản tin",
+        "send": "Gửi"
+      }
     }
   },
   "footer": {

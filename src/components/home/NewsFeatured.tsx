@@ -15,11 +15,11 @@ export async function NewsFeatured() {
               aria-hidden
             />
             <div className="min-w-0 flex-1">
-              <h3 className="text-[32px] font-bold leading-snug text-gray-900 sm:text-[36px]">
+              <h3 className="text-2xl font-bold leading-snug text-gray-900 sm:text-[32px] md:text-[36px]">
                 {t("title")}
               </h3>
 
-              <p className="mt-4 text-[22px] leading-relaxed text-gray-700 sm:text-[24px]">
+              <p className="mt-4 text-base leading-relaxed text-gray-700 sm:text-[22px] md:text-[24px]">
                 {t("body")}
               </p>
             </div>

@@ -168,15 +168,72 @@
     "news": {
       "title": "News",
       "subtitle": "Latest updates",
-      "content": "Follow the activities, events and achievements of Hai Huong Seafood."
+      "sidebarLabel": "FEATURED ARTICLE",
+      "sidebarCta": "See more",
+      "articles": [
+        {
+          "title": "Seafood market segments: Survey results across 5 European countries",
+          "date": "07/05/2026",
+          "body": "According to a survey across five European countries, consumers are increasingly focused on the origin and sustainability certifications of seafood products. This presents an opportunity for Vietnamese exporters to strengthen brand value and reputation.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "European consumers prioritize products with sustainability certification.",
+            "Vietnamese pangasius fillet maintains competitive advantage in price and quality."
+          ]
+        },
+        {
+          "title": "Hai Huong achieves new BRCGS certification",
+          "date": "15/05/2026",
+          "body": "The company completed assessment and received the latest BRCGS Food Safety certification, reaffirming end-to-end quality control across the production chain.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "HACCP processes applied throughout the factory.",
+            "QA team trained to the latest international standards."
+          ]
+        },
+        {
+          "title": "International seafood expo in Brussels",
+          "date": "02/04/2026",
+          "body": "Hai Huong showcased premium pangasius fillet and value-added products at Seafood Expo Global, attracting interest from many European partners.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "Met with over 30 potential partners in the EU region.",
+            "Launched new value-added product line for B2B markets."
+          ]
+        },
+        {
+          "title": "ASC-certified farming area expansion",
+          "date": "20/03/2026",
+          "body": "The expansion project in Vinh Long strengthens sustainable raw material supply to meet growing export market requirements.",
+          "badgeMsc": "MSC WINNER",
+          "badgeAsc": "ASC WINNER",
+          "bullets": [
+            "ASC farming area expanded by 120 hectares.",
+            "Real-time water quality monitoring technology deployed."
+          ]
+        }
+      ],
+      "pagination": {
+        "first": "FIRST",
+        "last": "LAST"
+      }
     },
     "contact": {
       "title": "Contact",
-      "subtitle": "We are always ready to assist",
-      "content": "Please contact us via the form or information below.",
-      "address": "Industrial Zone, An Giang Province, Vietnam",
-      "phone": "+84 296 3xxx xxx",
-      "email": "info@haihuongseafood.com"
+      "subtitle": "Please enter your details here. We will get in touch with you shortly",
+      "mapTitle": "Hai Huong Seafood map",
+      "form": {
+        "fullName": "Full name",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "message": "Message",
+        "newsletter": "Send me your newsletter",
+        "send": "Send"
+      }
     }
   },
   "footer": {

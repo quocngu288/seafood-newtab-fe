@@ -26,7 +26,7 @@ export function HeroCarousel() {
   const { title, badges } = slides[0];
 
   return (
-    <section className="site-container mb-12">
+    <section className="site-container mb-8 sm:mb-12">
       <div className="relative overflow-hidden rounded-[40px] bg-white shadow-xl">
         <Image
           src={images.quote}

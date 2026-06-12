@@ -55,8 +55,8 @@ export async function PartnerQuote() {
           </div>
 
           {/* Cert full width, căn giữa, đè nửa dưới mép banner */}
-          <div className="absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-6 sm:px-10 lg:px-12 w-full lg:w-[500px]">
-            <div className="rounded-[30px] bg-white px-4 py-4 shadow-[0_6px_24px_rgba(0,0,0,0.14)] sm:px-8 sm:py-5 md:px-10 md:py-6 ml-[30px]">
+          <div className="absolute inset-x-0 bottom-0 z-20 w-full translate-y-1/2 px-4 sm:px-6 md:px-10 lg:px-12">
+            <div className="mx-auto max-w-full rounded-[30px] bg-white px-4 py-4 shadow-[0_6px_24px_rgba(0,0,0,0.14)] sm:px-8 sm:py-5 md:px-10 md:py-6 lg:ml-[30px] lg:max-w-none">
               <div className="grid grid-cols-3 items-center gap-3 sm:gap-6 md:gap-10 lg:gap-12">
                 {certificationLogos.map((cert) => (
                   <div
