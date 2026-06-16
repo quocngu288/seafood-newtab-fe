@@ -1,11 +1,33 @@
 import { getTranslations } from "next-intl/server";
+import { fetchNewsArticles } from "@/lib/api/server";
+import type { Locale } from "@/lib/api/types";
 import { NewsPageLayout } from "./NewsPageLayout";
 import type { NewsArticleDetailData } from "./NewsArticleDetail";
 
-export async function NewsSection() {
+type Props = {
+  locale: string;
+};
+
+export async function NewsSection({ locale }: Props) {
   const t = await getTranslations("pages.news");
 
-  const articles = t.raw("articles") as NewsArticleDetailData[];
+  let articles = t.raw("articles") as NewsArticleDetailData[];
+
+  try {
+    const apiArticles = await fetchNewsArticles(locale as Locale);
+    articles = apiArticles.map((item) => ({
+      title: item.title,
+      date: item.date,
+      body: item.body,
+      badgeMsc: item.badgeMsc,
+      badgeAsc: item.badgeAsc,
+      bullets: item.bullets,
+      imageUrl: item.thumbnailUrl || undefined,
+      thumbnailKey: item.thumbnailKey || undefined,
+    }));
+  } catch {
+    // fallback to static JSON messages
+  }
 
   return (
     <NewsPageLayout

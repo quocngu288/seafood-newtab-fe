@@ -9,6 +9,8 @@ export type NewsArticleDetailData = {
   badgeMsc: string;
   badgeAsc: string;
   bullets: string[];
+  imageUrl?: string;
+  thumbnailKey?: string;
 };
 
 type NewsArticleDetailProps = {

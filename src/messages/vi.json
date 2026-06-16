@@ -158,7 +158,111 @@
     "products": {
       "title": "Sản phẩm",
       "subtitle": "Danh mục sản phẩm đa dạng",
-      "content": "Cung cấp đầy đủ các dòng sản phẩm từ cá tra fillet, sản phẩm chế biến đến bột cá và dầu cá."
+      "labels": {
+        "description": "Quy cách",
+        "size": "Size",
+        "price": "Giá",
+        "date": "Ngày",
+        "contact": "Liên hệ"
+      },
+      "items": [
+        {
+          "id": 1,
+          "name": "Introduction on Pangasius",
+          "description": "Giới thiệu dòng sản phẩm cá tra",
+          "size": "—",
+          "price": "—",
+          "date": "06 May"
+        },
+        {
+          "id": 2,
+          "name": "Pangasius Loin",
+          "description": "Loin cắt không xương. Đóng gói: IQF bulk 10kg",
+          "size": "150-200gr",
+          "price": "92.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 3,
+          "name": "Pangasius Skewered",
+          "description": "Xiên ướp sẵn. Đóng gói: IQF 1kg x 10",
+          "size": "80-100gr/pc",
+          "price": "78.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 4,
+          "name": "Untrimmed Pangasius Fillets",
+          "description": "Fillet chưa tỉa, có da. Đóng gói: IQF bulk 10kg",
+          "size": "700-900gr",
+          "price": "82.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 5,
+          "name": "Pangasius Cubes",
+          "description": "Khối không da, không xương. Đóng gói: IQF 1kg x 10",
+          "size": "20-30gr/pc",
+          "price": "85.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 6,
+          "name": "Pangasius Portion",
+          "description": "Phần cắt sẵn. Đóng gói: IQF bulk 10kg",
+          "size": "120-150gr",
+          "price": "86.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 7,
+          "name": "Pangasius Steak",
+          "description": "Steak cắt, có da. Đóng gói: IQF bulk 10kg",
+          "size": "180-220gr",
+          "price": "88.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 8,
+          "name": "Welltrimmed Pangasius Fillets",
+          "description": "Skin on, bone on, head off, gut off, tail on/off. Đóng gói: IQF bulk 10kg",
+          "size": "800-1000gr",
+          "price": "99.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 9,
+          "name": "Pangasius HGT",
+          "description": "Có đầu, bỏ ruột, đuôi. Đóng gói: IQF bulk 10kg",
+          "size": "500-800gr",
+          "price": "72.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 10,
+          "name": "Pangasius Roll",
+          "description": "Cuộn fillet. Đóng gói: IQF bulk 10kg",
+          "size": "100-130gr",
+          "price": "90.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 11,
+          "name": "Semitrimmed Pangasius Fillets",
+          "description": "Fillet tỉa một phần. Đóng gói: IQF bulk 10kg",
+          "size": "750-950gr",
+          "price": "94.000 ₫",
+          "date": "06 May"
+        },
+        {
+          "id": 12,
+          "name": "Pangasius Belly",
+          "description": "Cắt bụng, làm sạch. Đóng gói: IQF bulk 10kg",
+          "size": "100-150gr",
+          "price": "76.000 ₫",
+          "date": "06 May"
+        }
+      ]
     },
     "markets": {
       "title": "Thị trường",

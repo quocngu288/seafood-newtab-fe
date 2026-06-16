@@ -1,3 +1,6 @@
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
+import { resolveNewsImageSrc } from "@/lib/thumbnails";
 import type { NewsArticleDetailData } from "./NewsArticleDetail";
 
 type NewsArticlePreviewProps = {
@@ -5,7 +8,12 @@ type NewsArticlePreviewProps = {
   className?: string;
 };
 
-export function NewsArticlePreview({ article, className = "" }: NewsArticlePreviewProps) {
+export function NewsArticlePreview({
+  article,
+  className = "",
+}: NewsArticlePreviewProps) {
+  const imageSrc = resolveNewsImageSrc(article.imageUrl, article.thumbnailKey);
+
   return (
     <article
       className={`rounded-3xl bg-[#e8f2f8] px-4 py-5 sm:rounded-[28px] sm:px-7 sm:py-7 md:px-8 md:py-8 ${className}`}
@@ -26,6 +34,44 @@ export function NewsArticlePreview({ article, className = "" }: NewsArticlePrevi
           </p>
         </div>
       </div>
+
+      {imageSrc && (
+        <div className="relative mt-6 overflow-hidden rounded-2xl">
+          <div className="relative aspect-[16/9] w-full md:aspect-[2/1]">
+            {typeof imageSrc === "string" ? (
+              <img
+                src={imageSrc}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <Image
+                src={imageSrc}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 896px"
+              />
+            )}
+          </div>
+          <div className="absolute bottom-4 left-4 flex flex-col gap-2 sm:flex-row">
+            <span className="hh-text-xs rounded bg-[#003366] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
+              {article.badgeMsc}
+            </span>
+            <span className="hh-text-xs rounded bg-[#00838f] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
+              {article.badgeAsc}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {article.bullets.length > 0 && (
+        <ol className="hh-text-lg mt-4 list-decimal space-y-2 pl-5 leading-relaxed text-gray-800 sm:mt-6">
+          {article.bullets.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      )}
     </article>
   );
 }

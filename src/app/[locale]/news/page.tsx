@@ -20,7 +20,7 @@ export default async function NewsPage({ params }: Props) {
 
         <div className="relative mt-3 translate-y-4 sm:mt-4 sm:translate-y-5 md:translate-y-6">
           <Suspense fallback={null}>
-            <NewsSection />
+            <NewsSection locale={locale} />
           </Suspense>
         </div>
       </section>

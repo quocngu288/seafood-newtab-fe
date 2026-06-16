@@ -75,7 +75,7 @@ export function HeroCarousel() {
             key={i}
             type="button"
             onClick={() => setActive(i)}
-            className={`h-3 w-2 sm:w-3 rounded-sm transition ${
+            className={`h-2 w-2 sm:w-3 sm:h-3 rounded-sm transition ${
               i === active ? "bg-hh-red" : "bg-gray-300/90 hover:bg-gray-200"
             }`}
             aria-label={`Slide ${i + 1}`}

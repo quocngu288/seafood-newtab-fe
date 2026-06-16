@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { ContactForm } from "./ContactForm";
 import { ContactMap } from "./ContactMap";
 
 type SalesPerson = {
@@ -34,36 +35,6 @@ function IconMail({ className = "h-4 w-4" }: { className?: string }) {
       />
       <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.5" />
     </svg>
-  );
-}
-
-function UnderlineField({
-  id,
-  label,
-  type = "text",
-  multiline = false,
-  className = "",
-}: {
-  id: string;
-  label: string;
-  type?: string;
-  multiline?: boolean;
-  className?: string;
-}) {
-  const fieldClass =
-    "hh-text-base w-full border-0 border-b border-gray-300 bg-transparent py-2 text-gray-900 placeholder:text-gray-400 focus:border-hh-blue focus:outline-none focus:ring-0 sm:py-2.5";
-
-  return (
-    <div className={className}>
-      <label htmlFor={id} className="hh-text-sm block font-medium text-gray-600">
-        {label}
-      </label>
-      {multiline ? (
-        <textarea id={id} name={id} rows={3} className={`${fieldClass} resize-none`} />
-      ) : (
-        <input id={id} name={id} type={type} className={fieldClass} />
-      )}
-    </div>
   );
 }
 
@@ -151,37 +122,17 @@ export async function ContactSection() {
             </div>
           </aside>
 
-          <form className="flex flex-1 flex-col p-5 sm:p-8 lg:p-10">
-            <UnderlineField id="fullName" label={t("form.fullName")} />
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:gap-8">
-              <UnderlineField id="phone" label={t("form.phone")} type="tel" />
-              <UnderlineField id="email" label={t("form.email")} type="email" />
-            </div>
-            <UnderlineField id="address" label={t("form.address")} className="mt-6" />
-            <UnderlineField
-              id="message"
-              label={t("form.message")}
-              multiline
-              className="mt-6"
-            />
-
-            <div className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
-              <label className="hh-text-base flex cursor-pointer items-center gap-2.5 text-gray-700">
-                <input
-                  type="checkbox"
-                  name="newsletter"
-                  className="h-4 w-4 rounded border-gray-300 text-hh-red focus:ring-hh-red"
-                />
-                {t("form.newsletter")}
-              </label>
-              <button
-                type="button"
-                className="hh-text-base w-full rounded-full bg-hh-red px-10 py-3 font-semibold text-white transition hover:bg-hh-red-hover sm:w-auto"
-              >
-                {t("form.send")}
-              </button>
-            </div>
-          </form>
+          <ContactForm
+            labels={{
+              fullName: t("form.fullName"),
+              phone: t("form.phone"),
+              email: t("form.email"),
+              address: t("form.address"),
+              message: t("form.message"),
+              newsletter: t("form.newsletter"),
+              send: t("form.send"),
+            }}
+          />
         </div>
       </div>
 

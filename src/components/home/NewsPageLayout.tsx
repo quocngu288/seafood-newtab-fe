@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { CarouselDots } from "@/components/ui/CarouselDots";
+import { resolveNewsImageSrc } from "@/lib/thumbnails";
 import { NewsCard } from "./NewsCard";
 import { NewsArticlePreview } from "./NewsArticlePreview";
 import type { NewsArticleDetailData } from "./NewsArticleDetail";
@@ -170,6 +171,7 @@ export function NewsPageLayout({
               >
                 <NewsCard
                   title={item.title}
+                  imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                   active={activeIndex === index}
                   onClick={() => handleSelect(index)}
                 />
@@ -220,6 +222,7 @@ export function NewsPageLayout({
             >
               <NewsCard
                 title={item.title}
+                imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                 active={activeIndex === index % listArticles.length}
                 onClick={() => handleSelect(index % listArticles.length)}
               />

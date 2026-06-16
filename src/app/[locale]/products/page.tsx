@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { WaveTopPage } from "@/components/pages/WaveTopPage";
-import { ProductsSection } from "@/components/home/ProductsSection";
+import { HomeTop } from "@/components/home/HomeTop";
+import { ProductsPageSection } from "@/components/products/ProductsPageSection";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -10,11 +10,19 @@ export default async function ProductsPage({ params }: Props) {
   const t = await getTranslations("pages.products");
 
   return (
-    <WaveTopPage title={t("title")} subtitle={t("subtitle")}>
-      <div className="site-container--narrow">
-        <p className="hh-body">{t("content")}</p>
-      </div>
-      <ProductsSection />
-    </WaveTopPage>
+    <>
+      <HomeTop />
+      <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
+        <div className="px-1 pt-1 sm:px-2 sm:pt-2">
+          <h1 className="hh-page-title--light">{t("title")}</h1>
+        </div>
+
+        <div className="relative mt-4 translate-y-4 sm:mt-6 sm:translate-y-5 md:translate-y-6">
+          <article className="hh-card">
+            <ProductsPageSection locale={locale} />
+          </article>
+        </div>
+      </section>
+    </>
   );
 }
