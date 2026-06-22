@@ -21,7 +21,9 @@ export async function AboutSection() {
         <div>
           <span className="hh-label text-hh-blue">{t("label")}</span>
           <h2 className="hh-section-title mt-2">{t("title")}</h2>
-          <p className="hh-body mt-3 text-gray-600 sm:mt-4">{t("description")}</p>
+          <p className="hh-body mt-3 text-gray-600 sm:mt-4">
+            {t("description")}
+          </p>
           <Link
             href="/about"
             className="hh-text-sm mt-6 inline-block rounded-full bg-hh-red px-6 py-2.5 font-semibold text-white transition hover:bg-hh-red-hover"

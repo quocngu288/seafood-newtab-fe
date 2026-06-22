@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
+import { Link } from "@/i18n/navigation";
 import { images } from "@/lib/images";
 
 type NewsCardProps = {
@@ -9,6 +10,7 @@ type NewsCardProps = {
   active?: boolean;
   className?: string;
   onClick?: () => void;
+  detailHref?: string;
 };
 
 export function NewsCard({
@@ -18,6 +20,7 @@ export function NewsCard({
   active = false,
   className = "",
   onClick,
+  detailHref,
 }: NewsCardProps) {
   return (
     <article
@@ -59,16 +62,31 @@ export function NewsCard({
         >
           {title}
         </p>
-        <span
-          className={`hh-text-lg flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-bold leading-none transition-colors sm:h-8 sm:w-8 ${
-            active
-              ? "bg-white text-hh-blue-dark"
-              : "bg-hh-red text-white group-hover:bg-white group-hover:text-hh-blue-dark"
-          }`}
-          aria-hidden
-        >
-          +
-        </span>
+        {detailHref ? (
+          <Link
+            href={detailHref}
+            onClick={(e) => e.stopPropagation()}
+            className={`hh-text-lg flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-bold leading-none transition-colors sm:h-8 sm:w-8 ${
+              active
+                ? "bg-white text-hh-blue-dark"
+                : "bg-hh-red text-white group-hover:bg-white group-hover:text-hh-blue-dark"
+            }`}
+            aria-label={title}
+          >
+            +
+          </Link>
+        ) : (
+          <span
+            className={`hh-text-lg flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-bold leading-none transition-colors sm:h-8 sm:w-8 ${
+              active
+                ? "bg-white text-hh-blue-dark"
+                : "bg-hh-red text-white group-hover:bg-white group-hover:text-hh-blue-dark"
+            }`}
+            aria-hidden
+          >
+            +
+          </span>
+        )}
       </div>
     </article>
   );

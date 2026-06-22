@@ -1,14 +1,13 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
+import { NewsHtmlContent } from "@/components/ui/NewsHtmlContent";
 import { images } from "@/lib/images";
 
 export type NewsArticleDetailData = {
+  id?: number;
   title: string;
   date: string;
   body: string;
-  badgeMsc: string;
-  badgeAsc: string;
-  bullets: string[];
   imageUrl?: string;
   thumbnailKey?: string;
 };
@@ -35,9 +34,12 @@ export function NewsArticleDetail({
           <h3 className="hh-text-3xl font-bold leading-snug text-gray-900">
             {article.title}
           </h3>
-          <p className="hh-text-xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
-            {article.body}
-          </p>
+          {article.date && (
+            <time className="hh-text-base mt-2 block font-medium text-gray-500">
+              {article.date}
+            </time>
+          )}
+          <NewsHtmlContent html={article.body} className="mt-3 sm:mt-4" />
         </div>
       </div>
 
@@ -51,23 +53,7 @@ export function NewsArticleDetail({
             sizes="(max-width: 1024px) 100vw, 896px"
           />
         </div>
-        <div className="absolute bottom-4 left-4 flex flex-col gap-2 sm:flex-row">
-          <span className="hh-text-xs rounded bg-[#003366] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
-            {article.badgeMsc}
-          </span>
-          <span className="hh-text-xs rounded bg-[#00838f] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
-            {article.badgeAsc}
-          </span>
-        </div>
       </div>
-
-      {article.bullets.length > 0 && (
-        <ol className="hh-text-lg mt-4 list-decimal space-y-2 pl-5 leading-relaxed text-gray-800 sm:mt-6">
-          {article.bullets.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
-      )}
     </article>
   );
 }

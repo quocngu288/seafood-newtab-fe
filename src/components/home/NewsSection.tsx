@@ -16,12 +16,10 @@ export async function NewsSection({ locale }: Props) {
   try {
     const apiArticles = await fetchNewsArticles(locale as Locale);
     articles = apiArticles.map((item) => ({
+      id: item.id,
       title: item.title,
       date: item.date,
       body: item.body,
-      badgeMsc: item.badgeMsc,
-      badgeAsc: item.badgeAsc,
-      bullets: item.bullets,
       imageUrl: item.thumbnailUrl || undefined,
       thumbnailKey: item.thumbnailKey || undefined,
     }));

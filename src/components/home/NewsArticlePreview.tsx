@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { resolveNewsImageSrc } from "@/lib/thumbnails";
+import { stripHtml } from "@/lib/html";
 import type { NewsArticleDetailData } from "./NewsArticleDetail";
 
 type NewsArticlePreviewProps = {
@@ -13,6 +14,7 @@ export function NewsArticlePreview({
   className = "",
 }: NewsArticlePreviewProps) {
   const imageSrc = resolveNewsImageSrc(article.imageUrl, article.thumbnailKey);
+  const previewText = stripHtml(article.body);
 
   return (
     <article
@@ -28,9 +30,13 @@ export function NewsArticlePreview({
             {article.title}
           </h3>
           <p className="hh-text-xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
-            <time className="font-medium text-gray-600">{article.date}</time>
-            {" | "}
-            {article.body}
+            {article.date && (
+              <>
+                <time className="font-medium text-gray-600">{article.date}</time>
+                {" | "}
+              </>
+            )}
+            {previewText}
           </p>
         </div>
       </div>
@@ -54,23 +60,7 @@ export function NewsArticlePreview({
               />
             )}
           </div>
-          <div className="absolute bottom-4 left-4 flex flex-col gap-2 sm:flex-row">
-            <span className="hh-text-xs rounded bg-[#003366] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
-              {article.badgeMsc}
-            </span>
-            <span className="hh-text-xs rounded bg-[#00838f] px-3 py-2 text-center font-bold uppercase leading-tight text-white shadow-md">
-              {article.badgeAsc}
-            </span>
-          </div>
         </div>
-      )}
-
-      {article.bullets.length > 0 && (
-        <ol className="hh-text-lg mt-4 list-decimal space-y-2 pl-5 leading-relaxed text-gray-800 sm:mt-6">
-          {article.bullets.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
       )}
     </article>
   );

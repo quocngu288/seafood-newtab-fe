@@ -13,11 +13,19 @@ import { AdminLocaleTabs } from "./ui/AdminLocaleTabs";
 const emptyTranslation = (): ProductTranslationFields => ({
   name: "",
   description: "",
+  packing: "",
   size: "",
   price: "—",
   priceVnd: 0,
   date: "",
 });
+
+function pickTranslationFields(
+  translation: AdminProduct["translations"]["vi"] | undefined,
+): ProductTranslationFields {
+  if (!translation) return emptyTranslation();
+  return { ...emptyTranslation(), ...translation };
+}
 
 type ProductFormProps = {
   initial?: AdminProduct;
@@ -30,12 +38,8 @@ export function ProductForm({ initial }: ProductFormProps) {
   const [thumbnailKey, setThumbnailKey] = useState(initial?.thumbnailKey ?? "");
   const [thumbnailUrl, setThumbnailUrl] = useState(initial?.thumbnailUrl ?? "");
   const [sortOrder, setSortOrder] = useState(initial?.sortOrder ?? 0);
-  const [vi, setVi] = useState(
-    initial?.translations.vi ?? emptyTranslation(),
-  );
-  const [en, setEn] = useState(
-    initial?.translations.en ?? emptyTranslation(),
-  );
+  const [vi, setVi] = useState(pickTranslationFields(initial?.translations.vi));
+  const [en, setEn] = useState(pickTranslationFields(initial?.translations.en));
   const [priceInput, setPriceInput] = useState<string>(() => {
     const vnd = initial?.translations.vi?.priceVnd ?? 0;
     return vnd > 0 ? String(vnd) : "";
@@ -75,6 +79,7 @@ export function ProductForm({ initial }: ProductFormProps) {
       vi: {
         name: vi.name,
         description: vi.description,
+        packing: vi.packing,
         size: vi.size,
         priceVnd,
         date: vi.date,
@@ -82,6 +87,7 @@ export function ProductForm({ initial }: ProductFormProps) {
       en: {
         name: en.name,
         description: en.description,
+        packing: en.packing,
         size: en.size,
         priceVnd,
         date: en.date,
@@ -172,6 +178,15 @@ export function ProductForm({ initial }: ProductFormProps) {
               value={data.description}
               onChange={(e) => update("description", e.target.value)}
               required
+            />
+          </label>
+          <label className="admin-field">
+            <span className="admin-label">Packing</span>
+            <input
+              className="admin-input"
+              value={data.packing}
+              onChange={(e) => update("packing", e.target.value)}
+              placeholder="VD: IQF bulk 10kg"
             />
           </label>
           <div className="admin-form-grid">

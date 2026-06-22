@@ -159,13 +159,13 @@ export function NewsPageLayout({
     return (
       <article className={CARD_CLASS + " pb-[80px]"}>
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 xl:gap-12">
-          <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-6 md:gap-x-5 md:gap-y-8">
+          <div className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-6 md:gap-x-5 md:gap-y-8">
             {compactArticles.map((item, index) => (
               <div
                 key={`${item.title}-${index}`}
                 className={
                   index % 2 === 1
-                    ? "translate-y-6 sm:translate-y-8 md:translate-y-10"
+                    ? "sm:translate-y-8 md:translate-y-10"
                     : ""
                 }
               >
@@ -174,6 +174,7 @@ export function NewsPageLayout({
                   imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                   active={activeIndex === index}
                   onClick={() => handleSelect(index)}
+                  detailHref={item.id ? `/news/${item.id}` : undefined}
                 />
               </div>
             ))}
@@ -225,6 +226,7 @@ export function NewsPageLayout({
                 imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                 active={activeIndex === index % listArticles.length}
                 onClick={() => handleSelect(index % listArticles.length)}
+                detailHref={item.id ? `/news/${item.id}` : undefined}
               />
             </div>
           ))}

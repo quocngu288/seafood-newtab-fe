@@ -1,4 +1,5 @@
 import { getAdminToken } from "./auth";
+import { getApiUrl } from "./config";
 import type {
   AdminNewsArticle,
   AdminProduct,
@@ -13,7 +14,7 @@ import type {
   UploadImageResponse,
 } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
+const API_URL = getApiUrl();
 
 class ApiError extends Error {
   status: number;

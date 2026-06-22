@@ -1,5 +1,6 @@
-export const API_ORIGIN =
-  process.env.NEXT_PUBLIC_API_ORIGIN ?? "http://localhost:3001";
+import { getApiOrigin } from "./api/config";
+
+export const API_ORIGIN = getApiOrigin();
 
 export function formatVndPrice(
   amount: number,

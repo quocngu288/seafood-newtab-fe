@@ -95,7 +95,7 @@ export async function Footer() {
       href: "https://facebook.com/",
       label: t("social.facebook"),
       icon: (
-        <span className="text-[16px] font-bold leading-none" aria-hidden>
+        <span className="hh-text-lg font-bold leading-none" aria-hidden>
           f
         </span>
       ),
@@ -105,7 +105,7 @@ export async function Footer() {
       href: "https://linkedin.com/",
       label: t("social.linkedin"),
       icon: (
-        <span className="text-[16px] font-bold leading-none" aria-hidden>
+        <span className="hh-text-lg font-bold leading-none" aria-hidden>
           in
         </span>
       ),
@@ -115,7 +115,7 @@ export async function Footer() {
       href: "https://x.com/",
       label: t("social.x"),
       icon: (
-        <span className="text-[16px] font-bold leading-none" aria-hidden>
+        <span className="hh-text-lg font-bold leading-none" aria-hidden>
           X
         </span>
       ),
@@ -181,7 +181,7 @@ export async function Footer() {
             </address>
 
             <div className="flex flex-col items-start gap-4 md:items-end">
-              <Logo className="w-[160px]! sm:w-[200px]! md:w-[240px]!" />
+              <Logo className="!w-[150px] sm:!w-[190px] md:!w-[230px]" />
               <div className="inline-flex items-center gap-4 rounded-full bg-white/15 px-5 py-2.5 backdrop-blur-sm">
                 {socialLinks.map(({ key, href, label, icon }) => (
                   <a

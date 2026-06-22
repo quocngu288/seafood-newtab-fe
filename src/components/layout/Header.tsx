@@ -36,11 +36,11 @@ export function Header() {
         {/* Hàng 1: Logo trái | tên công ty canh giữa vùng còn lại */}
         <div className="flex min-h-[52px] items-center gap-1.5 sm:min-h-[64px] sm:gap-2 md:min-h-[72px] md:gap-3">
           <Link href="/" className="block shrink-0">
-            <Logo className="h-auto w-[140px]! max-w-none object-contain sm:w-[200px]! md:w-[260px]! lg:w-[320px]! xl:w-[340px]!" />
+            <Logo className="!w-[120px] h-auto object-contain sm:!w-[180px] md:!w-[240px] lg:!w-[300px] xl:!w-[330px]" />
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
-            <h1 className="hh-text-company px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:leading-snug">
+            <h1 className="hh-text-company max-w-[22ch] px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:max-w-none md:leading-snug">
               {tCompany("name")}
             </h1>
           </div>
@@ -93,7 +93,7 @@ export function Header() {
         >
           <div className="flex flex-col gap-4 md:gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
             <nav className="min-w-0 flex-1">
-              <ul className="flex flex-col gap-1 md:grid md:grid-cols-3 md:gap-x-2 md:gap-y-2 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
+              <ul className="flex flex-col gap-1 sm:grid sm:grid-cols-2 sm:gap-x-2 sm:gap-y-2 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
                 {navItems.map(({ key, href }) => {
                   const active = isActive(href);
                   return (

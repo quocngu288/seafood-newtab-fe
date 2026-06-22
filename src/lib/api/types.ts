@@ -4,6 +4,7 @@ export type ApiProduct = {
   id: number;
   name: string;
   description: string;
+  packing: string;
   size: string;
   price: string;
   priceVnd: number;
@@ -15,6 +16,7 @@ export type ApiProduct = {
 export type ProductTranslationInput = {
   name: string;
   description: string;
+  packing: string;
   size: string;
   priceVnd: number;
   date: string;
@@ -49,9 +51,6 @@ export type ApiNewsArticle = {
   date: string;
   body: string;
   excerpt: string;
-  badgeMsc: string;
-  badgeAsc: string;
-  bullets: string[];
   thumbnailKey: string;
   thumbnailUrl: string;
 };
@@ -60,9 +59,6 @@ export type NewsTranslationFields = {
   title: string;
   body: string;
   excerpt: string;
-  badgeMsc: string;
-  badgeAsc: string;
-  bullets: string[];
 };
 
 export type AdminNewsArticle = {

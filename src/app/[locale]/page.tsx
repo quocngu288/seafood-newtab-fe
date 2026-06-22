@@ -17,7 +17,7 @@ export default async function HomePage({ params }: Props) {
       <FeatureCards />
 
       <div className="relative z-10 pt-2 sm:pt-4">
-        <HomeNewsBlock />
+        <HomeNewsBlock locale={locale} />
       </div>
     </>
   );

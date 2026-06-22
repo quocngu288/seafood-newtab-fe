@@ -1,9 +1,14 @@
 import type { ApiNewsArticle, ApiProduct, Locale, PaginatedNews } from "./types";
+import { getApiUrl } from "./config";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api";
+const API_URL = getApiUrl();
+const FETCH_TIMEOUT_MS = 8_000;
 
 async function serverFetch<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_URL}${path}`, { cache: "no-store" });
+  const response = await fetch(`${API_URL}${path}`, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
   if (!response.ok) {
     throw new Error(`API error ${response.status}: ${path}`);
   }
@@ -22,4 +27,8 @@ export function fetchNews(locale: Locale, page = 1, limit = 50) {
 
 export function fetchNewsArticles(locale: Locale): Promise<ApiNewsArticle[]> {
   return fetchNews(locale, 1, 50).then((res) => res.data);
+}
+
+export function fetchNewsArticle(id: number, locale: Locale) {
+  return serverFetch<ApiNewsArticle>(`/news/${id}?locale=${locale}`);
 }

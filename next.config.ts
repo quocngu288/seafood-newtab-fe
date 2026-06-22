@@ -1,9 +1,30 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { DEFAULT_API_ORIGIN } from "./src/lib/api/config";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-const apiOrigin = process.env.NEXT_PUBLIC_API_ORIGIN ?? "http://localhost:3001";
+const apiOrigin = process.env.NEXT_PUBLIC_API_ORIGIN ?? DEFAULT_API_ORIGIN;
+
+const isLocalApi =
+  apiOrigin.includes("localhost") || apiOrigin.includes("127.0.0.1");
+
+function localUploadPattern(port: string) {
+  return [
+    {
+      protocol: "http" as const,
+      hostname: "localhost",
+      port,
+      pathname: "/uploads/**",
+    },
+    {
+      protocol: "http" as const,
+      hostname: "127.0.0.1",
+      port,
+      pathname: "/uploads/**",
+    },
+  ];
+}
 
 function apiImageRemotePatterns() {
   const patterns: NonNullable<NextConfig["images"]>["remotePatterns"] = [
@@ -11,18 +32,7 @@ function apiImageRemotePatterns() {
       protocol: "https",
       hostname: "images.unsplash.com",
     },
-    {
-      protocol: "http",
-      hostname: "localhost",
-      port: "3001",
-      pathname: "/uploads/**",
-    },
-    {
-      protocol: "http",
-      hostname: "127.0.0.1",
-      port: "3001",
-      pathname: "/uploads/**",
-    },
+    ...localUploadPattern("3002"),
   ];
 
   if (apiOrigin.startsWith("http://") || apiOrigin.startsWith("https://")) {
@@ -46,6 +56,8 @@ function apiImageRemotePatterns() {
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: apiImageRemotePatterns(),
+    // Next.js 16 blocks localhost/127.0.0.1 by default (SSRF protection)
+    dangerouslyAllowLocalIP: isLocalApi,
   },
   env: {
     NEXT_PUBLIC_API_ORIGIN: apiOrigin,

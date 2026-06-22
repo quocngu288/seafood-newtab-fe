@@ -9,6 +9,7 @@ export type ProductTranslation = {
   id: number;
   name: string;
   description: string;
+  packing: string;
   size: string;
   price: string;
   priceVnd: number;
@@ -51,6 +52,7 @@ export function mapApiProducts(items: ApiProduct[]): Product[] {
     id: item.id,
     name: item.name,
     description: item.description,
+    packing: item.packing,
     size: item.size,
     price: item.price,
     priceVnd: item.priceVnd,

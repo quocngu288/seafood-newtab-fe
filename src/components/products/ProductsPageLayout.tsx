@@ -21,6 +21,7 @@ type ProductsPageLayoutProps = {
   defaultActiveIndex?: number;
   labels: {
     description: string;
+    packing: string;
     size: string;
     price: string;
     date: string;
@@ -65,7 +66,7 @@ function ProductGridTile({
         }`}
         aria-hidden
       />
-      <span className="relative z-10 flex h-full items-center justify-center px-2 text-center text-[10px] font-bold leading-[1.15] text-white sm:text-[11px] lg:text-xs">
+      <span className="hh-text-xs relative z-10 flex h-full items-center justify-center px-2 text-center font-bold leading-[1.15] text-white">
         {item.name}
       </span>
     </button>
@@ -127,6 +128,7 @@ export function ProductsPageLayout({
 
           <div className="mt-5 space-y-2 sm:mt-6 sm:space-y-2.5">
             <SpecRow label={labels.description} value={product.description} />
+            <SpecRow label={labels.packing} value={product.packing || "—"} />
             <SpecRow label={labels.size} value={product.size} />
           </div>
 
@@ -146,7 +148,7 @@ export function ProductsPageLayout({
           </p>
         </aside>
 
-        <div className="w-full min-w-0 lg:w-[614px] lg:shrink-0 lg:justify-self-end">
+        <div className="w-full min-w-0 lg:w-full lg:max-w-[614px] lg:shrink-0 lg:justify-self-end">
           {/* Mobile: 2 cột zigzag — cột 2 lệch nửa ô so với cột 1 */}
           <div className="flex gap-[2px] lg:hidden">
             <div className="flex min-w-0 flex-1 flex-col gap-[2px]">

@@ -53,7 +53,7 @@ function StandardFeatureCard({
   description,
 }: StandardCardProps) {
   return (
-    <article className="relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-white shadow-md sm:min-h-[380px] md:min-h-[420px] lg:min-h-[450px]">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md">
       <div className="relative aspect-[5/4] shrink-0 bg-slate-100">
         <Image
           src={imageSrc}
@@ -67,7 +67,7 @@ function StandardFeatureCard({
           aria-hidden
         />
       </div>
-      <div className="relative px-4 pb-12 pt-2">
+      <div className="relative px-4 pb-12 pt-2 sm:px-5 sm:pb-14">
         <FeatureCardTitle>{title}</FeatureCardTitle>
         <p className="hh-text-sm mt-3 line-clamp-3 leading-relaxed text-gray-600">
           {description}
@@ -98,7 +98,7 @@ function FilletsFeatureCard({
   imageAlt,
 }: FilletsCardProps) {
   return (
-    <article className="relative min-h-[320px] overflow-hidden rounded-2xl bg-white shadow-md sm:min-h-[380px] md:min-h-[420px] md:overflow-visible lg:min-h-[450px]">
+    <article className="relative h-full overflow-hidden rounded-2xl bg-white shadow-md md:overflow-visible">
       <div className="relative z-20 max-w-[72%] p-4 sm:max-w-[66%] sm:p-5 md:max-w-[60%] md:p-6 lg:max-w-[56%]">
         <FeatureCardTitle variant="wide">{title}</FeatureCardTitle>
         <p className="hh-text-sm mt-3 leading-relaxed text-gray-600 sm:mt-4">
@@ -112,7 +112,7 @@ function FilletsFeatureCard({
         </button>
       </div>
 
-      <div className="pointer-events-none absolute -bottom-10 -right-3 z-10 h-[64%] w-[58%] min-h-[170px] sm:-bottom-12 sm:-right-5 sm:h-[76%] sm:w-[60%] md:-bottom-16 md:-right-10 md:h-[88%] md:w-[64%] md:min-h-[260px]">
+      <div className="pointer-events-none absolute -bottom-8 -right-2 z-10 h-[58%] w-[56%] min-h-[160px] sm:-bottom-10 sm:-right-4 sm:h-[70%] sm:w-[58%] md:-bottom-14 md:-right-8 md:h-[84%] md:w-[62%] md:min-h-[230px]">
         <Image
           src={images.featureSlide}
           alt={imageAlt}
@@ -134,13 +134,13 @@ export async function FeatureCards() {
         Lớp 1 (z-0): nền xanh — chỉ là “kệ” phía dưới
         Lớp 2 (z-10): 3 card trắng đè lên, phần lớn card nhô ra phía trên mép nền
       */}
-      <div className="relative min-h-[340px] sm:min-h-[380px] md:min-h-[400px] lg:min-h-[450px]">
+      <div className="relative">
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-[-80px] z-0 h-[315px] rounded-[28px] bg-[#79B4E6] shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
+          className="pointer-events-none absolute inset-x-0 bottom-[-48px] z-0 h-[260px] rounded-[28px] bg-[#79B4E6] shadow-[0_10px_28px_rgba(0,0,0,0.14)] sm:bottom-[-64px] sm:h-[300px]"
           aria-hidden
         />
 
-        <div className="relative z-10 grid grid-cols-1 items-end gap-3 px-4 sm:grid-cols-2 sm:gap-4 sm:px-6 md:gap-5 md:px-[60px] lg:grid-cols-4">
+        <div className="relative z-10 grid grid-cols-1 items-stretch gap-3 px-2 sm:grid-cols-2 sm:gap-4 sm:px-4 md:gap-5 md:px-8 lg:grid-cols-4">
           <div className="sm:col-span-1 lg:col-span-1">
             <StandardFeatureCard
               imageSrc={PLACEHOLDER.export}

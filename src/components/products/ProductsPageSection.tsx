@@ -35,6 +35,7 @@ export async function ProductsPageSection({ locale }: Props) {
       defaultActiveIndex={defaultActiveIndex}
       labels={{
         description: t("labels.description"),
+        packing: t("labels.packing"),
         size: t("labels.size"),
         price: t("labels.price"),
         date: t("labels.date"),

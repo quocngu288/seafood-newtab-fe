@@ -8,15 +8,24 @@ import { AdminAlert } from "./ui/AdminAlert";
 import { AdminFormActions } from "./ui/AdminFormActions";
 import { AdminImageUpload } from "./ui/AdminImageUpload";
 import { AdminLocaleTabs } from "./ui/AdminLocaleTabs";
+import { AdminRichTextEditor } from "./ui/AdminRichTextEditor";
 
 const emptyTranslation = (): NewsTranslationFields => ({
   title: "",
   body: "",
   excerpt: "",
-  badgeMsc: "MSC WINNER",
-  badgeAsc: "ASC WINNER",
-  bullets: [""],
 });
+
+function pickTranslationFields(
+  translation: AdminNewsArticle["translations"]["vi"] | undefined,
+): NewsTranslationFields {
+  if (!translation) return emptyTranslation();
+  return {
+    title: translation.title,
+    body: translation.body,
+    excerpt: translation.excerpt,
+  };
+}
 
 type NewsFormProps = {
   initial?: AdminNewsArticle;
@@ -33,8 +42,8 @@ export function NewsForm({ initial }: NewsFormProps) {
   const [publishedAt, setPublishedAt] = useState(
     initial?.publishedAt?.slice(0, 10) ?? "",
   );
-  const [vi, setVi] = useState(initial?.translations.vi ?? emptyTranslation());
-  const [en, setEn] = useState(initial?.translations.en ?? emptyTranslation());
+  const [vi, setVi] = useState(pickTranslationFields(initial?.translations.vi));
+  const [en, setEn] = useState(pickTranslationFields(initial?.translations.en));
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -57,8 +66,8 @@ export function NewsForm({ initial }: NewsFormProps) {
       thumbnailKey,
       sortOrder,
       publishedAt: publishedAt || undefined,
-      vi: { ...vi, bullets: vi.bullets.filter(Boolean) },
-      en: { ...en, bullets: en.bullets.filter(Boolean) },
+      vi,
+      en,
     };
 
     try {
@@ -75,7 +84,7 @@ export function NewsForm({ initial }: NewsFormProps) {
     }
   }
 
-  const update = (key: keyof NewsTranslationFields, value: string | string[]) =>
+  const update = (key: keyof NewsTranslationFields, value: string) =>
     setData({ ...data, [key]: value });
 
   return (
@@ -151,56 +160,12 @@ export function NewsForm({ initial }: NewsFormProps) {
               onChange={(e) => update("excerpt", e.target.value)}
             />
           </label>
-          <label className="admin-field">
+          <div className="admin-field">
             <span className="admin-label">Nội dung</span>
-            <textarea
-              className="admin-textarea"
-              rows={6}
+            <AdminRichTextEditor
               value={data.body}
-              onChange={(e) => update("body", e.target.value)}
-              required
+              onChange={(html) => update("body", html)}
             />
-          </label>
-          <div className="admin-form-grid">
-            <label className="admin-field">
-              <span className="admin-label">Badge MSC</span>
-              <input
-                className="admin-input"
-                value={data.badgeMsc}
-                onChange={(e) => update("badgeMsc", e.target.value)}
-              />
-            </label>
-            <label className="admin-field">
-              <span className="admin-label">Badge ASC</span>
-              <input
-                className="admin-input"
-                value={data.badgeAsc}
-                onChange={(e) => update("badgeAsc", e.target.value)}
-              />
-            </label>
-          </div>
-          <div className="space-y-2">
-            <p className="admin-label mb-0">Điểm nổi bật</p>
-            {data.bullets.map((bullet, index) => (
-              <input
-                key={index}
-                className="admin-input"
-                value={bullet}
-                placeholder={`Bullet ${index + 1}`}
-                onChange={(e) => {
-                  const bullets = [...data.bullets];
-                  bullets[index] = e.target.value;
-                  update("bullets", bullets);
-                }}
-              />
-            ))}
-            <button
-              type="button"
-              className="admin-btn-ghost"
-              onClick={() => update("bullets", [...data.bullets, ""])}
-            >
-              + Thêm bullet
-            </button>
           </div>
         </div>
       </div>
