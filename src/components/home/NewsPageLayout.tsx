@@ -174,7 +174,7 @@ export function NewsPageLayout({
                   imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                   active={activeIndex === index}
                   onClick={() => handleSelect(index)}
-                  detailHref={item.id ? `/news/${item.id}` : undefined}
+                  detailHref={item.slug ? `/news/${item.slug}` : item.id ? `/news/${item.id}` : undefined}
                 />
               </div>
             ))}
@@ -226,7 +226,7 @@ export function NewsPageLayout({
                 imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                 active={activeIndex === index % listArticles.length}
                 onClick={() => handleSelect(index % listArticles.length)}
-                detailHref={item.id ? `/news/${item.id}` : undefined}
+                detailHref={item.slug ? `/news/${item.slug}` : item.id ? `/news/${item.id}` : undefined}
               />
             </div>
           ))}

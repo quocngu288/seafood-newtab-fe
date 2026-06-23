@@ -17,6 +17,7 @@ export async function NewsSection({ locale }: Props) {
     const apiArticles = await fetchNewsArticles(locale as Locale);
     articles = apiArticles.map((item) => ({
       id: item.id,
+      slug: item.slug,
       title: item.title,
       date: item.date,
       body: item.body,

@@ -5,6 +5,7 @@ import { images } from "@/lib/images";
 
 export type NewsArticleDetailData = {
   id?: number;
+  slug?: string;
   title: string;
   date: string;
   body: string;

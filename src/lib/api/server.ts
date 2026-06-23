@@ -29,6 +29,8 @@ export function fetchNewsArticles(locale: Locale): Promise<ApiNewsArticle[]> {
   return fetchNews(locale, 1, 50).then((res) => res.data);
 }
 
-export function fetchNewsArticle(id: number, locale: Locale) {
-  return serverFetch<ApiNewsArticle>(`/news/${id}?locale=${locale}`);
+export function fetchNewsArticle(slugOrId: string, locale: Locale) {
+  return serverFetch<ApiNewsArticle>(
+    `/news/${encodeURIComponent(slugOrId)}?locale=${locale}`,
+  );
 }

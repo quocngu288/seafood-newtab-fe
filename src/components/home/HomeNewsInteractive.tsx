@@ -78,7 +78,7 @@ export function HomeNewsInteractive({ articles }: HomeNewsInteractiveProps) {
                   imageSrc={resolveNewsImageSrc(item.imageUrl, item.thumbnailKey)}
                   active={activeIndex === item.index}
                   onClick={() => setActiveIndex(item.index)}
-                  detailHref={item.id ? `/news/${item.id}` : undefined}
+                  detailHref={item.slug ? `/news/${item.slug}` : item.id ? `/news/${item.id}` : undefined}
                 />
               ))}
             </div>

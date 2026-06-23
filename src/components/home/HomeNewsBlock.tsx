@@ -12,6 +12,7 @@ type HomeNewsBlockProps = {
 function mapApiArticle(item: Awaited<ReturnType<typeof fetchNewsArticles>>[number]): NewsArticleDetailData {
   return {
     id: item.id,
+    slug: item.slug,
     title: item.title,
     date: item.date,
     body: item.excerpt || item.body,
