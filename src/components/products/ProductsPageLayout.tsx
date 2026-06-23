@@ -82,6 +82,8 @@ export function ProductsPageLayout({
 
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const product = gridItems[activeIndex] ?? gridItems[0];
+  const hasPrice = (product?.priceVnd ?? 0) > 0;
+  const hasDate = Boolean(product?.date?.trim() && product.date.trim() !== "—");
 
   const { col1: mobileCol1, col2: mobileCol2 } = useMemo(
     () => splitMobileZigzagColumns(PRODUCT_GRID_SLOTS),
@@ -132,16 +134,24 @@ export function ProductsPageLayout({
             <SpecRow label={labels.size} value={product.size} />
           </div>
 
-          <button
-            type="button"
-            className="hh-text-base mt-6 w-fit rounded-lg bg-hh-red px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6"
-          >
-            {labels.price}: {product.price}
-          </button>
+          {hasPrice && (
+            <button
+              type="button"
+              className="hh-text-base mt-6 w-fit rounded-lg bg-hh-red px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6"
+            >
+              {labels.price}: {product.price}
+            </button>
+          )}
 
-          <p className="hh-text-sm mt-8 text-gray-500 lg:mt-10">
-            {labels.date}: {product.date}{" "}
-            <span className="text-gray-400">|</span>{" "}
+          <p
+            className={`hh-text-sm text-gray-500 lg:mt-10 ${hasPrice ? "mt-8" : "mt-6"}`}
+          >
+            {hasDate && (
+              <>
+                {labels.date}: {product.date}{" "}
+                <span className="text-gray-400">|</span>{" "}
+              </>
+            )}
             <Link href="/contact" className="underline hover:text-hh-blue">
               {labels.contact}
             </Link>
