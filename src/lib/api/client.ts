@@ -148,7 +148,6 @@ export const adminApi = {
   },
 
   createNews(data: {
-    slug: string;
     thumbnailKey?: string;
     sortOrder?: number;
     publishedAt?: string;
@@ -164,7 +163,6 @@ export const adminApi = {
   updateNews(
     id: number,
     data: Partial<{
-      slug: string;
       thumbnailKey: string;
       sortOrder: number;
       publishedAt: string | null;

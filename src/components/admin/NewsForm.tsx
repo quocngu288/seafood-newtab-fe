@@ -35,7 +35,6 @@ export function NewsForm({ initial }: NewsFormProps) {
   const router = useRouter();
   const isEdit = Boolean(initial);
   const [locale, setLocale] = useState<"vi" | "en">("vi");
-  const [slug, setSlug] = useState(initial?.slug ?? "");
   const [thumbnailKey, setThumbnailKey] = useState(initial?.thumbnailKey ?? "");
   const [thumbnailUrl, setThumbnailUrl] = useState(initial?.thumbnailUrl ?? "");
   const [sortOrder, setSortOrder] = useState(initial?.sortOrder ?? 0);
@@ -62,7 +61,6 @@ export function NewsForm({ initial }: NewsFormProps) {
     }
 
     const payload = {
-      slug,
       thumbnailKey,
       sortOrder,
       publishedAt: publishedAt || undefined,
@@ -92,17 +90,6 @@ export function NewsForm({ initial }: NewsFormProps) {
       <div className="admin-card">
         <p className="admin-card-section-title">Thông tin bài viết</p>
         <div className="grid gap-4">
-          <label className="admin-field">
-            <span className="admin-label">Slug (URL)</span>
-            <input
-              className="admin-input"
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-              required
-            />
-            <span className="admin-field-hint">VD: hai-huong-dat-chung-nhan-brcgs</span>
-          </label>
-
           <AdminImageUpload
             label="Ảnh bài viết"
             thumbnailKey={thumbnailKey}
@@ -134,6 +121,13 @@ export function NewsForm({ initial }: NewsFormProps) {
               />
             </label>
           </div>
+
+          {isEdit && initial?.slug && (
+            <p className="admin-field-hint">
+              URL slug: <span className="font-mono text-gray-600">{initial.slug}</span>{" "}
+              (tự cập nhật khi đổi tiêu đề tiếng Việt)
+            </p>
+          )}
         </div>
       </div>
 
@@ -150,6 +144,11 @@ export function NewsForm({ initial }: NewsFormProps) {
               onChange={(e) => update("title", e.target.value)}
               required
             />
+            {locale === "vi" && (
+              <span className="admin-field-hint">
+                Slug URL được tạo tự động từ tiêu đề tiếng Việt
+              </span>
+            )}
           </label>
           <label className="admin-field">
             <span className="admin-label">Tóm tắt</span>
