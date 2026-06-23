@@ -40,7 +40,7 @@ export function Header() {
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
-            <h1 className="hh-text-company max-w-[22ch] px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:max-w-none md:leading-snug">
+            <h1 className="hh-text-company px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:max-w-none md:leading-snug">
               {tCompany("name")}
             </h1>
           </div>
