@@ -12,9 +12,7 @@ import { AdminEmptyState } from "./ui/AdminEmptyState";
 import { AdminLoading } from "./ui/AdminLoading";
 
 function NewsThumbnail({ item }: { item: AdminNewsArticle }) {
-  const url =
-    item.thumbnailUrl ||
-    resolveProductImageUrl(undefined, item.thumbnailKey);
+  const url = resolveProductImageUrl(item.thumbnailUrl, item.thumbnailKey);
 
   if (url) {
     return (

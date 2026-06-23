@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import { DEFAULT_API_ORIGIN } from "./src/lib/api/config";
+import { getApiOrigin } from "./src/lib/api/config";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-const apiOrigin = process.env.NEXT_PUBLIC_API_ORIGIN ?? DEFAULT_API_ORIGIN;
+const apiOrigin = getApiOrigin();
 
 const isLocalApi =
   apiOrigin.includes("localhost") || apiOrigin.includes("127.0.0.1");

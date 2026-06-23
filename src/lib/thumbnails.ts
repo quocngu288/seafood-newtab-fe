@@ -28,8 +28,10 @@ export function resolveNewsImageSrc(
   imageUrl?: string,
   thumbnailKey?: string,
 ): string | StaticImageData | undefined {
-  const uploaded = imageUrl || resolveProductImageUrl(undefined, thumbnailKey);
+  const uploaded = resolveProductImageUrl(imageUrl, thumbnailKey);
   if (uploaded) return uploaded;
-  if (thumbnailKey) return resolveThumbnail(thumbnailKey);
+  if (thumbnailKey && !thumbnailKey.startsWith("uploads/")) {
+    return resolveThumbnail(thumbnailKey);
+  }
   return undefined;
 }

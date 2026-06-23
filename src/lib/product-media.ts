@@ -21,14 +21,35 @@ export function parseVndInput(value: string): number {
   return parseInt(digits, 10);
 }
 
-/** Resolve product image URL from API response or legacy static key */
+/**
+ * Luôn trỏ upload về backend (NEXT_PUBLIC_API_ORIGIN), không dùng domain frontend
+ * và không tin URL localhost do API trả về khi thiếu API_PUBLIC_URL.
+ */
 export function resolveProductImageUrl(
   thumbnailUrl?: string,
   thumbnailKey?: string,
 ): string {
-  if (thumbnailUrl) return thumbnailUrl;
+  const origin = getApiOrigin();
+
   if (thumbnailKey?.startsWith("uploads/")) {
-    return `${API_ORIGIN}/${thumbnailKey}`;
+    return `${origin}/${thumbnailKey}`;
   }
-  return "";
+
+  const trimmed = thumbnailUrl?.trim();
+  if (!trimmed) return "";
+
+  if (trimmed.startsWith("/uploads/")) {
+    return `${origin}${trimmed}`;
+  }
+
+  try {
+    const url = new URL(trimmed);
+    if (url.pathname.startsWith("/uploads/")) {
+      return `${origin}${url.pathname}`;
+    }
+  } catch {
+    return trimmed;
+  }
+
+  return trimmed;
 }

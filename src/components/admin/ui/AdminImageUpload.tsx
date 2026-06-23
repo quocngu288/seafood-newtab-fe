@@ -27,9 +27,7 @@ export function AdminImageUpload({
   const [error, setError] = useState("");
 
   const previewUrl =
-    thumbnailUrl ||
-    resolveProductImageUrl(undefined, thumbnailKey) ||
-    "";
+    resolveProductImageUrl(thumbnailUrl, thumbnailKey) || "";
 
   const legacySrc =
     thumbnailKey && !thumbnailKey.startsWith("uploads/")
