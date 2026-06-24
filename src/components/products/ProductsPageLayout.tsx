@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import { Link } from "@/i18n/navigation";
 import type { Product } from "@/lib/products";
 import { images } from "@/lib/images";
@@ -53,7 +54,7 @@ function ProductGridTile({
       onClick={onSelect}
       className="relative h-full w-full overflow-hidden rounded-lg shadow-sm transition"
     >
-      <Image
+      <CmsImage
         src={item.thumbnail}
         alt=""
         fill
@@ -211,7 +212,7 @@ export function ProductsPageLayout({
 
       <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
         <div className="relative aspect-[16/9] w-full sm:aspect-[2/1]">
-          <Image
+          <CmsImage
             key={product.id}
             src={product.thumbnail}
             alt={product.name}

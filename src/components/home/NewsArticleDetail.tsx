@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import type { StaticImageData } from "next/image";
 import { NewsHtmlContent } from "@/components/ui/NewsHtmlContent";
 import { images } from "@/lib/images";
@@ -46,7 +46,7 @@ export function NewsArticleDetail({
 
       <div className="relative mt-6 overflow-hidden rounded-2xl">
         <div className="relative aspect-[16/9] w-full md:aspect-[2/1]">
-          <Image
+          <CmsImage
             src={imageSrc}
             alt=""
             fill

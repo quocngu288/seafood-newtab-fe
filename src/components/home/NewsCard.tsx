@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CmsImage } from "@/components/ui/CmsImage";
 import type { StaticImageData } from "next/image";
 import { Link } from "@/i18n/navigation";
 import { images } from "@/lib/images";
@@ -38,13 +38,11 @@ export function NewsCard({
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       className={`group flex cursor-pointer flex-col overflow-hidden rounded-2xl px-3 py-3 shadow-sm transition-colors sm:px-[25px] sm:py-[20px] ${
-        active
-          ? "bg-hh-blue-dark"
-          : "bg-white hover:bg-hh-blue-dark"
+        active ? "bg-hh-blue-dark" : "bg-white hover:bg-hh-blue-dark"
       } ${className}`}
     >
       <div className="relative m-2 aspect-square overflow-hidden rounded-xl bg-slate-200 sm:m-3">
-        <Image
+        <CmsImage
           src={imageSrc}
           alt={imageAlt}
           fill
@@ -55,9 +53,7 @@ export function NewsCard({
       <div className="mt-2 flex min-h-[48px] items-center justify-between gap-1.5 px-1 pb-2 sm:min-h-[56px] sm:gap-2 sm:px-3 sm:pb-3">
         <p
           className={`hh-text-base line-clamp-2 flex-1 font-medium leading-snug transition-colors ${
-            active
-              ? "text-white"
-              : "text-gray-900 group-hover:text-white"
+            active ? "text-white" : "text-gray-900 group-hover:text-white"
           }`}
         >
           {title}

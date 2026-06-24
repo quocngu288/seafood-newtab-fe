@@ -32,7 +32,9 @@ export function NewsArticlePreview({
           <p className="hh-text-xl mt-3 leading-relaxed text-gray-700 sm:mt-4">
             {article.date && (
               <>
-                <time className="font-medium text-gray-600">{article.date}</time>
+                <time className="font-medium text-gray-600">
+                  {article.date}
+                </time>
                 {" | "}
               </>
             )}
