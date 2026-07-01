@@ -5,7 +5,7 @@ import { images } from "@/lib/images";
 
 /** Placeholder — thay bằng file trong src/images khi có */
 const PLACEHOLDER = {
-  export: images.heroSlide,
+  export: images.xuatkhau,
   farming: images.heroSlide,
   fillets:
     "https://images.unsplash.com/photo-1611171711916-3ab5f5f5a6a2?w=900&q=80",

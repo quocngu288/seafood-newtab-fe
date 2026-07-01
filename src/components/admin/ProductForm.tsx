@@ -1,9 +1,13 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { adminApi } from "@/lib/api/client";
-import type { AdminProduct, ProductTranslationFields } from "@/lib/api/types";
+import type {
+  AdminProduct,
+  AdminProductCategory,
+  ProductTranslationFields,
+} from "@/lib/api/types";
 import { formatVndPrice, parseVndInput } from "@/lib/product-media";
 import { AdminAlert } from "./ui/AdminAlert";
 import { AdminFormActions } from "./ui/AdminFormActions";
@@ -37,6 +41,8 @@ export function ProductForm({ initial }: ProductFormProps) {
   const [locale, setLocale] = useState<"vi" | "en">("vi");
   const [thumbnailKey, setThumbnailKey] = useState(initial?.thumbnailKey ?? "");
   const [thumbnailUrl, setThumbnailUrl] = useState(initial?.thumbnailUrl ?? "");
+  const [categoryKey, setCategoryKey] = useState(initial?.categoryKey ?? "");
+  const [categories, setCategories] = useState<AdminProductCategory[]>([]);
   const [sortOrder, setSortOrder] = useState(initial?.sortOrder ?? 0);
   const [vi, setVi] = useState(pickTranslationFields(initial?.translations.vi));
   const [en, setEn] = useState(pickTranslationFields(initial?.translations.en));
@@ -46,6 +52,18 @@ export function ProductForm({ initial }: ProductFormProps) {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    adminApi
+      .getProductCategories()
+      .then((items) => {
+        setCategories(items);
+        setCategoryKey((current) => current || items[0]?.key || "");
+      })
+      .catch(() => {
+        // ignore — dropdown stays empty
+      });
+  }, []);
 
   const data = locale === "vi" ? vi : en;
   const setData = locale === "vi" ? setVi : setEn;
@@ -73,8 +91,15 @@ export function ProductForm({ initial }: ProductFormProps) {
       return;
     }
 
+    if (!categoryKey) {
+      setError("Vui lòng chọn loại sản phẩm");
+      setLoading(false);
+      return;
+    }
+
     const payload = {
       thumbnailKey,
+      categoryKey,
       sortOrder,
       vi: {
         name: vi.name,
@@ -143,6 +168,29 @@ export function ProductForm({ initial }: ProductFormProps) {
               </span>
             </label>
             <label className="admin-field">
+              <span className="admin-label">Loại sản phẩm</span>
+              <select
+                className="admin-input"
+                value={categoryKey}
+                onChange={(e) => setCategoryKey(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  Chọn loại…
+                </option>
+                {categories.map((category) => (
+                  <option key={category.key} value={category.key}>
+                    {category.translations.vi?.name ?? category.key}
+                  </option>
+                ))}
+              </select>
+              <span className="admin-field-hint">
+                <a href="/admin/product-categories" className="underline">
+                  Quản lý loại sản phẩm
+                </a>
+              </span>
+            </label>
+            <label className="admin-field">
               <span className="admin-label">Thứ tự hiển thị</span>
               <input
                 type="number"
@@ -150,7 +198,7 @@ export function ProductForm({ initial }: ProductFormProps) {
                 value={sortOrder}
                 onChange={(e) => setSortOrder(Number(e.target.value))}
               />
-              <span className="admin-field-hint">Số nhỏ hơn sẽ hiển thị trước</span>
+              <span className="admin-field-hint">Số nhỏ hơn sẽ hiển thị trước — quyết định thứ tự ô trên lưới sản phẩm</span>
             </label>
           </div>
         </div>

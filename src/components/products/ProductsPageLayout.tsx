@@ -1,25 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { CmsImage } from "@/components/ui/CmsImage";
 import { Link } from "@/i18n/navigation";
+import { DEFAULT_PRODUCT_ID } from "@/data/products";
+import type { ProductCategory } from "@/lib/api/types";
 import type { Product } from "@/lib/products";
 import { images } from "@/lib/images";
-import {
-  getMobileTileAspect,
-  getProductGridSlotStyle,
-  PRODUCT_GRID_HEIGHT_PX,
-  PRODUCT_GRID_SLOTS,
-  PRODUCT_GRID_WIDTH_PX,
-  splitMobileZigzagColumns,
-} from "./productGridPlacements";
-
-const MAX_GRID_BLOCKS = 12;
 
 type ProductsPageLayoutProps = {
   items: Product[];
-  defaultActiveIndex?: number;
+  categories: ProductCategory[];
+  initialCategoryKey?: string;
   labels: {
     description: string;
     packing: string;
@@ -59,7 +52,7 @@ function ProductGridTile({
         alt=""
         fill
         className="object-cover"
-        sizes="(max-width: 1024px) 33vw, 260px"
+        sizes="(max-width: 1024px) 33vw, 200px"
       />
       <span
         className={`absolute inset-0 transition ${
@@ -76,40 +69,72 @@ function ProductGridTile({
 
 export function ProductsPageLayout({
   items,
-  defaultActiveIndex = 0,
+  categories,
+  initialCategoryKey,
   labels,
 }: ProductsPageLayoutProps) {
-  const gridItems = useMemo(() => items.slice(0, MAX_GRID_BLOCKS), [items]);
+  const visibleCategories = useMemo(() => {
+    const keysWithProducts = new Set(items.map((item) => item.categoryKey));
+    return categories.filter((category) => keysWithProducts.has(category.key));
+  }, [categories, items]);
 
-  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
-  const product = gridItems[activeIndex] ?? gridItems[0];
+  const resolveInitialCategory = () => {
+    if (
+      initialCategoryKey &&
+      visibleCategories.some((category) => category.key === initialCategoryKey)
+    ) {
+      return initialCategoryKey;
+    }
+
+    return (
+      visibleCategories[0]?.key ??
+      categories[0]?.key ??
+      items[0]?.categoryKey ??
+      "fillets"
+    );
+  };
+
+  const [activeCategoryKey, setActiveCategoryKey] = useState(
+    resolveInitialCategory,
+  );
+
+  const categoryItems = useMemo(
+    () => items.filter((item) => item.categoryKey === activeCategoryKey),
+    [items, activeCategoryKey],
+  );
+
+  const [activeProductId, setActiveProductId] = useState<number | null>(() => {
+    const preferred = categoryItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
+    return preferred?.id ?? categoryItems[0]?.id ?? null;
+  });
+
+  useEffect(() => {
+    if (
+      initialCategoryKey &&
+      visibleCategories.some((category) => category.key === initialCategoryKey)
+    ) {
+      setActiveCategoryKey(initialCategoryKey);
+    }
+  }, [initialCategoryKey, visibleCategories]);
+
+  useEffect(() => {
+    const preferred = categoryItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
+    setActiveProductId(preferred?.id ?? categoryItems[0]?.id ?? null);
+  }, [activeCategoryKey, categoryItems]);
+
+  const product =
+    categoryItems.find((item) => item.id === activeProductId) ?? categoryItems[0];
+
   const hasPrice = (product?.priceVnd ?? 0) > 0;
   const hasDate = Boolean(product?.date?.trim() && product.date.trim() !== "—");
 
-  const { col1: mobileCol1, col2: mobileCol2 } = useMemo(
-    () => splitMobileZigzagColumns(PRODUCT_GRID_SLOTS),
-    [],
-  );
-
-  if (!product) return null;
-
-  const renderMobileSlot = (slot: (typeof PRODUCT_GRID_SLOTS)[number]) => {
-    const item = gridItems[slot.itemIndex];
-    if (!item) return null;
+  if (!product) {
     return (
-      <div
-        key={item.id}
-        className="min-w-0 w-full"
-        style={{ aspectRatio: getMobileTileAspect(slot) }}
-      >
-        <ProductGridTile
-          item={item}
-          active={activeIndex === slot.itemIndex}
-          onSelect={() => setActiveIndex(slot.itemIndex)}
-        />
-      </div>
+      <p className="hh-text-base text-center text-gray-500">
+        Chưa có sản phẩm trong loại này.
+      </p>
     );
-  };
+  }
 
   return (
     <div className="flex flex-col gap-8 sm:gap-10">
@@ -159,59 +184,26 @@ export function ProductsPageLayout({
           </p>
         </aside>
 
-        <div className="w-full min-w-0 lg:w-full lg:max-w-[614px] lg:shrink-0 lg:justify-self-end">
-          {/* Mobile: 2 cột zigzag — cột 2 lệch nửa ô so với cột 1 */}
-          <div className="flex gap-[2px] lg:hidden">
-            <div className="flex min-w-0 flex-1 flex-col gap-[2px]">
-              {mobileCol1.map(renderMobileSlot)}
-            </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-[2px]">
+        <div className="w-full min-w-0 lg:max-w-[614px] lg:shrink-0 lg:justify-self-end">
+          <div className="flex flex-wrap gap-[2px]">
+            {categoryItems.map((item) => (
               <div
-                className="w-full shrink-0"
-                style={{ aspectRatio: "350/135" }}
-                aria-hidden
-              />
-              {mobileCol2.map(renderMobileSlot)}
-            </div>
-          </div>
-
-          {/* Desktop: lưới 3×4 kích thước theo mockup */}
-          <div
-            className="relative hidden lg:block"
-            style={{
-              width: PRODUCT_GRID_WIDTH_PX,
-              height: PRODUCT_GRID_HEIGHT_PX,
-            }}
-          >
-            {PRODUCT_GRID_SLOTS.map((slot) => {
-              const item = gridItems[slot.itemIndex];
-              if (!item) return null;
-              const pos = getProductGridSlotStyle(slot);
-              return (
-                <div
-                  key={item.id}
-                  className="absolute"
-                  style={{
-                    left: pos.left,
-                    top: pos.top,
-                    width: pos.width,
-                    height: pos.height,
-                  }}
-                >
-                  <ProductGridTile
-                    item={item}
-                    active={activeIndex === slot.itemIndex}
-                    onSelect={() => setActiveIndex(slot.itemIndex)}
-                  />
-                </div>
-              );
-            })}
+                key={item.id}
+                className="aspect-[175/135] min-w-0 w-[calc(50%-1px)] sm:w-[calc(33.333%-2px)]"
+              >
+                <ProductGridTile
+                  item={item}
+                  active={activeProductId === item.id}
+                  onSelect={() => setActiveProductId(item.id)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-        <div className="relative aspect-[16/9] w-full sm:aspect-[2/1]">
+        <div className="relative aspect-video w-full sm:aspect-2/1">
           <CmsImage
             key={product.id}
             src={product.thumbnail}

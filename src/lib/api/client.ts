@@ -3,6 +3,7 @@ import { getApiUrl } from "./config";
 import type {
   AdminNewsArticle,
   AdminProduct,
+  AdminProductCategory,
   ApiNewsArticle,
   ApiProduct,
   ContactMessage,
@@ -11,6 +12,7 @@ import type {
   LoginResponse,
   PaginatedNews,
   ProductTranslationInput,
+  ProductGridPosition,
   UploadImageResponse,
 } from "./types";
 
@@ -66,6 +68,12 @@ export const publicApi = {
     return request<ApiProduct[]>(`/products?locale=${locale}`);
   },
 
+  getProductCategories(locale: Locale) {
+    return request<import("./types").ProductCategory[]>(
+      `/products/categories?locale=${locale}`,
+    );
+  },
+
   getNews(locale: Locale, page = 1, limit = 50) {
     return request<PaginatedNews>(
       `/news?locale=${locale}&page=${page}&limit=${limit}`,
@@ -103,7 +111,9 @@ export const adminApi = {
 
   createProduct(data: {
     thumbnailKey?: string;
+    categoryKey?: string;
     sortOrder?: number;
+    gridPosition?: ProductGridPosition;
     vi: ProductTranslationInput;
     en: ProductTranslationInput;
   }) {
@@ -111,7 +121,9 @@ export const adminApi = {
       method: "POST",
       body: JSON.stringify({
         thumbnailKey: data.thumbnailKey,
+        categoryKey: data.categoryKey,
         sortOrder: data.sortOrder,
+        gridPosition: data.gridPosition,
         vi: data.vi,
         en: data.en,
       }),
@@ -122,7 +134,9 @@ export const adminApi = {
     id: number,
     data: Partial<{
       thumbnailKey: string;
+      categoryKey: string;
       sortOrder: number;
+      gridPosition: ProductGridPosition;
       vi: Partial<NonNullable<AdminProduct["translations"]["vi"]>>;
       en: Partial<NonNullable<AdminProduct["translations"]["en"]>>;
     }>,
@@ -135,6 +149,50 @@ export const adminApi = {
 
   deleteProduct(id: number) {
     return request<{ deleted: true }>(`/admin/products/${id}`, {
+      method: "DELETE",
+    }, true);
+  },
+
+  getProductCategories() {
+    return request<AdminProductCategory[]>("/admin/product-categories", {}, true);
+  },
+
+  getProductCategory(id: number) {
+    return request<AdminProductCategory>(
+      `/admin/product-categories/${id}`,
+      {},
+      true,
+    );
+  },
+
+  createProductCategory(data: {
+    key?: string;
+    sortOrder?: number;
+    vi: { name: string };
+    en: { name: string };
+  }) {
+    return request<AdminProductCategory>("/admin/product-categories", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  updateProductCategory(
+    id: number,
+    data: Partial<{
+      sortOrder: number;
+      vi: { name?: string };
+      en: { name?: string };
+    }>,
+  ) {
+    return request<AdminProductCategory>(`/admin/product-categories/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  deleteProductCategory(id: number) {
+    return request<{ deleted: true }>(`/admin/product-categories/${id}`, {
       method: "DELETE",
     }, true);
   },

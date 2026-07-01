@@ -13,6 +13,7 @@ import heroSlide2 from "@/images/bg-slide2.jpg";
 import vungNuoi from "@/images/vungnuoi.jpg";
 import featureSlide from "@/images/feature-slide.svg";
 import quote from "@/images/quote.svg";
+import xuatkhau from "@/images/xuatkhau.jpg";
 /** bg: nền sóng vùng trên (header + hero), không dùng full-page */
 export const images = {
   logo,
@@ -27,6 +28,7 @@ export const images = {
   vungNuoi,
   featureSlide,
   quote,
+  xuatkhau,
 } as const;
 
 /** Placeholder logo chứng nhận — thay file trong src/images/certs/ khi có bản chính */

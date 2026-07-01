@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { fetchProducts } from "@/lib/api/server";
-import type { Locale } from "@/lib/api/types";
+import { fetchProductCategories, fetchProducts } from "@/lib/api/server";
+import type { Locale, ProductCategory } from "@/lib/api/types";
+import { getFallbackProductCategories } from "@/lib/product-categories";
 import {
-  getDefaultProductIndex,
   mapApiProducts,
   mergeProductTranslations,
   type ProductTranslation,
@@ -11,28 +11,39 @@ import { ProductsPageLayout } from "./ProductsPageLayout";
 
 type Props = {
   locale: string;
+  initialCategoryKey?: string;
 };
 
-export async function ProductsPageSection({ locale }: Props) {
+export async function ProductsPageSection({
+  locale,
+  initialCategoryKey,
+}: Props) {
   const t = await getTranslations("pages.products");
+  const resolvedLocale = locale as Locale;
 
   let items = mergeProductTranslations(
     t.raw("items") as ProductTranslation[],
+    resolvedLocale,
   );
+  let categories: ProductCategory[] =
+    getFallbackProductCategories(resolvedLocale);
 
   try {
-    const apiProducts = await fetchProducts(locale as Locale);
+    const [apiProducts, apiCategories] = await Promise.all([
+      fetchProducts(resolvedLocale),
+      fetchProductCategories(resolvedLocale),
+    ]);
     items = mapApiProducts(apiProducts);
+    categories = apiCategories;
   } catch {
     // fallback to static JSON messages
   }
 
-  const defaultActiveIndex = getDefaultProductIndex(items);
-
   return (
     <ProductsPageLayout
       items={items}
-      defaultActiveIndex={defaultActiveIndex}
+      categories={categories}
+      initialCategoryKey={initialCategoryKey}
       labels={{
         description: t("labels.description"),
         packing: t("labels.packing"),

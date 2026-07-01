@@ -1,5 +1,11 @@
 export type Locale = "vi" | "en";
 
+export type ProductGridPosition = {
+  col: number;
+  row: number;
+  tileSize: "standard" | "tall" | "wide";
+};
+
 export type ApiProduct = {
   id: number;
   name: string;
@@ -9,8 +15,17 @@ export type ApiProduct = {
   price: string;
   priceVnd: number;
   date: string;
+  categoryKey: string;
+  categoryName: string;
   thumbnailKey: string;
   thumbnailUrl: string;
+  gridPosition: ProductGridPosition;
+};
+
+export type ProductCategory = {
+  key: string;
+  name: string;
+  sortOrder: number;
 };
 
 export type ProductTranslationInput = {
@@ -28,12 +43,25 @@ export type ProductTranslationFields = ProductTranslationInput & {
 
 export type AdminProduct = {
   id: number;
+  categoryKey: string;
+  categoryName: string;
   thumbnailKey: string;
   thumbnailUrl: string;
   sortOrder: number;
+  gridPosition: ProductGridPosition;
   translations: {
     vi: ProductTranslationFields | null;
     en: ProductTranslationFields | null;
+  };
+};
+
+export type AdminProductCategory = {
+  id: number;
+  key: string;
+  sortOrder: number;
+  translations: {
+    vi: { name: string };
+    en: { name: string };
   };
 };
 

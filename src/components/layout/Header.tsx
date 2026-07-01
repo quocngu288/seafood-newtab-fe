@@ -6,18 +6,58 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
+import { ProductsNavMenu } from "./ProductsNavMenu";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { images } from "@/lib/images";
 
-const navItems = [
+const navBeforeProducts = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
-  { key: "products", href: "/products" },
+] as const;
+
+const navAfterProducts = [
   { key: "markets", href: "/markets" },
   { key: "news", href: "/news" },
   { key: "contact", href: "/contact" },
 ] as const;
+
+function NavItem({
+  label,
+  href,
+  active,
+  onNavigate,
+}: {
+  label: string;
+  href: string;
+  active: boolean;
+  onNavigate: () => void;
+}) {
+  return (
+    <li>
+      <Link
+        href={href}
+        onClick={onNavigate}
+        className={`hh-text-nav inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:px-4 ${
+          active ? "text-white" : "text-white/90 hover:text-white"
+        }`}
+      >
+        <span>{label}</span>
+        <span className="mt-1 flex h-3.5 w-9 items-center justify-center">
+          {active && (
+            <Image
+              src={images.iconFish}
+              alt=""
+              width={36}
+              height={12}
+              className="h-3 w-9 shrink-0 object-contain"
+            />
+          )}
+        </span>
+      </Link>
+    </li>
+  );
+}
 
 export function Header() {
   const t = useTranslations("nav");
@@ -30,10 +70,11 @@ export function Header() {
     return pathname.startsWith(href);
   };
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="relative z-50">
       <div className="site-container pt-4 pb-2 sm:pb-4">
-        {/* Hàng 1: Logo trái | tên công ty canh giữa vùng còn lại */}
         <div className="flex min-h-[52px] items-center gap-1.5 sm:min-h-[64px] sm:gap-2 md:min-h-[72px] md:gap-3">
           <Link href="/" className="block shrink-0">
             <Logo className="!w-[120px] h-auto object-contain sm:!w-[180px] md:!w-[240px] lg:!w-[300px] xl:!w-[330px]" />
@@ -45,7 +86,6 @@ export function Header() {
             </h1>
           </div>
 
-          {/* Mobile + tablet: menu drawer; desktop lg+: hàng nav ngang */}
           <button
             type="button"
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/30 text-white lg:hidden"
@@ -85,7 +125,6 @@ export function Header() {
           </button>
         </div>
 
-        {/* Hàng 2: Menu trái | Search + cờ phải */}
         <div
           className={`mt-4 pb-4 sm:mt-3 ${
             menuOpen ? "block" : "hidden lg:block"
@@ -94,35 +133,31 @@ export function Header() {
           <div className="flex flex-col gap-4 md:gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
             <nav className="min-w-0 flex-1">
               <ul className="flex flex-col gap-1 sm:grid sm:grid-cols-2 sm:gap-x-2 sm:gap-y-2 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
-                {navItems.map(({ key, href }) => {
-                  const active = isActive(href);
-                  return (
-                    <li key={key}>
-                      <Link
-                        href={href}
-                        onClick={() => setMenuOpen(false)}
-                        className={`hh-text-nav inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:px-4 ${
-                          active
-                            ? "text-white"
-                            : "text-white/90 hover:text-white"
-                        }`}
-                      >
-                        <span>{t(key)}</span>
-                        <span className="mt-1 flex h-3.5 w-9 items-center justify-center">
-                          {active && (
-                            <Image
-                              src={images.iconFish}
-                              alt=""
-                              width={36}
-                              height={12}
-                              className="h-3 w-9 shrink-0 object-contain"
-                            />
-                          )}
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                })}
+                {navBeforeProducts.map(({ key, href }) => (
+                  <NavItem
+                    key={key}
+                    label={t(key)}
+                    href={href}
+                    active={isActive(href)}
+                    onNavigate={closeMenu}
+                  />
+                ))}
+
+                <ProductsNavMenu
+                  label={t("products")}
+                  active={isActive("/products")}
+                  onNavigate={closeMenu}
+                />
+
+                {navAfterProducts.map(({ key, href }) => (
+                  <NavItem
+                    key={key}
+                    label={t(key)}
+                    href={href}
+                    active={isActive(href)}
+                    onNavigate={closeMenu}
+                  />
+                ))}
               </ul>
             </nav>
 

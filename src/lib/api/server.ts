@@ -19,6 +19,12 @@ export function fetchProducts(locale: Locale) {
   return serverFetch<ApiProduct[]>(`/products?locale=${locale}`);
 }
 
+export function fetchProductCategories(locale: Locale) {
+  return serverFetch<import("./types").ProductCategory[]>(
+    `/products/categories?locale=${locale}`,
+  );
+}
+
 export function fetchNews(locale: Locale, page = 1, limit = 50) {
   return serverFetch<PaginatedNews>(
     `/news?locale=${locale}&page=${page}&limit=${limit}`,

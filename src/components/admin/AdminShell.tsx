@@ -18,6 +18,11 @@ import {
 const NAV = [
   { href: "/admin", label: "Dashboard", exact: true, icon: IconDashboard },
   { href: "/admin/products", label: "Sản phẩm", icon: IconProducts },
+  {
+    href: "/admin/product-categories",
+    label: "Loại SP",
+    icon: IconProducts,
+  },
   { href: "/admin/news", label: "Tin tức", icon: IconNews },
   { href: "/admin/contact", label: "Liên hệ", icon: IconMail },
 ] as const;

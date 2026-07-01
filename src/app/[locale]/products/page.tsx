@@ -2,10 +2,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HomeTop } from "@/components/home/HomeTop";
 import { ProductsPageSection } from "@/components/products/ProductsPageSection";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ category?: string }>;
+};
 
-export default async function ProductsPage({ params }: Props) {
+export default async function ProductsPage({ params, searchParams }: Props) {
   const { locale } = await params;
+  const { category } = await searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("pages.products");
 
@@ -19,7 +23,10 @@ export default async function ProductsPage({ params }: Props) {
 
         <div className="relative mt-4 translate-y-4 sm:mt-6 sm:translate-y-5 md:translate-y-6">
           <article className="hh-card">
-            <ProductsPageSection locale={locale} />
+            <ProductsPageSection
+              locale={locale}
+              initialCategoryKey={category}
+            />
           </article>
         </div>
       </section>
