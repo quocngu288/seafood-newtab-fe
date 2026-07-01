@@ -78,52 +78,29 @@ export function ProductsPageLayout({
     return categories.filter((category) => keysWithProducts.has(category.key));
   }, [categories, items]);
 
-  const resolveInitialCategory = () => {
+  const gridItems = useMemo(() => {
     if (
       initialCategoryKey &&
       visibleCategories.some((category) => category.key === initialCategoryKey)
     ) {
-      return initialCategoryKey;
+      return items.filter((item) => item.categoryKey === initialCategoryKey);
     }
 
-    return (
-      visibleCategories[0]?.key ??
-      categories[0]?.key ??
-      items[0]?.categoryKey ??
-      "fillets"
-    );
-  };
-
-  const [activeCategoryKey, setActiveCategoryKey] = useState(
-    resolveInitialCategory,
-  );
-
-  const categoryItems = useMemo(
-    () => items.filter((item) => item.categoryKey === activeCategoryKey),
-    [items, activeCategoryKey],
-  );
+    return items;
+  }, [items, initialCategoryKey, visibleCategories]);
 
   const [activeProductId, setActiveProductId] = useState<number | null>(() => {
-    const preferred = categoryItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
-    return preferred?.id ?? categoryItems[0]?.id ?? null;
+    const preferred = gridItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
+    return preferred?.id ?? gridItems[0]?.id ?? null;
   });
 
   useEffect(() => {
-    if (
-      initialCategoryKey &&
-      visibleCategories.some((category) => category.key === initialCategoryKey)
-    ) {
-      setActiveCategoryKey(initialCategoryKey);
-    }
-  }, [initialCategoryKey, visibleCategories]);
-
-  useEffect(() => {
-    const preferred = categoryItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
-    setActiveProductId(preferred?.id ?? categoryItems[0]?.id ?? null);
-  }, [activeCategoryKey, categoryItems]);
+    const preferred = gridItems.find((item) => item.id === DEFAULT_PRODUCT_ID);
+    setActiveProductId(preferred?.id ?? gridItems[0]?.id ?? null);
+  }, [initialCategoryKey, gridItems]);
 
   const product =
-    categoryItems.find((item) => item.id === activeProductId) ?? categoryItems[0];
+    gridItems.find((item) => item.id === activeProductId) ?? gridItems[0];
 
   const hasPrice = (product?.priceVnd ?? 0) > 0;
   const hasDate = Boolean(product?.date?.trim() && product.date.trim() !== "—");
@@ -131,7 +108,7 @@ export function ProductsPageLayout({
   if (!product) {
     return (
       <p className="hh-text-base text-center text-gray-500">
-        Chưa có sản phẩm trong loại này.
+        Chưa có sản phẩm.
       </p>
     );
   }
@@ -186,7 +163,7 @@ export function ProductsPageLayout({
 
         <div className="w-full min-w-0 lg:max-w-[614px] lg:shrink-0 lg:justify-self-end">
           <div className="flex flex-wrap gap-[2px]">
-            {categoryItems.map((item) => (
+            {gridItems.map((item) => (
               <div
                 key={item.id}
                 className="aspect-[175/135] min-w-0 w-[calc(50%-1px)] sm:w-[calc(33.333%-2px)]"

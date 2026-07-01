@@ -38,7 +38,7 @@ function NavItem({
       <Link
         href={href}
         onClick={onNavigate}
-        className={`hh-text-nav inline-flex flex-col items-center whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:px-4 ${
+        className={`hh-text-nav inline-flex flex-col items-start whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:items-center lg:px-4 ${
           active ? "text-white" : "text-white/90 hover:text-white"
         }`}
       >
@@ -132,7 +132,7 @@ export function Header() {
         >
           <div className="flex flex-col gap-4 md:gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
             <nav className="min-w-0 flex-1">
-              <ul className="flex flex-col gap-1 sm:grid sm:grid-cols-2 sm:gap-x-2 sm:gap-y-2 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
+              <ul className="flex flex-col gap-1 lg:flex lg:flex-row lg:flex-wrap lg:items-end lg:justify-start">
                 {navBeforeProducts.map(({ key, href }) => (
                   <NavItem
                     key={key}
