@@ -22,6 +22,8 @@
     "logoAlt": "HH Fish - Hải Hương Seafood"
   },
   "hero": {
+    "prevSlide": "Slide trước",
+    "nextSlide": "Slide sau",
     "slides": [
       {
         "title": "HHFISH đã áp dụng thành công hệ thống quản lý chất lượng quốc tế",
@@ -366,6 +368,7 @@
     "email": "Haihuongsale@hhfish.com.vn",
     "website": "https://hhfish.com/",
     "hotline": "Hotline 24/24 (Mrs.Mùi): +84.909.496.999",
+    "mapTitle": "Bản đồ Công ty CP Thủy sản Hải Hương",
     "sales": [
       {
         "name": "BUI THI THUY HUONG",

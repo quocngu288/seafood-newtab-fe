@@ -22,6 +22,8 @@
     "logoAlt": "HH Fish - Hai Huong Seafood"
   },
   "hero": {
+    "prevSlide": "Previous slide",
+    "nextSlide": "Next slide",
     "slides": [
       {
         "title": "HHFISH has successfully applied the international quality management system",
@@ -366,6 +368,7 @@
     "email": "Haihuongsale@hhfish.com.vn",
     "website": "https://hhfish.com/",
     "hotline": "Hotline 24/24 (Mrs.Mùi): +84.909.496.999",
+    "mapTitle": "Hai Huong Seafood location map",
     "sales": [
       {
         "name": "BUI THI THUY HUONG",

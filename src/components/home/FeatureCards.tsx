@@ -140,7 +140,7 @@ export async function FeatureCards() {
           aria-hidden
         />
 
-        <div className="relative z-10 grid grid-cols-1 items-stretch gap-3 px-2 sm:grid-cols-2 sm:gap-4 sm:px-4 md:gap-5 md:px-8 lg:grid-cols-4">
+        <div className="relative z-10 grid grid-cols-1 items-stretch gap-6 px-2 sm:grid-cols-2 sm:gap-4 sm:px-4 md:gap-5 md:px-8 lg:grid-cols-4">
           <div className="sm:col-span-1 lg:col-span-1">
             <StandardFeatureCard
               imageSrc={PLACEHOLDER.export}

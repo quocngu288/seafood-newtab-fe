@@ -39,6 +39,7 @@ function IconMail({ className = "h-4 w-4" }: { className?: string }) {
 }
 
 export async function ContactSection() {
+  const t1 = await getTranslations("footer");
   const t = await getTranslations("pages.contact");
   const footer = await getTranslations("footer");
   const sales = footer.raw("sales") as SalesPerson[];
@@ -90,21 +91,20 @@ export async function ContactSection() {
             <p className="hh-text-2xl font-bold text-white">
               {footer("saleOnline")}
             </p>
+
             <ul className="mt-6 space-y-6 sm:mt-8">
-              {sales.map((person) => (
-                <li key={person.name}>
-                  <p className="hh-text-xl font-bold uppercase tracking-wide text-white">
-                    {person.name}
-                  </p>
-                  <a
-                    href={`tel:${person.phone.replace(/\./g, "")}`}
-                    className="hh-text-base mt-1.5 inline-flex items-center gap-2 text-white/90 hover:text-white sm:mt-2"
-                  >
-                    <IconPhone />
-                    {person.phone}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <p className="hh-text-xl font-bold uppercase tracking-wide text-white">
+                  Mrs. Mui
+                </p>
+                <a
+                  href={`tel:0909496999`}
+                  className="hh-text-base mt-1.5 inline-flex items-center gap-2 text-white/90 hover:text-white sm:mt-2"
+                >
+                  <IconPhone />
+                  +84.909.496.999
+                </a>
+              </li>
             </ul>
             <div className="mt-8 inline-flex items-center gap-4 rounded-full bg-white/15 px-5 py-2.5 backdrop-blur-sm sm:mt-10">
               {socialLinks.map(({ key, href, label, icon }) => (

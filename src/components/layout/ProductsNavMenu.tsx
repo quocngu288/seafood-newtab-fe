@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { publicApi } from "@/lib/api/client";
 import type { Locale, ProductCategory } from "@/lib/api/types";
 import { getFallbackProductCategories } from "@/lib/product-categories";
-import { images } from "@/lib/images";
+import { NavUnderline } from "./NavUnderline";
 
 type ProductsNavMenuProps = {
   label: string;
@@ -88,10 +87,10 @@ export function ProductsNavMenu({
     onNavigate?.();
   }
 
-  const linkClassName = `hh-text-nav inline-flex flex-1 flex-col items-start whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition sm:px-3 lg:flex-none lg:items-center lg:px-4 ${
+  const linkClassName = `hh-text-nav group/nav inline-flex flex-1 flex-col items-start whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition-colors sm:px-3 lg:flex-none lg:items-center lg:px-4 ${
     active || mobileOpen
       ? "text-white"
-      : "text-white/90 hover:text-white lg:group-hover:text-white"
+      : "text-white/85 hover:text-white lg:group-hover:text-white"
   }`;
 
   return (
@@ -104,17 +103,7 @@ export function ProductsNavMenu({
               <ChevronIcon open={false} />
             </span>
           </span>
-          <span className="mt-1 flex h-3.5 w-9 items-center justify-center">
-            {active && (
-              <Image
-                src={images.iconFish}
-                alt=""
-                width={36}
-                height={12}
-                className="h-3 w-9 shrink-0 object-contain"
-              />
-            )}
-          </span>
+          <NavUnderline active={active} />
         </Link>
 
         <button
@@ -130,7 +119,7 @@ export function ProductsNavMenu({
       </div>
 
       <div
-        className={`absolute left-0 top-full z-60 w-full min-w-[200px] max-w-xs pt-1 lg:max-w-none ${
+        className={`w-full min-w-[200px] max-w-xs pt-1 lg:absolute lg:left-0 lg:top-full lg:z-60 lg:max-w-none ${
           mobileOpen ? "block" : "hidden"
         } lg:pointer-events-none lg:block lg:opacity-0 lg:transition-opacity lg:duration-150 lg:group-hover:pointer-events-auto lg:group-hover:opacity-100`}
       >

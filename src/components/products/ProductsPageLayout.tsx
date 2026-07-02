@@ -23,6 +23,65 @@ type ProductsPageLayoutProps = {
   };
 };
 
+const TILE_W = 175;
+const TILE_H = 135;
+const TILE_TALL_H = 185;
+const TILE_WIDE_W = 260;
+const GRID_GAP = 2;
+
+type GridSlot = {
+  item: Product;
+  leftPct: number;
+  topPct: number;
+  widthPct: number;
+  heightPct: number;
+};
+
+type GridLayout = {
+  slots: GridSlot[];
+  aspectRatio: number;
+};
+
+/**
+ * Bố cục so le theo design:
+ * - 3 cột, cột giữa nâng lên nửa ô
+ * - ô thứ 2 (cột giữa, trên cùng) cao hơn
+ * - ô thứ 6 và 12 (cột phải) rộng hơn, tràn sang phải
+ */
+function buildGridLayout(items: Product[]): GridLayout {
+  const colX = [0, TILE_W + GRID_GAP, 2 * (TILE_W + GRID_GAP)];
+  const containerW = colX[2] + TILE_WIDE_W;
+  const halfOffset = (TILE_H + GRID_GAP) / 2;
+  const cursorY = [halfOffset, 0, halfOffset];
+
+  const slots = items.map((item, index) => {
+    const col = index % 3;
+    const ordinal = index + 1;
+    const isTall = ordinal === 2;
+    const isWide = ordinal === 6 || ordinal === 12;
+    const width = isWide ? TILE_WIDE_W : TILE_W;
+    const height = isTall ? TILE_TALL_H : TILE_H;
+    const left = colX[col];
+    const top = cursorY[col];
+    cursorY[col] += height + GRID_GAP;
+
+    return { item, left, top, width, height };
+  });
+
+  const containerH = Math.max(TILE_H, ...cursorY.map((y) => y - GRID_GAP));
+
+  return {
+    aspectRatio: containerW / containerH,
+    slots: slots.map((slot) => ({
+      item: slot.item,
+      leftPct: (slot.left / containerW) * 100,
+      topPct: (slot.top / containerH) * 100,
+      widthPct: (slot.width / containerW) * 100,
+      heightPct: (slot.height / containerH) * 100,
+    })),
+  };
+}
+
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
     <p className="hh-text-base text-gray-800">
@@ -105,6 +164,8 @@ export function ProductsPageLayout({
   const hasPrice = (product?.priceVnd ?? 0) > 0;
   const hasDate = Boolean(product?.date?.trim() && product.date.trim() !== "—");
 
+  const layout = useMemo(() => buildGridLayout(gridItems), [gridItems]);
+
   if (!product) {
     return (
       <p className="hh-text-base text-center text-gray-500">
@@ -114,8 +175,8 @@ export function ProductsPageLayout({
   }
 
   return (
-    <div className="flex flex-col gap-8 sm:gap-10">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-10 xl:gap-12">
+    <div className="flex flex-col gap-4 sm:gap-10">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-10 xl:gap-12">
         <aside className="flex flex-col">
           <Image
             src={images.iconFish}
@@ -140,14 +201,14 @@ export function ProductsPageLayout({
           {hasPrice && (
             <button
               type="button"
-              className="hh-text-base mt-6 w-fit rounded-lg bg-hh-red px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6"
+              className="hh-text-base mt-4 w-fit rounded-lg bg-hh-red px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6"
             >
               {labels.price}: {product.price}
             </button>
           )}
 
           <p
-            className={`hh-text-sm text-gray-500 lg:mt-10 ${hasPrice ? "mt-8" : "mt-6"}`}
+            className={`hh-text-sm text-gray-500 lg:mt-10 ${hasPrice ? "mt-4" : "mt-4"}`}
           >
             {hasDate && (
               <>
@@ -161,35 +222,46 @@ export function ProductsPageLayout({
           </p>
         </aside>
 
-        <div className="w-full min-w-0 lg:max-w-[614px] lg:shrink-0 lg:justify-self-end">
-          <div className="flex flex-wrap gap-[2px]">
-            {gridItems.map((item) => (
+        <div className="flex w-full min-w-0 flex-col gap-6 sm:gap-8 lg:w-[614px] lg:shrink-0 lg:justify-self-end">
+          <div className="relative order-2 w-full lg:order-1">
+            <div
+              className="w-full"
+              style={{ aspectRatio: layout.aspectRatio }}
+              aria-hidden
+            />
+            {layout.slots.map((slot) => (
               <div
-                key={item.id}
-                className="aspect-[175/135] min-w-0 w-[calc(50%-1px)] sm:w-[calc(33.333%-2px)]"
+                key={slot.item.id}
+                className="absolute"
+                style={{
+                  left: `${slot.leftPct}%`,
+                  top: `${slot.topPct}%`,
+                  width: `${slot.widthPct}%`,
+                  height: `${slot.heightPct}%`,
+                }}
               >
                 <ProductGridTile
-                  item={item}
-                  active={activeProductId === item.id}
-                  onSelect={() => setActiveProductId(item.id)}
+                  item={slot.item}
+                  active={activeProductId === slot.item.id}
+                  onSelect={() => setActiveProductId(slot.item.id)}
                 />
               </div>
             ))}
           </div>
-        </div>
-      </div>
 
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-        <div className="relative aspect-video w-full sm:aspect-2/1">
-          <CmsImage
-            key={product.id}
-            src={product.thumbnail}
-            alt={product.name}
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 960px"
-            priority
-          />
+          <div className="order-1 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)] lg:order-2">
+            <div className="relative aspect-video w-full sm:aspect-2/1">
+              <CmsImage
+                key={product.id}
+                src={product.thumbnail}
+                alt={product.name}
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 614px"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

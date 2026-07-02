@@ -5,7 +5,7 @@ import { certificationLogos, images } from "@/lib/images";
 function QuoteLine({ children }: { children: string }) {
   return (
     <div className="w-fit max-w-full bg-white px-2.5 py-1 sm:px-3 sm:py-1.5">
-      <span className="hh-text-3xl block font-medium leading-snug text-gray-900">
+      <span className="hh-text-2xl sm:hh-text-3xl block font-medium leading-snug text-gray-900">
         {children}
       </span>
     </div>

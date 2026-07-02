@@ -541,11 +541,39 @@ body {
     animation-delay: 1.2s;
   }
 
+  .hh-menu-overlay {
+    animation: hh-fade-in 0.2s ease-out;
+  }
+
+  .hh-menu-drawer {
+    animation: hh-drawer-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hh-floating-call__btn,
-    .hh-floating-call__ring {
+    .hh-floating-call__ring,
+    .hh-menu-overlay,
+    .hh-menu-drawer {
       animation: none;
     }
+  }
+}
+
+@keyframes hh-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hh-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 

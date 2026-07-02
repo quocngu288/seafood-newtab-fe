@@ -14,6 +14,34 @@ const SLIDE_IMAGES = [
 
 const SLIDE_COUNT = SLIDE_IMAGES.length;
 
+function ChevronLeft({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M15 18l-6-6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ChevronRight({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M9 18l6-6-6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function HeroCarousel() {
   const t = useTranslations("hero");
   const slides = t.raw("slides") as Array<{
@@ -23,7 +51,15 @@ export function HeroCarousel() {
   }>;
 
   const [active, setActive] = useState(0);
-  const { title, badges } = slides[0];
+  const slide = slides[active] ?? slides[0];
+
+  function goPrev() {
+    setActive((current) => (current - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+  }
+
+  function goNext() {
+    setActive((current) => (current + 1) % SLIDE_COUNT);
+  }
 
   return (
     <section className="site-container mb-8 sm:mb-12">
@@ -51,6 +87,24 @@ export function HeroCarousel() {
               priority={i === 0}
             />
           ))}
+
+          <button
+            type="button"
+            onClick={goPrev}
+            className="absolute left-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:left-3 md:left-4"
+            aria-label={t("prevSlide")}
+          >
+            <ChevronLeft className="h-10 w-10 sm:h-15 sm:w-15" />
+          </button>
+
+          <button
+            type="button"
+            onClick={goNext}
+            className="absolute right-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:right-3 md:right-4"
+            aria-label={t("nextSlide")}
+          >
+            <ChevronRight className="h-10 w-10 sm:h-15 sm:w-15" />
+          </button>
         </div>
 
         <div className="absolute inset-x-0 top-0 z-20 flex min-h-[50%] flex-col items-center justify-start px-8 pb-4 pt-6 text-center sm:min-h-[46%] sm:px-6 sm:pb-6 sm:pt-8 md:min-h-[42%] md:px-10 md:pb-10 md:pt-12">
@@ -60,10 +114,10 @@ export function HeroCarousel() {
           />
           <div className="relative z-10">
             <h2 className="hh-text-2xl mx-auto line-clamp-4 max-w-2xl leading-snug text-slate-800 sm:line-clamp-3">
-              {title}
+              {slide.title}
             </h2>
             <div className="hh-text-lg mx-auto mt-2 inline-flex max-w-full rounded-full bg-[#79B4E6] px-3 py-1 font-semibold uppercase tracking-wide text-white shadow-sm sm:mt-3 sm:px-4 sm:py-1.5 md:mt-4 md:px-5 md:py-2">
-              <span className="line-clamp-2">{badges}</span>
+              <span className="line-clamp-2">{slide.badges}</span>
             </div>
           </div>
         </div>
@@ -75,7 +129,7 @@ export function HeroCarousel() {
             key={i}
             type="button"
             onClick={() => setActive(i)}
-            className={`h-2 w-2 sm:w-3 sm:h-3 rounded-sm transition ${
+            className={`h-2 w-2 rounded-sm transition sm:h-3 sm:w-3 ${
               i === active ? "bg-hh-red" : "bg-gray-300/90 hover:bg-gray-200"
             }`}
             aria-label={`Slide ${i + 1}`}
