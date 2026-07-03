@@ -43,62 +43,52 @@ type GridLayout = {
 };
 
 /**
- * Bố cục so le theo design:
- * - 3 cột, canh đáy đều nhau (bottom-align)
- * - ô thứ 2 (cột giữa, trên cùng) cao hơn → cột giữa trông nhô lên
+ * Bố cục theo design:
+ * - 3 cột canh trên bằng nhau
+ * - ô thứ 2 (cột giữa, trên cùng) cao hơn
  * - ô thứ 6 và 12 (cột phải) rộng hơn, tràn sang phải
  */
 function buildGridLayout(items: Product[]): GridLayout {
   const colX = [0, TILE_W + GRID_GAP, 2 * (TILE_W + GRID_GAP)];
   const containerW = colX[2] + TILE_WIDE_W;
 
-  const measured = items.map((item, index) => {
+  // Cột giữa canh trên; hai cột bên đẩy xuống đúng phần cao dư của ô tall
+  // -> đáy hàng đầu bằng nhau nhưng ô thứ 2 (cột giữa) vẫn nhô lên
+  const tallExtra = TILE_TALL_H - TILE_H;
+  const cursorY = [tallExtra, 0, tallExtra];
+  let maxBottom = TILE_TALL_H;
+
+  const slots = items.map((item, index) => {
     const col = index % 3;
     const ordinal = index + 1;
     const isTall = ordinal === 2;
     const isWide = ordinal === 6 || ordinal === 12;
-    return {
-      item,
-      col,
-      width: isWide ? TILE_WIDE_W : TILE_W,
-      height: isTall ? TILE_TALL_H : TILE_H,
-    };
-  });
-
-  const colHeights = [0, 0, 0];
-  measured.forEach(({ col, height }) => {
-    colHeights[col] += height + GRID_GAP;
-  });
-  colHeights.forEach((h, i) => {
-    colHeights[i] = h > 0 ? h - GRID_GAP : 0;
-  });
-
-  const containerH = Math.max(TILE_H, ...colHeights);
-
-  // Đáy các cột trùng nhau: cột thấp hơn được đẩy xuống
-  const cursorY = colHeights.map((h) => containerH - h);
-
-  const slots = measured.map(({ item, col, width, height }) => {
+    const width = isWide ? TILE_WIDE_W : TILE_W;
+    const height = isTall ? TILE_TALL_H : TILE_H;
     const top = cursorY[col];
     cursorY[col] += height + GRID_GAP;
-    return {
-      item,
-      leftPct: (colX[col] / containerW) * 100,
-      topPct: (top / containerH) * 100,
-      widthPct: (width / containerW) * 100,
-      heightPct: (height / containerH) * 100,
-    };
+    maxBottom = Math.max(maxBottom, top + height);
+
+    return { item, left: colX[col], top, width, height };
   });
+
+  const containerH = maxBottom;
 
   return {
     aspectRatio: containerW / containerH,
-    slots,
+    slots: slots.map((slot) => ({
+      item: slot.item,
+      leftPct: (slot.left / containerW) * 100,
+      topPct: (slot.top / containerH) * 100,
+      widthPct: (slot.width / containerW) * 100,
+      heightPct: (slot.height / containerH) * 100,
+    })),
   };
 }
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
-    <p className="text-[12px] leading-relaxed text-gray-800 md:text-[14px] lg:text-[16px]">
+    <p className="text-[12px] leading-relaxed text-gray-800 md:text-[14px] lg:text-[19px]">
       <span className="font-bold">{label}: </span>
       {value}
     </p>
@@ -191,7 +181,7 @@ export function ProductsPageLayout({
   return (
     <div className="flex flex-col gap-4 sm:gap-10">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-10 xl:gap-12">
-        <aside className="flex flex-col md:h-full md:justify-center">
+        <aside className="flex flex-col">
           <Image
             src={images.iconFish}
             alt=""
@@ -215,14 +205,14 @@ export function ProductsPageLayout({
           {hasPrice && (
             <button
               type="button"
-              className="mt-4 w-fit rounded-lg bg-hh-red px-5 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6 md:text-[14px] lg:text-[16px]"
+              className="mt-4 w-fit rounded-lg bg-hh-red px-5 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6 md:text-[14px] lg:text-[19px]"
             >
               {labels.price}: {product.price}
             </button>
           )}
 
           <p
-            className={`text-[12px] text-gray-500 md:text-[14px] lg:text-[16px] lg:mt-10 ${hasPrice ? "mt-4" : "mt-4"}`}
+            className={`text-[12px] text-gray-500 md:text-[14px] lg:text-[19px] lg:mt-10 ${hasPrice ? "mt-4" : "mt-4"}`}
           >
             {hasDate && (
               <>
@@ -270,7 +260,7 @@ export function ProductsPageLayout({
                 src={product.thumbnail}
                 alt={product.name}
                 fill
-                className="object-cover object-center"
+                className=""
                 sizes="(max-width: 1024px) 100vw, 614px"
                 priority
               />

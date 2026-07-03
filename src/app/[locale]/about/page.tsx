@@ -11,11 +11,11 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <WaveTopPage title={t("title")} subtitle={t("subtitle")}>
-      <div className="site-container--narrow space-y-5 sm:space-y-6">
+      <div className="space-y-5 sm:space-y-6">
         {paragraphs.map((paragraph, index) => (
           <p
             key={index}
-            className="text-center text-base leading-relaxed text-gray-700 sm:text-lg"
+            className="text-base leading-relaxed text-gray-700 sm:text-lg"
           >
             {paragraph}
           </p>

@@ -170,7 +170,7 @@ export function Header() {
             className="hh-menu-overlay absolute inset-0 bg-hh-blue-dark/50 backdrop-blur-sm"
           />
 
-          <div className="hh-menu-drawer absolute right-0 top-0 flex h-full w-[88%] max-w-md flex-col overflow-y-auto bg-hh-blue shadow-2xl">
+          <div className="hh-menu-drawer absolute right-0 top-0 flex max-h-full w-[88%] max-w-md flex-col overflow-y-auto bg-hh-blue shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/15 px-5 py-4">
               <Link href="/" onClick={closeMenu} className="block shrink-0">
                 <Logo className="!w-[180px] h-auto object-contain" />
