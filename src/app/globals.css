@@ -105,11 +105,11 @@ body {
   }
 
   .hh-text-company {
-    @apply text-[11px] sm:text-sm md:text-base lg:text-lg;
+    @apply text-[13px] sm:text-sm md:text-base lg:text-lg;
   }
 
   .hh-text-nav {
-    @apply text-xs md:text-sm lg:text-base;
+    @apply text-sm md:text-base lg:text-base;
   }
 
   .hh-page-title {

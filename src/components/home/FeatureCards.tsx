@@ -157,7 +157,7 @@ export async function FeatureCards() {
               description={t("farming.description")}
             />
           </div>
-          <div className="sm:col-span-2 lg:col-span-2">
+          <div className="mt-12 sm:mt-0 sm:col-span-2 lg:col-span-2">
             <FilletsFeatureCard
               title={t("fillets.title")}
               description={t("fillets.description")}

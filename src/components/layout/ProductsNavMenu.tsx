@@ -87,15 +87,18 @@ export function ProductsNavMenu({
     onNavigate?.();
   }
 
-  const linkClassName = `hh-text-nav group/nav inline-flex flex-1 flex-col items-start whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition-colors sm:px-3 lg:flex-none lg:items-center lg:px-4 ${
+  const linkClassName = `hh-text-nav group/nav inline-flex flex-1 flex-col items-start whitespace-nowrap px-2 py-3 font-normal leading-none transition-colors sm:px-3 lg:flex-none lg:items-center lg:px-4 lg:py-0 lg:pt-1.5 ${
     active || mobileOpen
       ? "text-white"
       : "text-white/85 hover:text-white lg:group-hover:text-white"
   }`;
 
   return (
-    <li ref={rootRef} className="group relative w-full lg:w-auto">
-      <div className="inline-flex w-full items-start lg:w-auto">
+    <li
+      ref={rootRef}
+      className="group relative w-full border-b border-white/10 lg:w-auto lg:border-0"
+    >
+      <div className="inline-flex w-full items-center lg:w-auto lg:items-start">
         <Link href="/products" onClick={handleProductLinkClick} className={linkClassName}>
           <span className="inline-flex items-center gap-1">
             {label}
@@ -108,7 +111,7 @@ export function ProductsNavMenu({
 
         <button
           type="button"
-          className="mt-1.5 shrink-0 px-2 text-white/90 transition hover:text-white lg:hidden"
+          className="shrink-0 px-2 py-3 text-white/90 transition hover:text-white lg:hidden"
           onClick={() => setMobileOpen((value) => !value)}
           aria-expanded={mobileOpen}
           aria-haspopup="menu"
@@ -119,13 +122,13 @@ export function ProductsNavMenu({
       </div>
 
       <div
-        className={`w-full min-w-[200px] max-w-xs pt-1 lg:absolute lg:left-0 lg:top-full lg:z-60 lg:max-w-none ${
+        className={`w-full lg:absolute lg:left-0 lg:top-full lg:z-60 lg:w-auto lg:min-w-[200px] lg:pt-1 ${
           mobileOpen ? "block" : "hidden"
         } lg:pointer-events-none lg:block lg:opacity-0 lg:transition-opacity lg:duration-150 lg:group-hover:pointer-events-auto lg:group-hover:opacity-100`}
       >
         <ul
           role="menu"
-          className="overflow-hidden rounded-xl border border-white/20 bg-white/95 py-1.5 shadow-xl backdrop-blur-sm lg:w-auto"
+          className="overflow-hidden lg:rounded-xl lg:border lg:border-white/20 lg:bg-white/95 lg:py-1.5 lg:shadow-xl lg:backdrop-blur-sm"
         >
           {categories.map((category) => (
             <li key={category.key} role="none">
@@ -133,7 +136,7 @@ export function ProductsNavMenu({
                 href={categoryHref(category.key)}
                 role="menuitem"
                 onClick={handleCategoryClick}
-                className="block px-4 py-2.5 text-sm font-medium text-gray-800 transition hover:bg-hh-blue/10 hover:text-hh-blue-dark"
+                className="block py-2.5 pl-6 pr-4 text-sm font-medium text-white/80 transition hover:text-white lg:px-4 lg:text-gray-800 lg:hover:bg-hh-blue/10 lg:hover:text-hh-blue-dark"
               >
                 {category.name}
               </Link>

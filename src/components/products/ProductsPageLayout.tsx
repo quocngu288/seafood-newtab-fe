@@ -44,47 +44,61 @@ type GridLayout = {
 
 /**
  * Bố cục so le theo design:
- * - 3 cột, cột giữa nâng lên nửa ô
- * - ô thứ 2 (cột giữa, trên cùng) cao hơn
+ * - 3 cột, canh đáy đều nhau (bottom-align)
+ * - ô thứ 2 (cột giữa, trên cùng) cao hơn → cột giữa trông nhô lên
  * - ô thứ 6 và 12 (cột phải) rộng hơn, tràn sang phải
  */
 function buildGridLayout(items: Product[]): GridLayout {
   const colX = [0, TILE_W + GRID_GAP, 2 * (TILE_W + GRID_GAP)];
   const containerW = colX[2] + TILE_WIDE_W;
-  const halfOffset = (TILE_H + GRID_GAP) / 2;
-  const cursorY = [halfOffset, 0, halfOffset];
 
-  const slots = items.map((item, index) => {
+  const measured = items.map((item, index) => {
     const col = index % 3;
     const ordinal = index + 1;
     const isTall = ordinal === 2;
     const isWide = ordinal === 6 || ordinal === 12;
-    const width = isWide ? TILE_WIDE_W : TILE_W;
-    const height = isTall ? TILE_TALL_H : TILE_H;
-    const left = colX[col];
-    const top = cursorY[col];
-    cursorY[col] += height + GRID_GAP;
-
-    return { item, left, top, width, height };
+    return {
+      item,
+      col,
+      width: isWide ? TILE_WIDE_W : TILE_W,
+      height: isTall ? TILE_TALL_H : TILE_H,
+    };
   });
 
-  const containerH = Math.max(TILE_H, ...cursorY.map((y) => y - GRID_GAP));
+  const colHeights = [0, 0, 0];
+  measured.forEach(({ col, height }) => {
+    colHeights[col] += height + GRID_GAP;
+  });
+  colHeights.forEach((h, i) => {
+    colHeights[i] = h > 0 ? h - GRID_GAP : 0;
+  });
+
+  const containerH = Math.max(TILE_H, ...colHeights);
+
+  // Đáy các cột trùng nhau: cột thấp hơn được đẩy xuống
+  const cursorY = colHeights.map((h) => containerH - h);
+
+  const slots = measured.map(({ item, col, width, height }) => {
+    const top = cursorY[col];
+    cursorY[col] += height + GRID_GAP;
+    return {
+      item,
+      leftPct: (colX[col] / containerW) * 100,
+      topPct: (top / containerH) * 100,
+      widthPct: (width / containerW) * 100,
+      heightPct: (height / containerH) * 100,
+    };
+  });
 
   return {
     aspectRatio: containerW / containerH,
-    slots: slots.map((slot) => ({
-      item: slot.item,
-      leftPct: (slot.left / containerW) * 100,
-      topPct: (slot.top / containerH) * 100,
-      widthPct: (slot.width / containerW) * 100,
-      heightPct: (slot.height / containerH) * 100,
-    })),
+    slots,
   };
 }
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
-    <p className="hh-text-base text-gray-800">
+    <p className="text-[12px] leading-relaxed text-gray-800 md:text-[14px] lg:text-[16px]">
       <span className="font-bold">{label}: </span>
       {value}
     </p>
@@ -119,7 +133,7 @@ function ProductGridTile({
         }`}
         aria-hidden
       />
-      <span className="hh-text-xs relative z-10 flex h-full items-center justify-center px-2 text-center font-bold leading-[1.15] text-white">
+      <span className="relative z-10 flex h-full items-center justify-center px-2 text-center text-[12px] font-bold leading-[1.15] text-white md:text-[14px] lg:text-[16px]">
         {item.name}
       </span>
     </button>
@@ -177,7 +191,7 @@ export function ProductsPageLayout({
   return (
     <div className="flex flex-col gap-4 sm:gap-10">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-10 xl:gap-12">
-        <aside className="flex flex-col">
+        <aside className="flex flex-col md:h-full md:justify-center">
           <Image
             src={images.iconFish}
             alt=""
@@ -187,7 +201,7 @@ export function ProductsPageLayout({
             aria-hidden
           />
 
-          <h2 className="hh-text-3xl mt-4 font-bold leading-snug text-gray-900">
+          <h2 className="mt-4 text-[18px] font-bold leading-snug text-gray-900 md:text-2xl lg:text-3xl">
             {product.name}
           </h2>
           <div className="mt-3 h-px w-full max-w-md bg-gray-300" aria-hidden />
@@ -201,14 +215,14 @@ export function ProductsPageLayout({
           {hasPrice && (
             <button
               type="button"
-              className="hh-text-base mt-4 w-fit rounded-lg bg-hh-red px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6"
+              className="mt-4 w-fit rounded-lg bg-hh-red px-5 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-8 sm:px-6 md:text-[14px] lg:text-[16px]"
             >
               {labels.price}: {product.price}
             </button>
           )}
 
           <p
-            className={`hh-text-sm text-gray-500 lg:mt-10 ${hasPrice ? "mt-4" : "mt-4"}`}
+            className={`text-[12px] text-gray-500 md:text-[14px] lg:text-[16px] lg:mt-10 ${hasPrice ? "mt-4" : "mt-4"}`}
           >
             {hasDate && (
               <>

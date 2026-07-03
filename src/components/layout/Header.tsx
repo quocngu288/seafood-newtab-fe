@@ -33,11 +33,11 @@ function NavItem({
   onNavigate: () => void;
 }) {
   return (
-    <li>
+    <li className="border-b border-white/10 lg:border-0">
       <Link
         href={href}
         onClick={onNavigate}
-        className={`hh-text-nav group/nav inline-flex flex-col items-start whitespace-nowrap px-2 pt-1.5 font-normal leading-none transition-colors sm:px-3 lg:items-center lg:px-4 ${
+        className={`hh-text-nav group/nav inline-flex w-full flex-col items-start whitespace-nowrap px-2 py-3 font-normal leading-none transition-colors sm:px-3 lg:w-auto lg:items-center lg:px-4 lg:py-0 lg:pt-1.5 ${
           active ? "text-white" : "text-white/85 hover:text-white"
         }`}
       >
@@ -113,7 +113,7 @@ export function Header() {
       <div className="site-container pt-4 pb-2 sm:pb-4">
         <div className="flex min-h-[52px] items-center gap-1.5 sm:min-h-[64px] sm:gap-2 md:min-h-[72px] md:gap-3">
           <Link href="/" className="block shrink-0">
-            <Logo className="!w-[120px] h-auto object-contain sm:!w-[180px] md:!w-[270px] lg:!w-[270px] xl:!w-[270px]" />
+            <Logo className="!w-[160px] h-auto object-contain sm:!w-[180px] md:!w-[270px] lg:!w-[270px] xl:!w-[270px]" />
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
@@ -170,10 +170,10 @@ export function Header() {
             className="hh-menu-overlay absolute inset-0 bg-hh-blue-dark/50 backdrop-blur-sm"
           />
 
-          <div className="hh-menu-drawer absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col overflow-y-auto bg-hh-blue shadow-2xl">
+          <div className="hh-menu-drawer absolute right-0 top-0 flex h-full w-[88%] max-w-md flex-col overflow-y-auto bg-hh-blue shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/15 px-5 py-4">
               <Link href="/" onClick={closeMenu} className="block shrink-0">
-                <Logo className="!w-[150px] h-auto object-contain" />
+                <Logo className="!w-[180px] h-auto object-contain" />
               </Link>
               <button
                 type="button"
@@ -197,12 +197,12 @@ export function Header() {
               </button>
             </div>
 
-            <nav className="px-4 py-5">{navList}</nav>
+            <nav className="px-5 py-4">{navList}</nav>
 
-            <div className="mt-auto flex flex-col gap-3 border-t border-white/15 px-5 py-5">
+            <div className="flex items-center gap-3 px-5 py-6">
               <SearchBar
                 placeholder={t("search")}
-                className="w-full"
+                className="min-w-0 flex-1"
                 ariaLabel={t("search")}
               />
               <LanguageSwitcher />
