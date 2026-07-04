@@ -182,15 +182,6 @@ export function ProductsPageLayout({
     <div className="flex flex-col gap-4 sm:gap-10">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-10 xl:gap-12">
         <aside className="flex flex-col">
-          <Image
-            src={images.iconFish}
-            alt=""
-            width={40}
-            height={14}
-            className="h-3.5 w-10 shrink-0 object-contain"
-            aria-hidden
-          />
-
           <h2 className="mt-4 text-[18px] font-bold leading-snug text-gray-900 md:text-2xl lg:text-3xl">
             {product.name}
           </h2>
