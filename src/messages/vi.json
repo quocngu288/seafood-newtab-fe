@@ -57,7 +57,7 @@
       "description": "Vùng nuôi cá tự nhiên đạt chuẩn, đảm bảo nguồn nguyên liệu tươi sạch cho sản xuất và chế biến."
     },
     "fillets": {
-      "title": "Cá Fillet",
+      "title": "Sản Phẩm",
       "description": "Cá Tra Fillet, Cá Tra Value Added, Bột cá & Dầu cá, Các sản phẩm Cá Tra khác.....",
       "cta": "Xem thêm"
     }
@@ -169,13 +169,7 @@
       "reliable partner in aquaculture, processing and exporting",
       "seafood"
     ],
-    "certifications": [
-      "HACCP",
-      "BRC",
-      "HALAL",
-      "ISO 22000",
-      "GLOBALG.A.P"
-    ]
+    "certifications": ["HACCP", "BRC", "HALAL", "ISO 22000", "GLOBALG.A.P"]
   },
   "pages": {
     "about": {
