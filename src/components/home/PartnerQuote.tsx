@@ -19,12 +19,12 @@ export async function PartnerQuote() {
   return (
     <section
       id="partner-quote"
-      className="overflow-visible bg-white pb-12 pt-4 sm:pb-20 sm:pt-6"
+      className="overflow-visible bg-white pb-16 pt-4 sm:pb-20 sm:pt-6"
     >
       <div className="site-container overflow-visible">
         <div className="relative">
-          {/* Banner cố định 330px — chỉ ảnh + quote */}
-          <div className="relative h-[220px] overflow-hidden rounded-3xl sm:h-[280px] md:h-[330px] md:rounded-[40px]">
+          {/* Banner: mobile cao theo nội dung để không cắt dòng quote */}
+          <div className="relative min-h-[260px] overflow-hidden rounded-3xl sm:min-h-[280px] sm:h-[280px] md:h-[330px] md:min-h-0 md:rounded-[40px]">
             <div className="absolute inset-0">
               <Image
                 src={images.vungNuoi}
@@ -36,7 +36,7 @@ export async function PartnerQuote() {
               <div className="absolute inset-0 bg-[#79bbed]/82" aria-hidden />
             </div>
 
-            <div className="relative z-10 h-full px-4 pt-4 sm:px-8 sm:pt-5 md:px-10 md:pt-6 lg:px-12">
+            <div className="relative z-10 px-4 pb-14 pt-4 sm:h-full sm:px-8 sm:pb-16 sm:pt-5 md:px-10 md:pt-6 lg:px-12">
               <Image
                 src={images.quote}
                 alt=""
@@ -46,7 +46,7 @@ export async function PartnerQuote() {
                 aria-hidden
               />
 
-              <div className="ml-6 mt-1 flex max-w-full flex-col gap-0.5 sm:ml-8 sm:mt-1.5 sm:gap-1 md:ml-10 md:gap-1.5">
+              <div className="ml-4 mt-1 flex max-w-full flex-col gap-0.5 sm:ml-8 sm:mt-1.5 sm:gap-1 md:ml-10 md:gap-1.5">
                 {quoteLines.map((line) => (
                   <QuoteLine key={line}>{line}</QuoteLine>
                 ))}
