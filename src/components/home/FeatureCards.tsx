@@ -1,12 +1,13 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { images } from "@/lib/images";
 
 /** Placeholder — thay bằng file trong src/images khi có */
 const PLACEHOLDER = {
   export: images.xuatkhau,
-  farming: images.heroSlide,
+  farming: images.vungNuoi,
   fillets:
     "https://images.unsplash.com/photo-1611171711916-3ab5f5f5a6a2?w=900&q=80",
 } as const;
@@ -104,12 +105,12 @@ function FilletsFeatureCard({
         <p className="hh-text-sm mt-3 leading-relaxed text-gray-600 sm:mt-4">
           {description}
         </p>
-        <button
-          type="button"
-          className="hh-text-lg mt-4 rounded-full bg-hh-red px-5 py-2 font-semibold text-white shadow-sm sm:mt-5 sm:px-6 sm:py-2.5"
+        <Link
+          href="/products"
+          className="hh-text-lg mt-4 inline-block rounded-full bg-hh-red px-5 py-2 font-semibold text-white shadow-sm transition hover:bg-hh-red-hover sm:mt-5 sm:px-6 sm:py-2.5"
         >
           {cta}
-        </button>
+        </Link>
       </div>
 
       <div className="pointer-events-none absolute -bottom-8 -right-2 z-10 h-[58%] w-[56%] min-h-[160px] sm:-bottom-10 sm:-right-4 sm:h-[70%] sm:w-[58%] md:-bottom-14 md:-right-8 md:h-[84%] md:w-[62%] md:min-h-[230px]">
