@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { HomeTop } from "@/components/home/HomeTop";
+import { PAGE_CONTENT_ID } from "./ScrollToPageContent";
 
 type WaveTopPageProps = {
   title: string;
@@ -17,7 +18,10 @@ export function WaveTopPage({ title, subtitle, children }: WaveTopPageProps) {
   return (
     <>
       <HomeTop />
-      <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
+      <section
+        id={PAGE_CONTENT_ID}
+        className="site-container relative z-20 scroll-mt-4 pb-14 sm:pb-16 md:pb-20"
+      >
         <div className="px-1">
           <h1 className="hh-page-title--light">{title}</h1>
         </div>

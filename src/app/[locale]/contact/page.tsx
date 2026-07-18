@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HomeTop } from "@/components/home/HomeTop";
 import { ContactSection } from "@/components/contact/ContactSection";
+import { PAGE_CONTENT_ID } from "@/components/pages/ScrollToPageContent";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -12,7 +13,10 @@ export default async function ContactPage({ params }: Props) {
   return (
     <>
       <HomeTop />
-      <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
+      <section
+        id={PAGE_CONTENT_ID}
+        className="site-container relative z-20 scroll-mt-4 pb-14 sm:pb-16 md:pb-20"
+      >
         <div className="mx-auto max-w-3xl px-2 pt-2 text-center sm:px-4 sm:pt-4">
           <h1 className="hh-page-title--light">{t("title")}</h1>
           <p className="hh-page-subtitle--light mx-auto mt-3 max-w-2xl">

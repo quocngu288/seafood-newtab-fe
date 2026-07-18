@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HomeTop } from "@/components/home/HomeTop";
 import { NewsSection } from "@/components/home/NewsSection";
+import { PAGE_CONTENT_ID } from "@/components/pages/ScrollToPageContent";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -13,7 +14,10 @@ export default async function NewsPage({ params }: Props) {
   return (
     <>
       <HomeTop />
-      <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
+      <section
+        id={PAGE_CONTENT_ID}
+        className="site-container relative z-20 scroll-mt-4 pb-14 sm:pb-16 md:pb-20"
+      >
         <div className="px-1">
           <h1 className="hh-page-title--light">{t("title")}</h1>
         </div>

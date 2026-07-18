@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link, redirect } from "@/i18n/navigation";
 import { HomeTop } from "@/components/home/HomeTop";
+import { PAGE_CONTENT_ID } from "@/components/pages/ScrollToPageContent";
 import { NewsHtmlContent } from "@/components/ui/NewsHtmlContent";
 import { fetchNewsArticle } from "@/lib/api/server";
 import type { Locale } from "@/lib/api/types";
@@ -39,7 +40,10 @@ export default async function NewsDetailPage({ params }: Props) {
   return (
     <>
       <HomeTop />
-      <section className="site-container relative z-20 pb-14 sm:pb-16 md:pb-20">
+      <section
+        id={PAGE_CONTENT_ID}
+        className="site-container relative z-20 scroll-mt-4 pb-14 sm:pb-16 md:pb-20"
+      >
         <div className="px-1">
           <Link
             href="/news"
