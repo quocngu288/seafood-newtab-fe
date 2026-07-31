@@ -13,6 +13,7 @@ import { SearchBar } from "@/components/ui/SearchBar";
 const navBeforeProducts = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
+  { key: "fields", href: "/fields" },
 ] as const;
 
 const navAfterProducts = [

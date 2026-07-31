@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "about": "About Us",
+    "fields": "Fields",
     "products": "Products",
     "markets": "Markets",
     "news": "News",
@@ -172,14 +173,85 @@
     "certifications": ["HACCP", "BRC", "HALAL", "ISO 22000", "GLOBALG.A.P"]
   },
   "pages": {
-    "about": {
-      "title": "About Us",
+    "fields": {
+      "title": "Fields of Activity",
       "subtitle": "",
-      "paragraphs": [
-        "HHFISH – a pangasius prestige farmer and producer in Vietnam Founded in 2007, HHFISH is known as one of the leading fish farmers in the Mekong Delta, Vietnam. With an area about 100 ha, stretching over the nine districts and cities of Ben Tre and neighbor provinces, HHFISH produces 30,000 tons of raw material/ year, provides for the majority of processing plants in the area. 2011 is an important year of HHFISH. With the available farming advantages, in order to meet the increasing market demand, HHFISH decided to establish a processing plant in An Hiep Industrial Zone, Chau Thanh District, Ben Tre Province, Viet Nam which is equipped with the most advanced processing technologies of the world and become the most modern plant in Vietnam at the moment.",
-        "Although newly established, HHFISH, with its own outstanding advantages, confidently affirms with the market about a powerful and reputable supplier of Vietnam seafood industry in the future. With modern equipments, imported from the most famous seafood machine producers in the world i.e. Germany, Holland, Sweden... at the latest, HHFISH produces around 40,000 tons of material per year, providing the market with best quality products, most competitive price and best service to all customers on the five continents. Moreover, with the existing aquaculture activities, HHFISH also has a preponderance about the closed process from breeding, farming to processing. Because of this closed process, HHFISH can strictly control the quality of products from raw materials to finished ones and make product traceability easily to satisfy to the best of all strict requirements of importers around the world.",
-        "Besides, human resource also plays an important factor that can support HHFISH can go further, with special policy of recruitment, HHFISH have been recruited about 2,000 skillful workers, as well as direct managing experts with heartful, dynamic and creative spirit to meet the current production demands of the company. HHFISH has successfully applied the international quality management system HACCP and is under the progress to apply the systems of BRCGS, HACCP, ISO 22000, HALAL. Our guideline is \"Our quality, Your Safety\", HHFISH is coming towards a natural, green, pure processing and farming environment from which to produce the best products for all consumers all over the world."
-      ]
+      "items": {
+        "farming": {
+          "title": "Aquaculture Operations",
+          "cta": "View all",
+          "imageAlt": "Hai Huong aquaculture farms"
+        },
+        "processing": {
+          "title": "Processing & Cold Storage",
+          "cta": "View all",
+          "imageAlt": "Hai Huong processing plant and cold storage"
+        },
+        "export": {
+          "title": "Export Business",
+          "cta": "View all",
+          "imageAlt": "Hai Huong seafood export business"
+        }
+      }
+    },
+    "about": {
+      "title": "Introduction",
+      "subtitle": "",
+      "chairman": {
+        "title": "Message from the Chairman",
+        "body": "I believe that reputation is not built by promises, but by consistency in every action, every product, and every commitment fulfilled each day. We honor the values built over the years, while continuously innovating to take Hai Huong into a stronger chapter of growth."
+      },
+      "journey": {
+        "title": "Our Journey",
+        "body": "Founded in 2010, Hai Huong Seafood (HHFISH) is one of the leading enterprises in pangasius farming, processing, and export in the Mekong Delta. With a closed value chain from farms to processing plants, HHFISH secures its raw materials, controls quality, and meets international market standards."
+      },
+      "vision": {
+        "title": "Vision",
+        "tagline": "Continuing values – Creating the future",
+        "body": "Hai Huong aims to build a sustainable seafood enterprise that continuously innovates to strengthen production capacity, complete the value chain, and take the Hai Huong brand further into international markets. We are committed to delivering high-quality products that meet global standards, while creating lasting value for customers, partners, employees, and communities."
+      },
+      "mission": {
+        "title": "Mission",
+        "body": "In the coming period, Hai Huong will focus on investing in technology, enhancing production capacity, improving management systems, developing high-quality human resources, and expanding export markets. We remain steadfast in delivering safe, high-quality seafood that meets international standards, while building a sustainable, transparent enterprise that is responsible to the community."
+      },
+      "values": {
+        "title": "Core Values",
+        "items": [
+          {
+            "key": "Heart",
+            "motto": "We care in every detail.",
+            "description": "Quality begins with the heart."
+          },
+          {
+            "key": "Honor",
+            "motto": "We keep our promises.",
+            "description": "Credibility with customers and partners."
+          },
+          {
+            "key": "Harmony",
+            "motto": "We grow responsibly.",
+            "description": "Growing the business hand in hand with people, environmental protection, and community value."
+          },
+          {
+            "key": "High Standards",
+            "motto": "We pursue excellence.",
+            "description": "Continuously raising quality standards."
+          }
+        ]
+      },
+      "quality": {
+        "title": "Quality",
+        "body": "Quality is the foundation of everything Hai Huong does. We put quality standards first and tightly control every stage so that each product reaching customers meets the highest requirements for safety, consistency, and excellence."
+      },
+      "team": {
+        "title": "The Strength of Our People",
+        "body": "We believe a united, responsible team with a shared purpose is the foundation for Hai Huong to keep innovating, raising quality, and reaching further in international markets.",
+        "body2": "With a spirit of collaboration and shared growth, Hai Huong is committed to building a professional workplace where every individual can develop their potential, contribute value, and help create a sustainable future for the company."
+      },
+      "cta": {
+        "products": "View products",
+        "contact": "Contact us"
+      }
     },
     "products": {
       "title": "Products",

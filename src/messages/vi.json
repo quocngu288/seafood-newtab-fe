@@ -6,6 +6,7 @@
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
+    "fields": "Lĩnh vực",
     "products": "Sản phẩm",
     "markets": "Thị trường",
     "news": "Tin tức",
@@ -172,14 +173,85 @@
     "certifications": ["HACCP", "BRC", "HALAL", "ISO 22000", "GLOBALG.A.P"]
   },
   "pages": {
-    "about": {
-      "title": "Về chúng tôi",
+    "fields": {
+      "title": "Lĩnh vực",
       "subtitle": "",
-      "paragraphs": [
-        "Thành lập năm 2007, HHFISH được biết đến là một trong những đơn vị nuôi cá hàng đầu tại đồng bằng sông Cửu Long, Việt Nam. Với diện tích khoảng 100 ha, trải rộng trên chín huyện, thành phố thuộc Bến Tre và các tỉnh lân cận, HHFISH sản xuất 30.000 tấn nguyên liệu/năm, cung cấp cho phần lớn các nhà máy chế biến trong khu vực. Năm 2011 là một cột mốc quan trọng của HHFISH. Với lợi thế sẵn có từ hoạt động nuôi trồng, nhằm đáp ứng nhu cầu thị trường ngày càng tăng, HHFISH đã quyết định xây dựng nhà máy chế biến tại Khu công nghiệp An Hiệp, huyện Châu Thành, tỉnh Bến Tre, Việt Nam, trang bị công nghệ chế biến tiên tiến nhất thế giới và trở thành nhà máy hiện đại nhất Việt Nam tại thời điểm đó.",
-        "Dù mới thành lập, với những lợi thế vượt trội riêng, HHFISH tự tin khẳng định với thị trường về một nhà cung cấp mạnh mẽ và uy tín của ngành thủy sản Việt Nam trong tương lai. Với trang thiết bị hiện đại, nhập khẩu từ những nhà sản xuất máy móc thủy sản nổi tiếng nhất thế giới như Đức, Hà Lan, Thụy Điển... gần đây nhất, HHFISH sản xuất khoảng 40.000 tấn nguyên liệu / năm, cung cấp cho thị trường những sản phẩm chất lượng tốt nhất, giá cả cạnh tranh nhất và dịch vụ tốt nhất cho khách hàng trên năm châu. Hơn nữa, với hoạt động nuôi trồng thủy sản hiện có, HHFISH còn có lợi thế về quy trình khép kín từ giống, nuôi trồng đến chế biến. Nhờ quy trình này, HHFISH có thể kiểm soát chặt chẽ chất lượng sản phẩm từ nguyên liệu đến thành phẩm và dễ dàng truy xuất nguồn gốc, đáp ứng tối đa các yêu cầu khắt khe của nhà nhập khẩu trên toàn thế giới.",
-        "Bên cạnh đó, nguồn nhân lực cũng là yếu tố quan trọng giúp HHFISH phát triển xa hơn. Với chính sách tuyển dụng đặc biệt, HHFISH đã tuyển dụng khoảng 2.000 công nhân lành nghề, cùng đội ngũ chuyên gia quản lý trực tiếp với tinh thần tận tâm, năng động và sáng tạo để đáp ứng nhu cầu sản xuất hiện tại của công ty. HHFISH đã áp dụng thành công hệ thống quản lý chất lượng quốc tế HACCP và đang trong quá trình triển khai các hệ thống BRCGS, HACCP, ISO 22000,  HALAL. Phương châm của chúng tôi là \"Chất lượng của chúng tôi – An toàn của bạn\", HHFISH hướng tới môi trường nuôi trồng và chế biến tự nhiên, xanh, sạch để sản xuất những sản phẩm tốt nhất cho người tiêu dùng trên toàn thế giới."
-      ]
+      "items": {
+        "farming": {
+          "title": "Hoạt động Nuôi trồng",
+          "cta": "Xem tất cả",
+          "imageAlt": "Vùng nuôi trồng thủy sản Hải Hương"
+        },
+        "processing": {
+          "title": "Chế Biến & Kho Lạnh",
+          "cta": "Xem tất cả",
+          "imageAlt": "Nhà máy chế biến và kho lạnh Hải Hương"
+        },
+        "export": {
+          "title": "Kinh doanh xuất khẩu",
+          "cta": "Xem tất cả",
+          "imageAlt": "Kinh doanh xuất khẩu thủy sản Hải Hương"
+        }
+      }
+    },
+    "about": {
+      "title": "Giới thiệu",
+      "subtitle": "",
+      "chairman": {
+        "title": "Thông điệp từ Chủ tịch",
+        "body": "Tôi tin rằng, uy tín không được tạo nên từ những lời hứa, mà được xây dựng bằng sự nhất quán trong từng hành động, từng sản phẩm và từng cam kết được thực hiện mỗi ngày. Chúng tôi tôn trọng những giá trị đã được xây dựng trong suốt những năm qua, đồng thời sẽ không ngừng đổi mới để đưa Hải Hương bước vào một giai đoạn phát triển mạnh mẽ hơn."
+      },
+      "journey": {
+        "title": "Hành trình phát triển",
+        "body": "Thành lập năm 2010, Hải Hương Seafood (HHFISH) là một trong những doanh nghiệp hàng đầu trong lĩnh vực nuôi trồng, chế biến và xuất khẩu cá tra tại Đồng bằng sông Cửu Long. Với chuỗi giá trị khép kín từ vùng nuôi đến nhà máy chế biến, HHFISH chủ động nguồn nguyên liệu, kiểm soát chất lượng và đáp ứng các tiêu chuẩn của thị trường quốc tế."
+      },
+      "vision": {
+        "title": "Tầm nhìn",
+        "tagline": "Tiếp nối giá trị – Kiến tạo tương lai",
+        "body": "Hải Hương hướng đến xây dựng một doanh nghiệp thủy sản phát triển bền vững, không ngừng đổi mới để nâng cao năng lực sản xuất, hoàn thiện chuỗi giá trị và đưa thương hiệu Hải Hương vươn xa trên thị trường quốc tế. Chúng tôi cam kết tạo ra những sản phẩm chất lượng cao, đáp ứng các tiêu chuẩn toàn cầu, đồng thời mang lại giá trị bền vững cho khách hàng, đối tác, người lao động và cộng đồng."
+      },
+      "mission": {
+        "title": "Nhiệm vụ",
+        "body": "Trong thời gian tới, Hải Hương sẽ tập trung đầu tư vào công nghệ, nâng cao năng lực sản xuất, hoàn thiện hệ thống quản trị, phát triển nguồn nhân lực chất lượng cao và mở rộng thị trường xuất khẩu. Chúng tôi kiên định với mục tiêu mang đến những sản phẩm thủy sản an toàn, chất lượng và đáp ứng các tiêu chuẩn quốc tế, đồng thời xây dựng một doanh nghiệp phát triển bền vững, minh bạch và có trách nhiệm với cộng đồng."
+      },
+      "values": {
+        "title": "Giá trị cốt lõi",
+        "items": [
+          {
+            "key": "Heart",
+            "motto": "We care in every detail.",
+            "description": "Chất lượng bắt đầu từ cái tâm."
+          },
+          {
+            "key": "Honor",
+            "motto": "We keep our promises.",
+            "description": "Uy tín với khách hàng, đối tác."
+          },
+          {
+            "key": "Harmony",
+            "motto": "We grow responsibly.",
+            "description": "Phát triển doanh nghiệp song hành với phát triển con người, bảo vệ môi trường, tạo giá trị cho cộng đồng."
+          },
+          {
+            "key": "High Standards",
+            "motto": "We pursue excellence.",
+            "description": "Không ngừng nâng cao chất lượng."
+          }
+        ]
+      },
+      "quality": {
+        "title": "Chất lượng",
+        "body": "Chất lượng là nền tảng trong mọi hoạt động của Hải Hương. Chúng tôi luôn đặt tiêu chuẩn chất lượng lên hàng đầu, kiểm soát chặt chẽ trong từng công đoạn để đảm bảo mỗi sản phẩm đến tay khách hàng đều đáp ứng yêu cầu về an toàn, ổn định và chất lượng cao nhất."
+      },
+      "team": {
+        "title": "Sức mạnh của tập thể",
+        "body": "Chúng tôi tin rằng, một tập thể đoàn kết, trách nhiệm và cùng chung mục tiêu chính là nền tảng để Hải Hương không ngừng đổi mới, nâng cao chất lượng và vươn xa trên thị trường quốc tế.",
+        "body2": "Với tinh thần đồng hành và phát triển cùng nhau, Hải Hương luôn chú trọng xây dựng môi trường làm việc chuyên nghiệp, nơi mỗi cá nhân được phát huy năng lực, đóng góp giá trị và cùng kiến tạo tương lai bền vững cho doanh nghiệp."
+      },
+      "cta": {
+        "products": "Xem sản phẩm",
+        "contact": "Liên hệ"
+      }
     },
     "products": {
       "title": "Sản phẩm",
