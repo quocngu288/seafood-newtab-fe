@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { ContactMap } from "@/components/contact/ContactMap";
+import type { ApiSiteSettings } from "@/lib/api/types";
 import { Logo } from "./Logo";
 
 function IconPin({ className = "h-4 w-4" }: { className?: string }) {
@@ -74,19 +75,33 @@ function ContactRow({
   );
 }
 
-export async function Footer() {
+export async function Footer({
+  settings,
+}: {
+  settings?: ApiSiteSettings | null;
+}) {
   const t = await getTranslations("footer");
+
+  const address = settings?.address || t("address");
+  const email = settings?.email || t("email");
+  const website = settings?.website || t("website");
+  const hotline = settings?.hotline || t("hotline");
+  const mapTitle = settings?.mapTitle || t("mapTitle");
+  const facebookUrl = settings?.facebookUrl || "https://facebook.com/";
+  const linkedinUrl = settings?.linkedinUrl || "https://linkedin.com/";
+  const xUrl = settings?.xUrl || "https://x.com/";
+  const logoAlt = settings?.logoAlt || undefined;
 
   const socialLinks = [
     {
       key: "email",
-      href: `mailto:${t("email")}`,
+      href: `mailto:${email}`,
       label: t("social.email"),
       icon: <IconMail className="h-4 w-4" />,
     },
     {
       key: "facebook",
-      href: "https://facebook.com/",
+      href: facebookUrl,
       label: t("social.facebook"),
       icon: (
         <span className="hh-text-lg font-bold leading-none" aria-hidden>
@@ -96,7 +111,7 @@ export async function Footer() {
     },
     {
       key: "linkedin",
-      href: "https://linkedin.com/",
+      href: linkedinUrl,
       label: t("social.linkedin"),
       icon: (
         <span className="hh-text-lg font-bold leading-none" aria-hidden>
@@ -106,7 +121,7 @@ export async function Footer() {
     },
     {
       key: "x",
-      href: "https://x.com/",
+      href: xUrl,
       label: t("social.x"),
       icon: (
         <span className="hh-text-lg font-bold leading-none" aria-hidden>
@@ -120,53 +135,55 @@ export async function Footer() {
     <footer className="bg-[#0052A8] py-10 text-white md:py-12">
       <div className="site-container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10 xl:gap-14">
-          <p className="hh-text-2xl shrink-0 font-bold lg:w-[130px]">
-            {t("contact")}
-          </p>
+          <div className="shrink-0 lg:w-[200px] xl:w-[220px]">
+            <Logo
+              className="!w-[160px] sm:!w-[190px] lg:!w-full"
+              src={settings?.logoUrl || undefined}
+              alt={logoAlt}
+            />
+          </div>
 
           <div className="flex flex-1 flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
             <address className="not-italic">
               <ul className="space-y-3">
-                <ContactRow icon={<IconPin />}>{t("address")}</ContactRow>
+                <ContactRow icon={<IconPin />}>{address}</ContactRow>
                 <ContactRow icon={<IconMail />}>
-                  <a href={`mailto:${t("email")}`} className="hover:text-white">
-                    {t("email")}
+                  <a href={`mailto:${email}`} className="hover:text-white">
+                    {email}
                   </a>
                 </ContactRow>
                 <ContactRow icon={<IconGlobe />}>
                   <a
-                    href={t("website")}
+                    href={website}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white"
                   >
-                    {t("website")}
+                    {website}
                   </a>
                 </ContactRow>
-                <ContactRow icon={<IconPhone />}>{t("hotline")}</ContactRow>
+                <ContactRow icon={<IconPhone />}>{hotline}</ContactRow>
               </ul>
 
-              <div className="mt-6 flex flex-col items-start gap-4">
-                <Logo className="!w-[150px] sm:!w-[190px]" />
-                <div className="inline-flex items-center gap-4 rounded-full bg-white/15 px-5 py-2.5 backdrop-blur-sm">
-                  {socialLinks.map(({ key, href, label, icon }) => (
-                    <a
-                      key={key}
-                      href={href}
-                      target={key === "email" ? undefined : "_blank"}
-                      rel={key === "email" ? undefined : "noopener noreferrer"}
-                      className="flex h-7 w-7 items-center justify-center text-white/90 transition hover:text-white"
-                      aria-label={label}
-                    >
-                      {icon}
-                    </a>
-                  ))}
-                </div>
+              <div className="mt-6 inline-flex items-center gap-4 rounded-full bg-white/15 px-5 py-2.5 backdrop-blur-sm">
+                {socialLinks.map(({ key, href, label, icon }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target={key === "email" ? undefined : "_blank"}
+                    rel={key === "email" ? undefined : "noopener noreferrer"}
+                    className="flex h-7 w-7 items-center justify-center text-white/90 transition hover:text-white"
+                    aria-label={label}
+                  >
+                    {icon}
+                  </a>
+                ))}
               </div>
             </address>
 
             <ContactMap
-              title={t("mapTitle")}
+              title={mapTitle}
+              embedUrl={settings?.mapEmbedUrl}
               className="w-full shrink-0 lg:max-w-[420px]"
             />
           </div>

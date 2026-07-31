@@ -1,4 +1,12 @@
-import type { ApiNewsArticle, ApiProduct, Locale, PaginatedNews } from "./types";
+import type {
+  ApiBanner,
+  ApiFieldItem,
+  ApiNewsArticle,
+  ApiProduct,
+  ApiSiteSettings,
+  Locale,
+  PaginatedNews,
+} from "./types";
 import { getApiUrl } from "./config";
 
 const API_URL = getApiUrl();
@@ -39,4 +47,16 @@ export function fetchNewsArticle(slugOrId: string, locale: Locale) {
   return serverFetch<ApiNewsArticle>(
     `/news/${encodeURIComponent(slugOrId)}?locale=${locale}`,
   );
+}
+
+export function fetchBanners(locale: Locale) {
+  return serverFetch<ApiBanner[]>(`/banners?locale=${locale}`);
+}
+
+export function fetchFields(locale: Locale) {
+  return serverFetch<ApiFieldItem[]>(`/fields?locale=${locale}`);
+}
+
+export function fetchSiteSettings(locale: Locale) {
+  return serverFetch<ApiSiteSettings>(`/site-settings?locale=${locale}`);
 }

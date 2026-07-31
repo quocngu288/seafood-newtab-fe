@@ -1,18 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useTranslations } from "next-intl";
 import { images } from "@/lib/images";
 
-/** Chỉ ảnh đổi theo slide — thêm file khi có (hero-slide-2.jpg, …) */
-const SLIDE_IMAGES = [
-  images.heroSlide,
-  images.heroSlide1,
-  images.heroSlide2,
-] as const;
-
-const SLIDE_COUNT = SLIDE_IMAGES.length;
+export type HeroSlide = {
+  title: string;
+  badges: string;
+  imageAlt: string;
+  image: string | StaticImageData;
+};
 
 function ChevronLeft({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -42,23 +40,20 @@ function ChevronRight({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-export function HeroCarousel() {
+export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const t = useTranslations("hero");
-  const slides = t.raw("slides") as Array<{
-    title: string;
-    badges: string;
-    imageAlt: string;
-  }>;
-
   const [active, setActive] = useState(0);
+  const slideCount = slides.length;
   const slide = slides[active] ?? slides[0];
 
+  if (!slide || slideCount === 0) return null;
+
   function goPrev() {
-    setActive((current) => (current - 1 + SLIDE_COUNT) % SLIDE_COUNT);
+    setActive((current) => (current - 1 + slideCount) % slideCount);
   }
 
   function goNext() {
-    setActive((current) => (current + 1) % SLIDE_COUNT);
+    setActive((current) => (current + 1) % slideCount);
   }
 
   return (
@@ -74,11 +69,11 @@ export function HeroCarousel() {
         />
 
         <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] md:aspect-[16/9]">
-          {SLIDE_IMAGES.map((src, i) => (
+          {slides.map((item, i) => (
             <Image
-              key={i}
-              src={src}
-              alt={slides[i]?.imageAlt ?? slides[0].imageAlt}
+              key={`${item.imageAlt}-${i}`}
+              src={item.image}
+              alt={item.imageAlt}
               fill
               className={`object-cover object-center transition-opacity duration-500 ${
                 i === active ? "opacity-100" : "opacity-0"
@@ -88,23 +83,27 @@ export function HeroCarousel() {
             />
           ))}
 
-          <button
-            type="button"
-            onClick={goPrev}
-            className="absolute left-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:left-3 md:left-4"
-            aria-label={t("prevSlide")}
-          >
-            <ChevronLeft className="h-10 w-10 sm:h-15 sm:w-15" />
-          </button>
+          {slideCount > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={goPrev}
+                className="absolute left-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:left-3 md:left-4"
+                aria-label={t("prevSlide")}
+              >
+                <ChevronLeft className="h-10 w-10 sm:h-15 sm:w-15" />
+              </button>
 
-          <button
-            type="button"
-            onClick={goNext}
-            className="absolute right-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:right-3 md:right-4"
-            aria-label={t("nextSlide")}
-          >
-            <ChevronRight className="h-10 w-10 sm:h-15 sm:w-15" />
-          </button>
+              <button
+                type="button"
+                onClick={goNext}
+                className="absolute right-2 top-1/2 z-30 flex -translate-y-1/2 items-center justify-center text-white/80 drop-shadow-md transition hover:text-white sm:right-3 md:right-4"
+                aria-label={t("nextSlide")}
+              >
+                <ChevronRight className="h-10 w-10 sm:h-15 sm:w-15" />
+              </button>
+            </>
+          )}
         </div>
 
         <div className="absolute inset-x-0 top-0 z-20 flex min-h-[50%] flex-col items-center justify-start px-8 pb-4 pt-6 text-center sm:min-h-[46%] sm:px-6 sm:pb-6 sm:pt-8 md:min-h-[42%] md:px-10 md:pb-10 md:pt-12">
@@ -116,27 +115,31 @@ export function HeroCarousel() {
             <h2 className="hh-text-2xl mx-auto line-clamp-4 max-w-2xl leading-snug text-slate-800 sm:line-clamp-3">
               {slide.title}
             </h2>
-            <div className="hh-text-lg mx-auto mt-2 inline-flex max-w-full rounded-full bg-[#79B4E6] px-3 py-1 font-semibold uppercase tracking-wide text-white shadow-sm sm:mt-3 sm:px-4 sm:py-1.5 md:mt-4 md:px-5 md:py-2">
-              <span className="line-clamp-2">{slide.badges}</span>
-            </div>
+            {slide.badges ? (
+              <div className="hh-text-lg mx-auto mt-2 inline-flex max-w-full rounded-full bg-[#79B4E6] px-3 py-1 font-semibold uppercase tracking-wide text-white shadow-sm sm:mt-3 sm:px-4 sm:py-1.5 md:mt-4 md:px-5 md:py-2">
+                <span className="line-clamp-2">{slide.badges}</span>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
 
-      <div className="mt-4 flex justify-center gap-2">
-        {Array.from({ length: SLIDE_COUNT }, (_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setActive(i)}
-            className={`h-2 w-2 rounded-sm transition sm:h-3 sm:w-3 ${
-              i === active ? "bg-hh-red" : "bg-gray-300/90 hover:bg-gray-200"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-            aria-current={i === active}
-          />
-        ))}
-      </div>
+      {slideCount > 1 && (
+        <div className="mt-4 flex justify-center gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`h-2 w-2 rounded-sm transition sm:h-3 sm:w-3 ${
+                i === active ? "bg-hh-red" : "bg-gray-300/90 hover:bg-gray-200"
+              }`}
+              aria-label={`Slide ${i + 1}`}
+              aria-current={i === active}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

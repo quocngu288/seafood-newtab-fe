@@ -3,6 +3,7 @@ import heroSlide from "@/images/bg-slide.jpg";
 import heroSlide1 from "@/images/bg-slide1.jpg";
 import heroSlide2 from "@/images/bg-slide2.jpg";
 import vungNuoi from "@/images/vungnuoi.jpg";
+import xuatkhau from "@/images/xuatkhau.jpg";
 import certLeft from "@/images/certs/cert-left.jpg";
 import certMiddle from "@/images/certs/cert-middle.jpg";
 import certRight from "@/images/certs/cert-right.jpg";
@@ -13,6 +14,7 @@ const THUMBNAIL_MAP: Record<string, StaticImageData> = {
   "bg-slide1.jpg": heroSlide1,
   "bg-slide2.jpg": heroSlide2,
   "vungnuoi.jpg": vungNuoi,
+  "xuatkhau.jpg": xuatkhau,
   "certs/cert-left.jpg": certLeft,
   "certs/cert-middle.jpg": certMiddle,
   "certs/cert-right.jpg": certRight,

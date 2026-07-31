@@ -1,11 +1,17 @@
 import { getAdminToken } from "./auth";
 import { getApiUrl } from "./config";
 import type {
+  AdminBanner,
+  AdminFieldItem,
   AdminNewsArticle,
   AdminProduct,
   AdminProductCategory,
+  AdminSiteSettings,
+  ApiBanner,
+  ApiFieldItem,
   ApiNewsArticle,
   ApiProduct,
+  ApiSiteSettings,
   ContactMessage,
   CreateContactPayload,
   Locale,
@@ -85,6 +91,18 @@ export const publicApi = {
       method: "POST",
       body: JSON.stringify(payload),
     });
+  },
+
+  getBanners(locale: Locale) {
+    return request<ApiBanner[]>(`/banners?locale=${locale}`);
+  },
+
+  getFields(locale: Locale) {
+    return request<ApiFieldItem[]>(`/fields?locale=${locale}`);
+  },
+
+  getSiteSettings(locale: Locale) {
+    return request<ApiSiteSettings>(`/site-settings?locale=${locale}`);
   },
 };
 
@@ -256,6 +274,135 @@ export const adminApi = {
 
   uploadNewsImage(file: File) {
     return uploadAdminImage("/admin/uploads/news-image", file);
+  },
+
+  uploadBannerImage(file: File) {
+    return uploadAdminImage("/admin/uploads/banner-image", file);
+  },
+
+  uploadFieldImage(file: File) {
+    return uploadAdminImage("/admin/uploads/field-image", file);
+  },
+
+  getBanners() {
+    return request<AdminBanner[]>("/admin/banners", {}, true);
+  },
+
+  getBanner(id: number) {
+    return request<AdminBanner>(`/admin/banners/${id}`, {}, true);
+  },
+
+  createBanner(data: {
+    imageKey?: string;
+    sortOrder?: number;
+    active?: boolean;
+    vi: NonNullable<AdminBanner["translations"]["vi"]>;
+    en: NonNullable<AdminBanner["translations"]["en"]>;
+  }) {
+    return request<AdminBanner>("/admin/banners", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  updateBanner(
+    id: number,
+    data: Partial<{
+      imageKey: string;
+      sortOrder: number;
+      active: boolean;
+      vi: Partial<NonNullable<AdminBanner["translations"]["vi"]>>;
+      en: Partial<NonNullable<AdminBanner["translations"]["en"]>>;
+    }>,
+  ) {
+    return request<AdminBanner>(`/admin/banners/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  deleteBanner(id: number) {
+    return request<{ deleted: true }>(`/admin/banners/${id}`, {
+      method: "DELETE",
+    }, true);
+  },
+
+  getFields() {
+    return request<AdminFieldItem[]>("/admin/fields", {}, true);
+  },
+
+  getField(id: number) {
+    return request<AdminFieldItem>(`/admin/fields/${id}`, {}, true);
+  },
+
+  createField(data: {
+    key?: string;
+    imageKey?: string;
+    href?: string;
+    icon?: string;
+    reverse?: boolean;
+    sortOrder?: number;
+    active?: boolean;
+    vi: NonNullable<AdminFieldItem["translations"]["vi"]>;
+    en: NonNullable<AdminFieldItem["translations"]["en"]>;
+  }) {
+    return request<AdminFieldItem>("/admin/fields", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  updateField(
+    id: number,
+    data: Partial<{
+      key: string;
+      imageKey: string;
+      href: string;
+      icon: string;
+      reverse: boolean;
+      sortOrder: number;
+      active: boolean;
+      vi: Partial<NonNullable<AdminFieldItem["translations"]["vi"]>>;
+      en: Partial<NonNullable<AdminFieldItem["translations"]["en"]>>;
+    }>,
+  ) {
+    return request<AdminFieldItem>(`/admin/fields/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }, true);
+  },
+
+  deleteField(id: number) {
+    return request<{ deleted: true }>(`/admin/fields/${id}`, {
+      method: "DELETE",
+    }, true);
+  },
+
+  uploadSiteLogo(file: File) {
+    return uploadAdminImage("/admin/uploads/site-logo", file);
+  },
+
+  getSiteSettings() {
+    return request<AdminSiteSettings>("/admin/site-settings", {}, true);
+  },
+
+  updateSiteSettings(data: Partial<{
+    email: string;
+    website: string;
+    facebookUrl: string;
+    linkedinUrl: string;
+    xUrl: string;
+    floatingCallPhone: string;
+    mapEmbedUrl: string;
+    logoKey: string;
+    sales: AdminSiteSettings["sales"];
+    vi: Partial<AdminSiteSettings["translations"]["vi"]>;
+    en: Partial<AdminSiteSettings["translations"]["en"]>;
+  }>) {
+    return request<AdminSiteSettings>("/admin/site-settings", {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }, true);
   },
 };
 

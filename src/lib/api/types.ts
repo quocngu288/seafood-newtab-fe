@@ -136,3 +136,129 @@ export type LoginResponse = {
   accessToken: string;
   username: string;
 };
+
+export type ApiBanner = {
+  id: number;
+  title: string;
+  badges: string;
+  imageAlt: string;
+  imageKey: string;
+  imageUrl: string;
+  sortOrder: number;
+};
+
+export type BannerTranslationFields = {
+  title: string;
+  badges: string;
+  imageAlt: string;
+};
+
+export type AdminBanner = {
+  id: number;
+  imageKey: string;
+  imageUrl: string;
+  sortOrder: number;
+  active: boolean;
+  translations: {
+    vi: BannerTranslationFields | null;
+    en: BannerTranslationFields | null;
+  };
+};
+
+export type ApiFieldItem = {
+  id: number;
+  key: string;
+  title: string;
+  cta: string;
+  imageAlt: string;
+  imageKey: string;
+  imageUrl: string;
+  href: string;
+  icon: string;
+  reverse: boolean;
+  sortOrder: number;
+};
+
+export type FieldTranslationFields = {
+  title: string;
+  cta: string;
+  imageAlt: string;
+};
+
+export type AdminFieldItem = {
+  id: number;
+  key: string;
+  imageKey: string;
+  imageUrl: string;
+  href: string;
+  icon: string;
+  reverse: boolean;
+  sortOrder: number;
+  active: boolean;
+  translations: {
+    vi: FieldTranslationFields | null;
+    en: FieldTranslationFields | null;
+  };
+};
+
+export type SiteSettingsTranslationFields = {
+  address: string;
+  hotline: string;
+  mapTitle: string;
+  contactLabel: string;
+  saleOnline: string;
+  companyName: string;
+  tagline: string;
+  logoAlt: string;
+  floatingCallLabel: string;
+};
+
+export type SiteSettingsSalesPerson = {
+  name: string;
+  title: string;
+  phone: string;
+};
+
+export type ApiSiteSettings = {
+  address: string;
+  email: string;
+  website: string;
+  hotline: string;
+  mapTitle: string;
+  mapEmbedUrl: string;
+  contactLabel: string;
+  saleOnline: string;
+  companyName: string;
+  tagline: string;
+  logoAlt: string;
+  logoKey: string;
+  logoUrl: string;
+  facebookUrl: string;
+  linkedinUrl: string;
+  xUrl: string;
+  floatingCallPhone: string;
+  floatingCallLabel: string;
+  sales: SiteSettingsSalesPerson[];
+};
+
+export type AdminSiteSettings = {
+  email: string;
+  website: string;
+  facebookUrl: string;
+  linkedinUrl: string;
+  xUrl: string;
+  floatingCallPhone: string;
+  mapEmbedUrl: string;
+  logoKey: string;
+  logoUrl: string;
+  sales: Array<{
+    name: string;
+    phone: string;
+    viTitle: string;
+    enTitle: string;
+  }>;
+  translations: {
+    vi: SiteSettingsTranslationFields;
+    en: SiteSettingsTranslationFields;
+  };
+};

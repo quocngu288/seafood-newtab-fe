@@ -7,7 +7,9 @@ import { clearAdminToken } from "@/lib/api/auth";
 import {
   IconDashboard,
   IconExternal,
+  IconFields,
   IconFish,
+  IconImage,
   IconLogout,
   IconMail,
   IconMenu,
@@ -17,6 +19,8 @@ import {
 
 const NAV = [
   { href: "/admin", label: "Dashboard", exact: true, icon: IconDashboard },
+  { href: "/admin/banners", label: "Banner", icon: IconImage },
+  { href: "/admin/fields", label: "Lĩnh vực", icon: IconFields },
   { href: "/admin/products", label: "Sản phẩm", icon: IconProducts },
   {
     href: "/admin/product-categories",
@@ -24,7 +28,8 @@ const NAV = [
     icon: IconProducts,
   },
   { href: "/admin/news", label: "Tin tức", icon: IconNews },
-  { href: "/admin/contact", label: "Liên hệ", icon: IconMail },
+  { href: "/admin/site-settings", label: "Thông tin LH", icon: IconMail },
+  { href: "/admin/contact", label: "Tin nhắn", icon: IconMail },
 ] as const;
 
 export function AdminShell({

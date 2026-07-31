@@ -1,7 +1,7 @@
 type AdminFormActionsProps = {
   submitLabel: string;
   loading?: boolean;
-  onCancel: () => void;
+  onCancel?: () => void;
 };
 
 export function AdminFormActions({
@@ -14,9 +14,11 @@ export function AdminFormActions({
       <button type="submit" disabled={loading} className="admin-btn-primary">
         {loading ? "Đang lưu..." : submitLabel}
       </button>
-      <button type="button" onClick={onCancel} className="admin-btn-secondary">
-        Hủy
-      </button>
+      {onCancel ? (
+        <button type="button" onClick={onCancel} className="admin-btn-secondary">
+          Hủy
+        </button>
+      ) : null}
     </div>
   );
 }

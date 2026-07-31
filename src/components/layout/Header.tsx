@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Logo } from "./Logo";
 import { NavUnderline } from "./NavUnderline";
 import { ProductsNavMenu } from "./ProductsNavMenu";
+import { useSiteSettings } from "./SiteSettingsProvider";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { SearchBar } from "@/components/ui/SearchBar";
 
@@ -52,8 +53,13 @@ function NavItem({
 export function Header() {
   const t = useTranslations("nav");
   const tCompany = useTranslations("company");
+  const settings = useSiteSettings();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const companyName = settings?.companyName || tCompany("name");
+  const logoSrc = settings?.logoUrl || undefined;
+  const logoAlt = settings?.logoAlt || tCompany("logoAlt");
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -114,12 +120,16 @@ export function Header() {
       <div className="site-container pt-4 pb-2 sm:pb-4">
         <div className="flex min-h-[52px] items-center gap-1.5 sm:min-h-[64px] sm:gap-2 md:min-h-[72px] md:gap-3">
           <Link href="/" className="block shrink-0">
-            <Logo className="!w-[160px] h-auto object-contain sm:!w-[180px] md:!w-[270px] lg:!w-[270px] xl:!w-[270px]" />
+            <Logo
+              className="!w-[160px] h-auto object-contain sm:!w-[180px] md:!w-[270px] lg:!w-[270px] xl:!w-[270px]"
+              src={logoSrc}
+              alt={logoAlt}
+            />
           </Link>
 
           <div className="flex min-w-0 flex-1 items-center justify-center">
             <h1 className="hh-text-company px-1 text-center font-semibold uppercase leading-tight tracking-wide text-white md:max-w-none md:leading-snug">
-              {tCompany("name")}
+              {companyName}
             </h1>
           </div>
 
@@ -174,7 +184,11 @@ export function Header() {
           <div className="hh-menu-drawer absolute right-0 top-0 flex max-h-full w-[88%] max-w-md flex-col overflow-y-auto bg-hh-blue shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/15 px-5 py-4">
               <Link href="/" onClick={closeMenu} className="block shrink-0">
-                <Logo className="!w-[180px] h-auto object-contain" />
+                <Logo
+                  className="!w-[180px] h-auto object-contain"
+                  src={logoSrc}
+                  alt={logoAlt}
+                />
               </Link>
               <button
                 type="button"

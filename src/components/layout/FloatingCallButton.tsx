@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useSiteSettings } from "./SiteSettingsProvider";
 
 function PhoneIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
@@ -17,14 +18,17 @@ function PhoneIcon({ className = "h-6 w-6" }: { className?: string }) {
 
 export function FloatingCallButton() {
   const t = useTranslations("floatingCall");
-  const phone = t("phone").replace(/[\s.]/g, "");
+  const settings = useSiteSettings();
+  const rawPhone = settings?.floatingCallPhone || t("phone");
+  const phone = rawPhone.replace(/[\s.]/g, "");
+  const label = settings?.floatingCallLabel || t("label");
 
   return (
     <a
       href={`tel:${phone}`}
       className="hh-floating-call group"
-      aria-label={t("label")}
-      title={t("label")}
+      aria-label={label}
+      title={label}
     >
       <span className="hh-floating-call__ring" aria-hidden />
       <span className="hh-floating-call__ring hh-floating-call__ring--delay" aria-hidden />

@@ -5,8 +5,8 @@ export type FieldItem = {
   key: string;
   title: string;
   cta: string;
-  href: "/about" | "/products" | "/contact" | "/fields" | "/markets";
-  image: StaticImageData;
+  href: string;
+  image: string | StaticImageData;
   imageAlt: string;
   /** image bên trái (mặc định) hoặc phải khi reverse */
   reverse?: boolean;
@@ -236,7 +236,7 @@ export function FieldsSection({ items }: { items: FieldItem[] }) {
               {item.title}
             </h2>
             <Link
-              href={item.href}
+              href={item.href as "/about"}
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#B8D4EA] px-5 py-2.5 text-sm font-semibold text-hh-blue-dark transition hover:bg-[#A5C8E2] sm:mt-6"
             >
               {item.cta}

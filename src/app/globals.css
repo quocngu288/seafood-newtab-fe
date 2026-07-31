@@ -9,6 +9,7 @@
   --hh-red-hover: #c4191f;
   --background: #ffffff;
   --foreground: #111827;
+  --font-source-sans: "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
   /** Chiều cao vùng sóng (header + hero) — chỉnh tại đây */
   --hh-wave-band-height: 720px;
 }
